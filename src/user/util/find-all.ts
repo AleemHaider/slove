@@ -45,7 +45,7 @@ export const getWhereDiscovery = (
           }
           else if(searchType==="1")
           {
-            query = query + ` and uq.city ilike '%${search}%' or uq.country ilike '%${search}% `;
+            query = query + ` and uq.city ilike '%${search}%' or uq.country ilike '%${search}%' `;
           }
           else if(searchType===undefined)
           {
