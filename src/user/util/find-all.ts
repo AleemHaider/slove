@@ -104,7 +104,7 @@ else if(searchType==="0")
 else if(searchType==="1")
 {
   if (search && search.length > 0) {
-    query = query + ` and  venue_country.name ilike '%${search}%' or venue_city.name ilike '%${search}%'`;
+    query = query + ` and  (venue_country.name ilike '%${search}%' or venue_city.name ilike '%${search}%') `;
   }
   if (genre && genre.length > 0) {
     query = query + ` and bc.music_genre && '{${genre}}'`;
