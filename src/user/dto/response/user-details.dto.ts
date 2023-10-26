@@ -153,7 +153,7 @@ export class UserDetailsDto {
       venueName: userQuestionEntity.venueName,
       venueType: venueList,
       websiteLink: userQuestionEntity.websiteLink,
-      audioUrl = userQuestion?.audioUrl ?? null;
+      audioUrl : userQuestionEntity.audioUrl,
       youtube: userQuestionEntity.youtube,
       profileCompletion: Math.floor(completePercentage),
       consumerName: userQuestionEntity.consumerName,
@@ -239,7 +239,7 @@ export class UserDetailsDto {
         userType: data[i].user_type,
         venueCapacity: data[i].venue_capacity,
         venueName: data[i].venue_name,
-        audioUrl = data[i]?.audioUrl ?? "null",
+        audioUrl: data[i].audioUrl,
         venueType: data[i].venueType,
         websiteLink: data[i].website_link,
         youtube: data[i].youtube,
