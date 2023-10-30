@@ -42,5 +42,7 @@ export class CreateContractDto {
   @ApiProperty()
   contractDetails: string;
   @ApiProperty()
+  contractDiscription: string;
+  @ApiProperty()
   equipment: string[];
 }

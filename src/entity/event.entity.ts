@@ -53,6 +53,12 @@ export class EventEntity extends BaseEntity {
     nullable: true,
   })
   contractDetails: string;
+  @Column({
+    name: 'contract_discription',
+    type: 'text',
+    nullable: true,
+  })
+  contractDiscription: string;
 
   @OneToOne(() => BookingContractEntity)
   @JoinColumn({ name: 'booking_contract_id' })

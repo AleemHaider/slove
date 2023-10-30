@@ -135,6 +135,7 @@ export class BookingListDto {
       organisationNumber: element.booking_contract_organisation_number,
       ticketPrice: element.booking_contract_ticket_price,
       contractDetails: element.booking_contract_details,
+      contractDiscription:element.booking_contract_discription,
       ticketSaleAgreement: element.booking_contract_ticket_sale_agreement,
     };
   }

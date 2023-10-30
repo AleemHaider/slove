@@ -62,6 +62,13 @@ export class BookingContractEntity extends BaseEntity {
   })
   contractDetails: string;
   @Column({
+    type: 'text',
+    name: 'contract_discription',
+   nullable: true,
+  })
+  contractDiscription: string;
+
+  @Column({
     type: 'bool',
     name: 'ticket_sale_agreement',
    nullable:true
