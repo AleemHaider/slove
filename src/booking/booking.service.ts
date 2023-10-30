@@ -385,7 +385,7 @@ export class BookingService {
         eventEntity.ticketPrice = contract.ticketPrice;
         eventEntity.contractDetails = contract.contractDetails;
         eventEntity.ticketSaleAgreement = contract.ticketSaleAgreement;
-        eventEntity.contractDiscription=contract.contracDiscription;
+        eventEntity.contractDiscription=contract.contractDiscription;
         eventEntity.venue =
           booking.user.userType.id == USER_TYPE.VENUE
             ? booking.user
