@@ -130,7 +130,7 @@ export class BookingListDto {
       startTime: element.booking_contract_start_time,
       endTime: element.booking_contract_end_time,
       bookingPrice: element.booking_contract_booking_price,
-//      equipment: element.booking_contract_equipment,
+      equipment: element.booking_contract_equipment,
       eventName: element.booking_contract_event_name,
       organisationNumber: element.booking_contract_organisation_number,
       ticketPrice: element.booking_contract_ticket_price,
