@@ -40,6 +40,20 @@ export class EventEntity extends BaseEntity {
   })
   ticketPrice: number;
 
+  
+  @Column({
+    type: 'bool',
+    name: 'ticket_sale_agreement',
+    nullable:true,
+  })
+  ticketSaleAgreement: boolean;
+  @Column({
+    name: 'contract_details',
+    type: 'text',
+    nullable: true,
+  })
+  contractDetails: string;
+
   @OneToOne(() => BookingContractEntity)
   @JoinColumn({ name: 'booking_contract_id' })
   bookingContract: BookingContractEntity;

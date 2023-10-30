@@ -55,7 +55,22 @@ export class BookingContractEntity extends BaseEntity {
     scale: 2,
   })
   ticketPrice: number;
-
+  @Column({
+    type: 'text',
+    name: 'contract_details',
+    default: 0,
+    precision: 15,
+    scale: 2,
+  })
+  contractDetails: string;
+  @Column({
+    type: 'bool',
+    name: 'ticket_sale_agreement',
+    default: 0,
+    precision: 15,
+    scale: 2,
+  })
+  ticketSaleAgreement: boolean;
   @Column({
     name: 'equipment',
     type: 'text',

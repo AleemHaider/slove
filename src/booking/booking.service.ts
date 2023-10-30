@@ -317,6 +317,8 @@ export class BookingService {
     bookingContractEntity.eventName = dto.eventName;
     bookingContractEntity.booking = booking;
     bookingContractEntity.ticketPrice = dto.ticketPrice;
+    bookingContractEntity.contractDetails = dto.contractDetails;
+    bookingContractEntity.ticketSaleAgreement = dto.ticketSaleAgreement;
     bookingContractEntity.organisationNumber = dto.organisationNumber;
     bookingContractEntity.startTime = new Date(dto.date + ' ' + dto.startTime);
     bookingContractEntity.endTime = new Date(dto.date + ' ' + dto.endTime);
@@ -379,6 +381,8 @@ export class BookingService {
         eventEntity.startTime = contract.startTime;
         eventEntity.eventName = contract.eventName;
         eventEntity.ticketPrice = contract.ticketPrice;
+        eventEntity.contractDetails = contract.contractDetails;
+        eventEntity.ticketSaleAgreement = contract.ticketSaleAgreement;
         eventEntity.venue =
           booking.user.userType.id == USER_TYPE.VENUE
             ? booking.user

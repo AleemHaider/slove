@@ -37,7 +37,10 @@ export class CreateContractDto {
 
   @ApiProperty()
   ticketPrice: number;
-
+  @ApiProperty()
+  ticketSaleAgreement: boolean;
+  @ApiProperty()
+  contractDetails: string;
   @ApiProperty()
   equipment: string[];
 }

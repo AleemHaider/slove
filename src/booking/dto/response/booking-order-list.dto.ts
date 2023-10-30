@@ -15,6 +15,8 @@ export class BookingOrderListDto {
           startTime: element.start_time,
           endTime: element.end_time,
           ticketPrice: element.ticket_price,
+          contractDetails: element.contract_details,
+          ticketSaleAgreement:element.contract_details,
           musicGenre: element.music_genre,
           orders: this.setOrderDetails(element.orders),
           isFeedbackGiven: !!element.feedback_id,
