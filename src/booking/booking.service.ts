@@ -185,7 +185,7 @@ export class BookingService {
         select bc.id as booking_contract_id,bc.music_genre as booking_contract_music_genre,bc.start_time as booking_contract_start_time,
     bc.end_time as booking_contract_end_time,bc.booking_price as booking_contract_booking_price,bc.equipment as booking_contract_equipment,
     bc.contract_status as contract_status,bc.event_name as booking_contract_event_name,bc.organisation_number as booking_contract_organisation_number,
-    bc.ticket_price as booking_contract_ticket_price,bc.contact_details as booking_contract_details,bc.ticket_sale_agreement as booking_contract_ticket_sale_agreement,cast(b.start_time as TEXT) as start_time,cast(b.end_time as TEXT) as end_time,
+    bc.ticket_price as booking_contract_ticket_price,bc.contract_details as booking_contract_details,bc.ticket_sale_agreement as booking_contract_ticket_sale_agreement,cast(b.start_time as TEXT) as start_time,cast(b.end_time as TEXT) as end_time,
     b.requested_user_id as requested_user_id,ru.user_type_id as request_user_type,b.id,b.music_genre,
     b.maximum_price,b.minimum_price,b.message,b.booking_status,b.user_id,uq.venue_name,uq.band_name,u.chat_id,u.profile_image,u.user_type_id as user_type,
     c.name as country_name,c2.name as city_name from booking b inner join "user" u on u.id = b.requested_user_id inner join user_question uq on u.id = uq.user_id
