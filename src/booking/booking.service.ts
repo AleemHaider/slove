@@ -213,7 +213,7 @@ export class BookingService {
     as booking_contract_ticket_release_name,bc.release_name2
     as booking_contract_ticket_release_name2,bc.release_name3
     as booking_contract_ticket_release_name3,bc.ticket_quantity
-    as booking_contract_ticket _quantity,bc.ticket_quantity2
+    as booking_contract_ticket_quantity,bc.ticket_quantity2
     as booking_contract_ticket_quantity2,bc.ticket_quantity3
     as booking_contract_ticket_quantity3,bc.ticket_endDate
     as booking_contract_ticket_endDate,bc.ticket_endDate2
