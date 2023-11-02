@@ -103,13 +103,13 @@ export class EventEntity extends BaseEntity {
   })
   ticketQuantity3: number;
 
-  @Column({ type: 'timestamp', name: 'ticket_endDate', nullable: true })
+  @Column({ type: 'timestamp', name: 'ticket_end_date', nullable: true })
   endDate: Date;
 
-  @Column({ type: 'timestamp', name: 'ticket_endDate2', nullable: true })
+  @Column({ type: 'timestamp', name: 'ticket_end_date2', nullable: true })
   endDate2: Date;
 
-  @Column({ type: 'timestamp', name: 'ticket_endDate3', nullable: true })
+  @Column({ type: 'timestamp', name: 'ticket_end_date3', nullable: true })
   endDate3: Date;
   
   @Column({
