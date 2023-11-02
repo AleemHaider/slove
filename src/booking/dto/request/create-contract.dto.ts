@@ -1,6 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Matches } from 'class-validator';
-
 export class CreateContractDto {
   @ApiProperty({ description: 'booking id' })
   id: number;
@@ -38,6 +37,41 @@ export class CreateContractDto {
   @ApiProperty()
   ticketPrice: number;
   @ApiProperty()
+  ticketPrice2: number;
+  @ApiProperty()
+  ticketPrice3: number;
+
+  @ApiProperty()
+  ticketQuantity: number;
+  @ApiProperty()
+  ticketQuantity2: number;
+  @ApiProperty()
+  ticketQuantity3: number;
+
+  @ApiProperty()
+  releaseName: string;
+  @ApiProperty()
+  releaseName2: string;
+  @ApiProperty()
+  releaseName3: string;
+
+  @ApiProperty({
+    examples: ['2023-01-23'],
+    description: 'Date',
+  })
+  endDate: string;
+  @ApiProperty({
+    examples: ['2023-01-23'],
+    description: 'Date',
+  })
+  endDate2: string;
+  @ApiProperty({
+    examples: ['2023-01-23'],
+    description: 'Date',
+  })
+  endDate3: string;
+
+  @ApiProperty()
   ticketSaleAgreement: boolean;
   @ApiProperty()
   contractDetails: string;
@@ -45,4 +79,5 @@ export class CreateContractDto {
   contractDiscription: string;
   @ApiProperty()
   equipment: string[];
+
 }

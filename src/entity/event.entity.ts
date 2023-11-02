@@ -40,6 +40,77 @@ export class EventEntity extends BaseEntity {
   })
   ticketPrice: number;
 
+
+  @Column({
+    type: 'decimal',
+    name: 'ticket_price2',
+    default: 0,
+    precision: 15,
+    scale: 2,
+  })
+  ticketPrice2: number;
+  @Column({
+    type: 'decimal',
+    name: 'ticket_price3',
+    default: 0,
+    precision: 15,
+    scale: 2,
+  })
+  ticketPrice3: number;
+  @Column({
+    type: 'text',
+    name: 'release_name',
+   nullable: true,
+  })  
+  releaseName: string;
+  @Column({
+    type: 'text',
+    name: 'release_name2',
+   nullable: true,
+  })  
+  releaseName2: string;
+  @Column({
+    type: 'text',
+    name: 'release_name3',
+   nullable: true,
+  })  
+  releaseName3: string;
+
+@Column({
+    type: 'decimal',
+    name: 'ticket_quantity',
+    default: 0,
+    precision: 15,
+    scale: 2,
+  })
+  ticketQuantity: number;
+
+  @Column({
+    type: 'decimal',
+    name: 'ticket_quantity2',
+    default: 0,
+    precision: 15,
+    scale: 2,
+  })
+  ticketQuantity2: number;
+
+  @Column({
+    type: 'decimal',
+    name: 'ticket_quantity3',
+    default: 0,
+    precision: 15,
+    scale: 2,
+  })
+  ticketQuantity3: number;
+
+  @Column({ type: 'timestamp', name: 'ticket_endDate', nullable: true })
+  endDate: Date;
+
+  @Column({ type: 'timestamp', name: 'ticket_endDate2', nullable: true })
+  endDate2: Date;
+
+  @Column({ type: 'timestamp', name: 'ticket_endDate3', nullable: true })
+  endDate3: Date;
   
   @Column({
     type: 'bool',
