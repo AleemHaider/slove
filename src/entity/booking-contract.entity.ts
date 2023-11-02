@@ -55,6 +55,7 @@ export class BookingContractEntity extends BaseEntity {
     scale: 2,
   })
   ticketPrice: number;
+  /*
   @Column({
     type: 'decimal',
     name: 'ticket_price2',
@@ -125,6 +126,7 @@ export class BookingContractEntity extends BaseEntity {
 
   @Column({ type: 'timestamp', name: 'ticket_end_date3', nullable: true })
   endDate3: Date;
+  */
   @Column({
     type: 'text',
     name: 'contract_details',

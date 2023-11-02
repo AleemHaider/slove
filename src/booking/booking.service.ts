@@ -139,8 +139,6 @@ export class BookingService {
     as booking_contract_end_time,bc.booking_price as booking_contract_booking_price,bc.equipment as booking_contract_equipment,bc.contract_status
     as contract_status,bc.event_name as booking_contract_event_name,bc.organisation_number as booking_contract_organisation_number,bc.ticket_price
     as booking_contract_ticket_price,
-  
-
     bc.contract_details as booking_contract_details,bc.contract_discription as booking_contract_discription,bc.ticket_sale_agreement as booking_contract_ticket_sale_agreement,cast(b.start_time as TEXT) as start_time,cast(b.end_time as TEXT) as end_time,b.requested_user_id as
     requested_user_id,b.id,b.music_genre,b.maximum_price,b.minimum_price,b.message,b.booking_status,b.user_id,
     uq.venue_name,uq.band_name,u.user_type_id as user_type,ru.user_type_id as request_user_type,u.chat_id,u.profile_image,c.name as country_name,c2.name
@@ -164,8 +162,6 @@ export class BookingService {
     bc.end_time as booking_contract_end_time,bc.booking_price as booking_contract_booking_price,bc.equipment as booking_contract_equipment,
     bc.contract_status as contract_status, bc.event_name as booking_contract_event_name,bc.organisation_number as booking_contract_organisation_number,
     bc.ticket_price as booking_contract_ticket_price,
-
-    
     bc.contract_details as booking_contract_details,bc.contract_discription as booking_contract_discription,bc.ticket_sale_agreement as booking_contract_ticket_sale_agreement, cast(b.start_time as TEXT) as start_time,cast(b.end_time as TEXT) as end_time,
     b.requested_user_id as requested_user_id,ru.user_type_id as request_user_type,b.id,b.music_genre,b.maximum_price,b.minimum_price,b.message,b.booking_status,b.user_id,
     u.user_type_id as user_type, uq.venue_name,uq.band_name,u.chat_id,u.profile_image,c.name as country_name,c2.name as city_name,ru.chat_id as requested_chat_id,
@@ -192,7 +188,6 @@ export class BookingService {
     bc.end_time as booking_contract_end_time,bc.booking_price as booking_contract_booking_price,bc.equipment as booking_contract_equipment,
     bc.contract_status as contract_status,bc.event_name as booking_contract_event_name,bc.organisation_number as booking_contract_organisation_number,
     bc.ticket_price as booking_contract_ticket_price,
-  
     bc.contract_details as booking_contract_details,bc.contract_discription as booking_contract_discription,bc.ticket_sale_agreement as booking_contract_ticket_sale_agreement,cast(b.start_time as TEXT) as start_time,cast(b.end_time as TEXT) as end_time,
     b.requested_user_id as requested_user_id,ru.user_type_id as request_user_type,b.id,b.music_genre,
     b.maximum_price,b.minimum_price,b.message,b.booking_status,b.user_id,uq.venue_name,uq.band_name,u.chat_id,u.profile_image,u.user_type_id as user_type,
@@ -325,7 +320,7 @@ export class BookingService {
     bookingContractEntity.eventName = dto.eventName;
     bookingContractEntity.booking = booking;
     bookingContractEntity.ticketPrice = dto.ticketPrice;
-    bookingContractEntity.ticketPrice2 = dto.ticketPrice2;
+    /*bookingContractEntity.ticketPrice2 = dto.ticketPrice2;
     bookingContractEntity.ticketPrice3 = dto.ticketPrice3;
     bookingContractEntity.releaseName = dto.releaseName;
     bookingContractEntity.releaseName2 = dto.releaseName2;
@@ -336,6 +331,7 @@ export class BookingService {
     bookingContractEntity.endDate =new Date(dto.endDate);
     bookingContractEntity.endDate2 =new Date(dto.endDate2);
     bookingContractEntity.endDate3 =new Date(dto.endDate3);
+    */
     bookingContractEntity.contractDetails = dto.contractDetails;
     bookingContractEntity.ticketSaleAgreement = dto.ticketSaleAgreement;
     bookingContractEntity.contractDiscription = dto.contractDiscription;
@@ -402,7 +398,7 @@ export class BookingService {
         eventEntity.startTime = contract.startTime;
         eventEntity.eventName = contract.eventName;
         eventEntity.ticketPrice = contract.ticketPrice;
-        eventEntity.ticketPrice2 = contract.ticketPrice2;
+      /*  eventEntity.ticketPrice2 = contract.ticketPrice2;
         eventEntity.ticketPrice3 = contract.ticketPrice3;
         eventEntity.releaseName = contract.releaseName;
         eventEntity.releaseName2 = contract.releaseName2;
@@ -413,6 +409,7 @@ export class BookingService {
         eventEntity.endDate = contract.endDate;
         eventEntity.endDate2 = contract.endDate2;
         eventEntity.endDate3 = contract.endDate3;
+        */
         eventEntity.contractDetails = contract.contractDetails;
         eventEntity.ticketSaleAgreement = contract.ticketSaleAgreement;
         eventEntity.contractDiscription=contract.contractDiscription;
