@@ -40,7 +40,7 @@ export class EventEntity extends BaseEntity {
   })
   ticketPrice: number;
 
-/*
+
   @Column({
     type: 'decimal',
     name: 'ticket_price2',
@@ -111,7 +111,7 @@ export class EventEntity extends BaseEntity {
 
   @Column({ type: 'timestamp', name: 'ticket_endate3', nullable: true })
   endDate3: Date;
-  */
+  
   @Column({
     type: 'bool',
     name: 'ticket_sale_agreement',

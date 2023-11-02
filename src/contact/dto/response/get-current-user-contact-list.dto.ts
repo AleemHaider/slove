@@ -39,7 +39,7 @@ export class GetCurrentUserContactListDto {
         currentUserId: item.current_user_id,
         name: item.band_name || item.venue_name || item.consumer_name,
         chatId: item.chat_id,
-       // audioUrl: item.audioUrl,
+        audioUrl: item.audioUrl,
       };
       list.push(obj);
     });

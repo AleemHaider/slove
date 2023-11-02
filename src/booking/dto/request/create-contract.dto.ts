@@ -36,7 +36,7 @@ export class CreateContractDto {
 
   @ApiProperty()
   ticketPrice: number;
-  /*
+  
   @ApiProperty()
   ticketPrice2: number;
   @ApiProperty()
@@ -71,7 +71,7 @@ export class CreateContractDto {
     description: 'Date',
   })
   endDate3: string;
-*/
+
   @ApiProperty()
   ticketSaleAgreement: boolean;
   @ApiProperty()

@@ -350,7 +350,7 @@ export interface UserProfileInterface {
   userType?: string;
   consumerName?: string;
   openHours?: string;
-  chatId: number | null;
+  chatId: number| null;
 
   countryId?: {
     id: number;
