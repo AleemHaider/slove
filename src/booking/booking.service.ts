@@ -424,8 +424,8 @@ export class BookingService {
       });
 
     if (isExistBookingContract) {
-      throw new BadRequestException(ERROR_MESSAGES.ALREADY_BOOKING_CONTRACT);
-    }
+      
+    
 
     const bookingContractEntity = new BookingContractEntity();
     bookingContractEntity.bookingPrice = dto.bookingPrice;
@@ -466,7 +466,7 @@ export class BookingService {
       );
     }
   }
-
+  }
   async contractStatus(user: UserEntity, dto: SubmitBookingContractRequestDto) {
     //todo - add user check
     //todo - use transaction
