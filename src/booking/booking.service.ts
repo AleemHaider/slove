@@ -304,7 +304,20 @@ export class BookingService {
       );
     }
   }
+  async getEventById(id: number){
+ 
+       const event=  this.eventEntityRepository.findOne({
+        where: {
+            id: id,
+        },
+      });
 
+    if (!event) {
+      throw new NotFoundException('Event not found');
+    }
+
+    return event;
+  }
   async createContract(user: UserEntity, dto: CreateContractDto) {
     this.logger.log({ dto });
     const booking = await this.bookingEntityRepository.findOne({

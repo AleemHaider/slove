@@ -166,6 +166,19 @@ export class BookingController {
       throw e;
     }
   }
+  @Get('eventById')
+  async getEventById(@Usr() user: AuthUser,@Body('id') id: number) {
+    // Call the service to get the event by ID
+    try {
+      return new StandardResponse(
+        HttpStatus.CREATED,
+        SUCCESS_MESSAGES.SUCCESS,
+        await this.bookingService.getEventById(id),
+      );
+    } catch (e) {
+      throw e;
+    }
+  }
   @Put('updateContract')
   async updateContract(@Usr() user: AuthUser ,@Body() updateDto: ContractUpdateDto) {
     try {
