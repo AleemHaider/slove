@@ -166,7 +166,7 @@ export class BookingController {
       throw e;
     }
   }
-  @Get('eventById')
+  @Get('getEventById')
   async getEventById(@Usr() user: AuthUser,@Body('id') id: number) {
     // Call the service to get the event by ID
     try {
