@@ -310,6 +310,7 @@ export class BookingService {
         where: {
             id: id,
         },
+        relations: ['artist', 'venue'],
       });
 
     if (!event) {
