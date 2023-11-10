@@ -27,6 +27,7 @@ import { AuthUser } from '../auth/auth-user';
 import { SubmitBookingRequestDto } from './dto/request/submit-booking-request.dto';
 import { CreateContractDto } from './dto/request/create-contract.dto';
 import { SubmitBookingContractRequestDto } from './dto/request/submit-booking-contract-request.dto';
+import { ContractUpdateDto } from './dto/request/contract-update.dto';
 
 @ApiTags('booking')
 @UseGuards(JwtAuthGuard)
@@ -165,6 +166,18 @@ export class BookingController {
       throw e;
     }
   }
+  @Put('updateContract')
+  async updateContract(@Usr() user: AuthUser ,@Body() updateDto: ContractUpdateDto) {
+    try {
+      return new StandardResponse(
+        HttpStatus.CREATED,
+        SUCCESS_MESSAGES.SUCCESS,
+        await this.bookingService.updateContract(user, updateDto),
+      );
+    } catch (e) {
+      throw e;
+    
+    }}
   @ApiOperation({
     summary: 'Accept of decline booking contract request',
   })

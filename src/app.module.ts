@@ -55,7 +55,6 @@ import { HealthModule } from './health/health.module';
     FeedbackModule,
     HealthModule,
   ],
-  controllers: [],
   providers: [S3BucketService],
 })
 export class AppModule {

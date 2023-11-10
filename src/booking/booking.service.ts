@@ -34,6 +34,7 @@ import { bookingOrderWhere } from './util/where-query-list';
 import { BookingOrderListDto } from './dto/response/booking-order-list.dto';
 import { UserService } from '../user/user.service';
 import { TicketEntity } from '../entity/ticket.entity';
+import { ContractUpdateDto } from './dto/request/contract-update.dto';
 
 @Injectable()
 export class BookingService {
@@ -375,6 +376,89 @@ export class BookingService {
 
     try {
       await this.bookingContractEntityRepository.save(bookingContractEntity);
+    } catch (e) {
+      this.logger.error(e);
+      throw new InternalServerErrorException(
+        ERROR_MESSAGES.INTERNAL_SERVER_ERROR,
+      );
+    }
+  }
+
+  async updateContract(user: UserEntity, dto: ContractUpdateDto) {
+    this.logger.log({ dto });
+    const booking = await this.bookingEntityRepository.findOne({
+      where: {
+        id: dto.bookingId,
+      },
+      relations: ['user', 'requestedUser'],
+    });
+    if (!booking) {
+      throw new NotFoundException(ERROR_MESSAGES.BOOKING_NOT_FOUND);
+    }
+
+    if (
+      dayjs(booking.startTime).diff(new Date(dto.date + ' ' + dto.startTime)) <
+      0
+    ) {
+      console.log('time diff');
+      console.log(
+        dayjs(booking.startTime).diff(new Date(dto.date + ' ' + dto.startTime)),
+      );
+      throw new BadRequestException(ERROR_MESSAGES.BOOKED_TIME_PASSED);
+    }
+    this.logger.log('booking.requestedUser.id', booking.requestedUser.id);
+    this.logger.log('booking.user.id', booking.user.id);
+    if (booking.requestedUser.id != user.id) {
+      if (booking.user.id != user.id) {
+        this.logger.log('not a booking user');
+        throw new NotFoundException(ERROR_MESSAGES.BOOKING_NOT_FOUND);
+      }
+    }
+    const isExistBookingContract =
+      await this.bookingContractEntityRepository.findOne({
+        where: {
+          booking: {
+            id: booking.id,
+          },
+        },
+      });
+
+    if (isExistBookingContract) {
+      throw new BadRequestException(ERROR_MESSAGES.ALREADY_BOOKING_CONTRACT);
+    }
+
+    const bookingContractEntity = new BookingContractEntity();
+    bookingContractEntity.bookingPrice = dto.bookingPrice;
+    bookingContractEntity.equipment = dto.equipment;
+    bookingContractEntity.eventName = dto.eventName;
+    bookingContractEntity.booking = booking;
+    bookingContractEntity.ticketPrice = dto.ticketPrice;
+    bookingContractEntity.ticketPrice2 = dto.ticketPrice2;
+    bookingContractEntity.ticketPrice3 = dto.ticketPrice3;
+    bookingContractEntity.releaseName = dto.releaseName;
+    bookingContractEntity.releaseName2 = dto.releaseName2;
+    bookingContractEntity.releaseName3 = dto.releaseName3;
+    bookingContractEntity.ticketQuantity = dto.ticketQuantity;
+    bookingContractEntity.ticketQuantity2 = dto.ticketQuantity2;
+    bookingContractEntity.ticketQuantity3 = dto.ticketQuantity3;
+    bookingContractEntity.endDate =new Date(dto.endDate);
+    bookingContractEntity.endDate2 =new Date(dto.endDate2);
+    bookingContractEntity.endDate3 =new Date(dto.endDate3);
+    bookingContractEntity.contractDetails = dto.contractDetails;
+    bookingContractEntity.ticketSaleAgreement = dto.ticketSaleAgreement;
+    bookingContractEntity.contractDiscription = dto.contractDiscription;
+    
+    bookingContractEntity.organisationNumber = dto.organisationNumber;
+    bookingContractEntity.startTime = new Date(dto.date + ' ' + dto.startTime);
+    bookingContractEntity.endTime = new Date(dto.date + ' ' + dto.endTime);
+    bookingContractEntity.musicGenre = dto.genreType;
+   
+
+    try {
+      await this.bookingContractEntityRepository.update(
+        { id: dto.id },
+        bookingContractEntity
+      );
     } catch (e) {
       this.logger.error(e);
       throw new InternalServerErrorException(
