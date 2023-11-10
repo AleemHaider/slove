@@ -362,9 +362,9 @@ export class BookingService {
     bookingContractEntity.ticketQuantity = dto.ticketQuantity;
     bookingContractEntity.ticketQuantity2 = dto.ticketQuantity2;
     bookingContractEntity.ticketQuantity3 = dto.ticketQuantity3;
-    bookingContractEntity.endDate =new Date(dto.endDate);
-    bookingContractEntity.endDate2 =new Date(dto.endDate2);
-    bookingContractEntity.endDate3 =new Date(dto.endDate3);
+    bookingContractEntity.endDate =new Date(dto.endDate+ ' ' +'00:00');
+    bookingContractEntity.endDate2 =new Date(dto.endDate2+ ' ' +'00:00');
+    bookingContractEntity.endDate3 =new Date(dto.endDate3+ ' ' +'00:00');
     bookingContractEntity.contractDetails = dto.contractDetails;
     bookingContractEntity.ticketSaleAgreement = dto.ticketSaleAgreement;
     bookingContractEntity.contractDiscription = dto.contractDiscription;
