@@ -29,6 +29,7 @@ import { CreateContractDto } from './dto/request/create-contract.dto';
 import { SubmitBookingContractRequestDto } from './dto/request/submit-booking-contract-request.dto';
 import { ContractUpdateDto } from './dto/request/contract-update.dto';
 import { CreateEventDto } from './dto/request/create-event.dto';
+import { use } from 'passport';
 
 @ApiTags('booking')
 @UseGuards(JwtAuthGuard)
@@ -182,6 +183,21 @@ export class BookingController {
       throw e;
     }
   }
+  @Put('updateOneSidedGig')
+  async updateOneSidedGig(
+    @Usr() user: AuthUser,
+    @Body() createEventDto: CreateEventDto,
+  ) {
+    try {
+      return new StandardResponse(
+        HttpStatus.CREATED,
+        SUCCESS_MESSAGES.SUCCESS,
+        await this.bookingService.updateOneSidedGig(user, createEventDto),
+      );
+    } catch (e) {
+      throw e;
+    }
+  }
   @Get('getEventById')
   async getEventById(@Usr() user: AuthUser,@Body('id') id: number) {
     // Call the service to get the event by ID
@@ -195,6 +211,21 @@ export class BookingController {
       throw e;
     }
   }
+  /*
+  @Get('getUpcommingEvents')
+  async getUpcommingEvents(@Usr() user: AuthUser) {
+    // Call the service to get the event by ID
+    try {
+      return new StandardResponse(
+        HttpStatus.CREATED,
+        SUCCESS_MESSAGES.SUCCESS,
+        await this.bookingService.getUpcommingEvents(user),
+      );
+    } catch (e) {
+      throw e;
+    }
+  }
+  */
   @Put('updateContract')
   async updateContract(@Usr() user: AuthUser ,@Body() updateDto: ContractUpdateDto) {
     try {
