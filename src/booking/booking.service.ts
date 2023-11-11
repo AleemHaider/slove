@@ -262,6 +262,17 @@ else if(eventUser.userType.id == USER_TYPE.ARTIST){
 }
 
 await queryRunner.manager.getRepository(EventEntity).save(eventEntity);
+} catch (e) {
+  this.logger.error(e);
+  await queryRunner.rollbackTransaction();
+  
+  throw new InternalServerErrorException(
+  ERROR_MESSAGES.INTERNAL_SERVER_ERROR,
+  );
+  } finally {
+  await queryRunner.release();
+  }
+/*
 // await this.eventEntityRepository.save(eventEntity);
 
 
@@ -309,6 +320,7 @@ ERROR_MESSAGES.INTERNAL_SERVER_ERROR,
 } finally {
 await queryRunner.release();
 }
+*/
     
 }
 
