@@ -224,8 +224,15 @@ await queryRunner.release();
   async createOneSidedGig(user: UserEntity, dto: CreateEventDto) {
     this.logger.log({ dto });
 
-    const eventUser = user;
-
+     
+    const eventUser = await this.userEntityRepository.findOne({
+      where: {
+        id: dto.userId,
+      },
+    });
+    if (!eventUser) {
+      throw new NotFoundException(ERROR_MESSAGES.USER_NOT_FOUND);
+    }
     const queryRunner = this.dataSource.createQueryRunner();
     await queryRunner.connect();
     await queryRunner.startTransaction();
@@ -250,16 +257,16 @@ eventEntity.endDate = new Date(dto.endDate);
 eventEntity.endDate2 =new Date(dto.endDate2);
 eventEntity.endDate3 =new Date (dto.endDate3);
 eventEntity.contractDiscription=dto.contractDiscription;
-//if(eventEntity!=null)
-//{
-//if(eventUser.userType.id == USER_TYPE.VENUE)
-//{
-//eventEntity.venue =eventUser;
-//}
-//else if(eventUser.userType.id == USER_TYPE.ARTIST){
+if(eventEntity!=null)
+{
+if(eventUser.userType.id == USER_TYPE.VENUE)
+{
+eventEntity.venue =eventUser;
+}
+else if(eventUser.userType.id == USER_TYPE.ARTIST){
   eventEntity.artist =eventUser;
-//}
-//}
+}
+}
 
 
 

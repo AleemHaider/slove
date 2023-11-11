@@ -1,7 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Matches } from 'class-validator';
 export class CreateEventDto {
- 
+    @ApiProperty()
+    userId: number;
   @ApiProperty()
   genreType: number[];
 
