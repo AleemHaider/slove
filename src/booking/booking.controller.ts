@@ -28,6 +28,7 @@ import { SubmitBookingRequestDto } from './dto/request/submit-booking-request.dt
 import { CreateContractDto } from './dto/request/create-contract.dto';
 import { SubmitBookingContractRequestDto } from './dto/request/submit-booking-contract-request.dto';
 import { ContractUpdateDto } from './dto/request/contract-update.dto';
+import { CreateEventDto } from './dto/request/create-event.dto';
 
 @ApiTags('booking')
 @UseGuards(JwtAuthGuard)
@@ -161,6 +162,21 @@ export class BookingController {
         HttpStatus.CREATED,
         SUCCESS_MESSAGES.SUCCESS,
         await this.bookingService.createContract(user, dto),
+      );
+    } catch (e) {
+      throw e;
+    }
+  }
+  @Post('createOneSidedGig')
+  async createOneSidedGig(
+    @Usr() user: AuthUser,
+    @Body() createEventDto: CreateEventDto,
+  ) {
+    try {
+      return new StandardResponse(
+        HttpStatus.CREATED,
+        SUCCESS_MESSAGES.SUCCESS,
+        await this.bookingService.createOneSidedGig(user, createEventDto),
       );
     } catch (e) {
       throw e;

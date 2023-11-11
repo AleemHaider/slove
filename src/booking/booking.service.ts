@@ -25,6 +25,7 @@ import { SubmitBookingContractRequestDto } from './dto/request/submit-booking-co
 import { EventEntity } from '../entity/event.entity';
 import {
   BOOKING_CONTRACT_STATUS,
+  BOOKING_STATUS,
   CALENDAR_TYPE,
   USER_TYPE,
 } from '../util/constant';
@@ -35,6 +36,7 @@ import { BookingOrderListDto } from './dto/response/booking-order-list.dto';
 import { UserService } from '../user/user.service';
 import { TicketEntity } from '../entity/ticket.entity';
 import { ContractUpdateDto } from './dto/request/contract-update.dto';
+import { CreateEventDto } from './dto/request/create-event.dto';
 
 @Injectable()
 export class BookingService {
@@ -126,6 +128,95 @@ export class BookingService {
       );
     }
   }
+
+  async createOneSidedGig(user: UserEntity, dto: CreateEventDto) {
+    this.logger.log({ dto });
+
+    const eventUser = user;
+
+    const queryRunner = this.dataSource.createQueryRunner();
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
+    try {
+const eventEntity = new EventEntity();
+eventEntity.endTime = new Date(dto.endTime);
+eventEntity.startTime =new Date(dto.startTime);
+eventEntity.eventName = dto.eventName;
+eventEntity.ticketPrice = dto.ticketPrice;
+eventEntity.ticketPrice2 = dto.ticketPrice2;
+eventEntity.linkToEvent=dto.linkToEvent;
+eventEntity.linkToTickets=dto.linkToTickets;
+eventEntity.location=dto.location;
+eventEntity.ticketPrice3 = dto.ticketPrice3;
+eventEntity.releaseName = dto.releaseName;
+eventEntity.releaseName2 = dto.releaseName2;
+eventEntity.releaseName3 = dto.releaseName3;
+eventEntity.ticketQuantity = dto.ticketQuantity;
+eventEntity.ticketQuantity2 = dto.ticketQuantity2;
+eventEntity.ticketQuantity3 = dto.ticketQuantity3;
+eventEntity.endDate = new Date(dto.endDate);
+eventEntity.endDate2 =new Date(dto.endDate2);
+eventEntity.endDate3 =new Date (dto.endDate3);
+eventEntity.contractDiscription=dto.contractDiscription;
+if(eventUser.userType.id == USER_TYPE.VENUE)
+{
+eventEntity.venue =eventUser;
+}
+else if(eventUser.userType.id == USER_TYPE.ARTIST){
+  eventEntity.artist =eventUser;
+}
+
+await queryRunner.manager.getRepository(EventEntity).save(eventEntity);
+// await this.eventEntityRepository.save(eventEntity);
+
+
+// await this.bookingContractEntityRepository.update(
+//   { id: contract.id },
+//   { contractStatus: dto.status },
+// );
+if(eventEntity.venue!==null)
+{
+const calenderVenue = new CalendarEntity();
+calenderVenue.startTime =new Date(dto.startTime);
+calenderVenue.endTime = new Date(dto.endTime);
+calenderVenue.title = dto.eventName;
+calenderVenue.user = eventEntity.venue;
+calenderVenue.type = CALENDAR_TYPE.EVENT;
+await queryRunner.manager
+.getRepository(CalendarEntity)
+.save(calenderVenue);
+}
+else if(eventEntity.artist!=null)
+{
+
+// await this.calendarEntityRepository.save(calenderVenue);
+const calenderArtist = new CalendarEntity();
+calenderArtist.startTime = new Date(dto.startTime);
+calenderArtist.endTime = new Date (dto.endTime);
+calenderArtist.title = dto.eventName;
+calenderArtist.type = CALENDAR_TYPE.EVENT;
+calenderArtist.user = eventEntity.artist;
+await queryRunner.manager
+.getRepository(CalendarEntity)
+.save(calenderArtist);
+// await this.calendarEntityRepository.save(calenderArtist);
+}
+await queryRunner.commitTransaction();
+
+return;
+} catch (e) {
+this.logger.error(e);
+await queryRunner.rollbackTransaction();
+
+throw new InternalServerErrorException(
+ERROR_MESSAGES.INTERNAL_SERVER_ERROR,
+);
+} finally {
+await queryRunner.release();
+}
+    
+}
+
 
   async findAll(user: UserEntity, type: string, page: string, limit: string) {
     let data: string | any[];
@@ -305,7 +396,7 @@ export class BookingService {
     }
   }
   async getEventById(id: number){
- 
+       const eventDetails=new EventEntity()
        const event=  this.eventEntityRepository.findOne({
         where: {
             id: id,
@@ -316,6 +407,7 @@ export class BookingService {
     if (!event) {
       throw new NotFoundException('Event not found');
     }
+    
 
     return event;
   }

@@ -65,6 +65,24 @@ export class EventEntity extends BaseEntity {
   releaseName: string;
   @Column({
     type: 'text',
+    name: 'link_to_tickets',
+   nullable: true,
+  })  
+  linkToTickets: string;
+  @Column({
+    type: 'text',
+    name: 'link_to_event',
+   nullable: true,
+  })  
+  linkToEvent: string;
+  @Column({
+    type: 'text',
+    name: 'location',
+   nullable: true,
+  })  
+  location: string;
+  @Column({
+    type: 'text',
     name: 'release_name2',
    nullable: true,
   })  
@@ -133,15 +151,15 @@ export class EventEntity extends BaseEntity {
 
   @OneToOne(() => BookingContractEntity)
   @JoinColumn({ name: 'booking_contract_id' })
-  bookingContract: BookingContractEntity;
+  bookingContract: BookingContractEntity| null;
 
   @ManyToOne(() => UserEntity, (user) => user.event_artist)
   @JoinColumn({ name: 'artist_id' })
-  artist: UserEntity;
+  artist: UserEntity | null;
 
   @ManyToOne(() => UserEntity, (user) => user.event_venue)
   @JoinColumn({ name: 'venue_id' })
-  venue: UserEntity;
+  venue: UserEntity| null;
 
   @OneToMany(() => OrderEntity, (o) => o.event)
   order: OrderEntity[];
