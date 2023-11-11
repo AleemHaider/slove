@@ -238,8 +238,8 @@ await queryRunner.release();
     await queryRunner.startTransaction();
     try {
 const eventEntity = new EventEntity();
-eventEntity.endTime = new Date(dto.endTime);
-eventEntity.startTime =new Date(dto.startTime);
+eventEntity.endTime = new Date(dto.date+' '+dto.endTime);
+eventEntity.startTime =new Date(dto.date+' '+dto.startTime);
 eventEntity.eventName = dto.eventName;
 eventEntity.ticketPrice = dto.ticketPrice;
 eventEntity.ticketPrice2 = dto.ticketPrice2;
@@ -257,6 +257,7 @@ eventEntity.endDate = new Date(dto.endDate);
 eventEntity.endDate2 =new Date(dto.endDate2);
 eventEntity.endDate3 =new Date (dto.endDate3);
 eventEntity.contractDiscription=dto.contractDiscription;
+eventUser.userType 
 /*if(eventEntity!=null)
 {
 if(eventUser.userType.id == USER_TYPE.VENUE)
