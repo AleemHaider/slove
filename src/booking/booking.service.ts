@@ -250,29 +250,19 @@ eventEntity.endDate = new Date(dto.endDate);
 eventEntity.endDate2 =new Date(dto.endDate2);
 eventEntity.endDate3 =new Date (dto.endDate3);
 eventEntity.contractDiscription=dto.contractDiscription;
-if(eventEntity!=null)
-{
-if(eventUser.userType.id == USER_TYPE.VENUE)
-{
-eventEntity.venue =eventUser;
-}
-else if(eventUser.userType.id == USER_TYPE.ARTIST){
+//if(eventEntity!=null)
+//{
+//if(eventUser.userType.id == USER_TYPE.VENUE)
+//{
+//eventEntity.venue =eventUser;
+//}
+//else if(eventUser.userType.id == USER_TYPE.ARTIST){
   eventEntity.artist =eventUser;
-}
-}
+//}
+//}
 
-await queryRunner.manager.getRepository(EventEntity).save(eventEntity);
-} catch (e) {
-  this.logger.error(e);
-  await queryRunner.rollbackTransaction();
-  
-  throw new InternalServerErrorException(
-  ERROR_MESSAGES.INTERNAL_SERVER_ERROR,
-  );
-  } finally {
-  await queryRunner.release();
-  }
-/*
+
+
 // await this.eventEntityRepository.save(eventEntity);
 
 
@@ -320,7 +310,7 @@ ERROR_MESSAGES.INTERNAL_SERVER_ERROR,
 } finally {
 await queryRunner.release();
 }
-*/
+
     
 }
 
