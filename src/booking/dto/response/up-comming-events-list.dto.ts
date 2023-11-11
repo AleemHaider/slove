@@ -69,6 +69,8 @@ export class EventListDto {
           contractDiscription:element.contract_discription,
           equipment:element.equipment,
           musicGenre: element.music_genre,
+          artist:element.artist_id,
+          venue:element.venue_id,
           contract: element.booking_contract_id
             ? this.getContract(element)
             : null,
