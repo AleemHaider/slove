@@ -1,4 +1,5 @@
-/*import { isArray } from 'radash';
+/*
+import { isArray } from 'radash';
 import { UserEntity } from '../../../entity/user.entity';
 
 export class EventListDto {
