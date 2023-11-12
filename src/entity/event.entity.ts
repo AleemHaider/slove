@@ -30,8 +30,7 @@ export class EventEntity extends BaseEntity {
 
   @Column({ type: 'timestamp', name: 'end_time', nullable: true })
   endTime: Date;
-  @Column({ type: 'timestamp', name: 'end_time', nullable: true })
-  date: Date;
+
 
   @Column({
     type: 'decimal',
