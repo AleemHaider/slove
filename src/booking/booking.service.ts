@@ -253,9 +253,9 @@ eventEntity.releaseName3 = dto.releaseName3;
 eventEntity.ticketQuantity = dto.ticketQuantity;
 eventEntity.ticketQuantity2 = dto.ticketQuantity2;
 eventEntity.ticketQuantity3 = dto.ticketQuantity3;
-eventEntity.endDate = new Date(dto.endDate+' 00:00');
-eventEntity.endDate2 =new Date(dto.endDate2+' 00:00');
-eventEntity.endDate3 =new Date (dto.endDate3+' 00:00');
+eventEntity.endDate = new Date(dto.endDate);
+eventEntity.endDate2 =new Date(dto.endDate2);
+eventEntity.endDate3 =new Date (dto.endDate3);
 eventEntity.contractDiscription=dto.contractDiscription;
 /*if(eventEntity!=null)
 {
@@ -272,7 +272,7 @@ else if(eventUser.userType.id == USER_TYPE.ARTIST){
 */
 
 
-// await this.eventEntityRepository.save(eventEntity);
+ await this.eventEntityRepository.save(eventEntity);
 
 
 // await this.bookingContractEntityRepository.update(
@@ -282,8 +282,8 @@ else if(eventUser.userType.id == USER_TYPE.ARTIST){
 if(eventEntity.venue!==null)
 {
 const calenderVenue = new CalendarEntity();
-calenderVenue.startTime =new Date(dto.startTime);
-calenderVenue.endTime = new Date(dto.endTime);
+calenderVenue.startTime =new Date(dto.date+' '+dto.startTime);
+calenderVenue.endTime = new Date(dto.date+' '+dto.endTime);
 calenderVenue.title = dto.eventName;
 calenderVenue.user = eventEntity.venue;
 calenderVenue.type = CALENDAR_TYPE.EVENT;
@@ -296,8 +296,8 @@ else if(eventEntity.artist!=null)
 
 // await this.calendarEntityRepository.save(calenderVenue);
 const calenderArtist = new CalendarEntity();
-calenderArtist.startTime = new Date(dto.startTime);
-calenderArtist.endTime = new Date (dto.endTime);
+calenderArtist.startTime = new Date(dto.date+' '+dto.startTime);
+calenderArtist.endTime = new Date (dto.date+' '+dto.endTime);
 calenderArtist.title = dto.eventName;
 calenderArtist.type = CALENDAR_TYPE.EVENT;
 calenderArtist.user = eventEntity.artist;
