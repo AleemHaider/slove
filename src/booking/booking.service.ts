@@ -253,11 +253,10 @@ eventEntity.releaseName3 = dto.releaseName3;
 eventEntity.ticketQuantity = dto.ticketQuantity;
 eventEntity.ticketQuantity2 = dto.ticketQuantity2;
 eventEntity.ticketQuantity3 = dto.ticketQuantity3;
-eventEntity.endDate = new Date(dto.endDate);
-eventEntity.endDate2 =new Date(dto.endDate2);
-eventEntity.endDate3 =new Date (dto.endDate3);
+eventEntity.endDate = new Date(dto.endDate+' 00:00');
+eventEntity.endDate2 =new Date(dto.endDate2+' 00:00');
+eventEntity.endDate3 =new Date (dto.endDate3+' 00:00');
 eventEntity.contractDiscription=dto.contractDiscription;
-eventUser.userType 
 /*if(eventEntity!=null)
 {
 if(eventUser.userType.id == USER_TYPE.VENUE)
