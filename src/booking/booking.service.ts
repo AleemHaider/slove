@@ -290,7 +290,7 @@ await queryRunner.release();
         ERROR_MESSAGES.INTERNAL_SERVER_ERROR,
       );
     }
-    */
+    
     const eventUser = await this.userEntityRepository.findOne({
       where: {
         id: dto.userId,
@@ -364,7 +364,7 @@ calenderVenue.startTime =new Date(dto.date+' '+dto.startTime);
 calenderVenue.endTime = new Date(dto.date+' '+dto.endTime);
 calenderVenue.title = dto.eventName;
 calenderVenue.user = eventEntity.venue;
-calenderVenue.booking_contract = contract;
+//calenderVenue.booking_contract = contract;
 calenderVenue.type = CALENDAR_TYPE.EVENT;
 
 await queryRunner.manager
@@ -380,7 +380,7 @@ calenderArtist.startTime = new Date(dto.date+' '+dto.startTime);
 calenderArtist.endTime = new Date (dto.date+' '+dto.endTime);
 calenderArtist.title = dto.eventName;
 calenderArtist.type = CALENDAR_TYPE.EVENT;
-calenderArtist.booking_contract = contract;
+//calenderArtist.booking_contract = contract;
 calenderArtist.user = eventEntity.artist;
 await queryRunner.manager
 .getRepository(CalendarEntity)
