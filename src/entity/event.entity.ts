@@ -139,7 +139,7 @@ export class EventEntity extends BaseEntity {
   ticketSaleAgreement: boolean;
   @Column({
     type: 'bool',
-    name: 'is_Multiple_Release',
+    name: 'is_multiple_release',
     nullable:true,
   })
   isMultipleRelease: boolean;
