@@ -243,23 +243,18 @@ await queryRunner.release();
   
 
     try {
-      await this.bookingEntityRepository.save(booking);
-    } catch (e) {
-      this.logger.error(e);
-      throw new InternalServerErrorException(
-        ERROR_MESSAGES.INTERNAL_SERVER_ERROR,
-      );
-    }
+      const booking1=await this.bookingEntityRepository.save(booking);
+      this.logger.log('checkContract',booking1);
     const contract = await this.bookingContractEntityRepository.findOne({
       where: {
-        id: booking.id,
+        id: booking1.id,
       },
       relations: ['booking'],
     });
     if (!contract) {
       throw new NotFoundException(ERROR_MESSAGES.BOOKING_CONTRACT_NOT_FOUND);
     }
-    this.logger.log('checkContract');
+    this.logger.log('checkContract',booking1);
 /*
     const bookingContractEntity = new BookingContractEntity();
   
@@ -304,7 +299,7 @@ await queryRunner.release();
       throw new NotFoundException(ERROR_MESSAGES.USER_NOT_FOUND);
     }
    
-    try {
+
 const eventEntity = new EventEntity();
 eventEntity.endTime = new Date(dto.date+' '+dto.endTime);
 eventEntity.startTime =new Date(dto.date+' '+dto.startTime);
