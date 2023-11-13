@@ -248,9 +248,21 @@ eventEntity.releaseName3 = dto.releaseName3;
 eventEntity.ticketQuantity = dto.ticketQuantity;
 eventEntity.ticketQuantity2 = dto.ticketQuantity2;
 eventEntity.ticketQuantity3 = dto.ticketQuantity3;
+if(dto.isOneSidedTicketSale==true)
+{
+eventEntity.ticketPrice = dto.ticketPrice;
+eventEntity.ticketPrice2 = dto.ticketPrice2;
+eventEntity.ticketPrice3 = dto.ticketPrice3;
+eventEntity.releaseName = dto.releaseName;
+eventEntity.releaseName2 = dto.releaseName2;
+eventEntity.releaseName3 = dto.releaseName3;
+eventEntity.ticketQuantity = dto.ticketQuantity;
+eventEntity.ticketQuantity2 = dto.ticketQuantity2;
+eventEntity.ticketQuantity3 = dto.ticketQuantity3;
 eventEntity.endDate = new Date(dto.endDate);
 eventEntity.endDate2 =new Date(dto.endDate2);
 eventEntity.endDate3 =new Date (dto.endDate3);
+}
 eventEntity.contractDiscription=dto.contractDiscription;
 eventEntity.musicGenre=dto.genreType;
 /*if(eventEntity!=null)
