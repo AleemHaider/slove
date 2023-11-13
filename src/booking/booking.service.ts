@@ -117,6 +117,7 @@ export class BookingService {
     booking.musicGenre = dto.genreType;
     booking.minimumPrice = dto.minimumPrice;
     booking.maximumPrice = dto.maximumPrice;
+    booking.bookingStatus=BOOKING_STATUS.ACCEPTED;
 
     try {
       await this.bookingEntityRepository.save(booking);
@@ -129,6 +130,7 @@ export class BookingService {
     }
   }
   async updateOneSidedGig(user: UserEntity, dto: CreateEventDto) {
+   
     this.logger.log({ dto });
 
     const eventUser = user;
@@ -218,8 +220,63 @@ await queryRunner.release();
 
   async createOneSidedGig(user: UserEntity, dto: CreateEventDto) {
     this.logger.log({ dto });
+    const booking = new BookingEntity();
+    const checkStartDate = dayjs(
+      new Date(dto.date + ' ' + dto.startTime),
+    ).format('YYYY-MM-DD HH:mm:ss');
 
-     
+    const checkEndDate = dayjs(new Date(dto.date + ' ' + dto.endTime)).format(
+      'YYYY-MM-DD HH:mm:ss',
+    );
+
+    this.logger.log('checkStartDate', checkStartDate);
+    this.logger.log('checkEndDate', checkEndDate);
+   
+
+    booking.user = user;
+    booking.startTime = new Date(dto.date + ' ' + dto.startTime);
+    booking.endTime = new Date(dto.date + ' ' + dto.endTime);
+    booking.musicGenre = dto.genreType;
+  
+
+    try {
+      await this.bookingEntityRepository.save(booking);
+    } catch (e) {
+      this.logger.error(e);
+      throw new InternalServerErrorException(
+        ERROR_MESSAGES.INTERNAL_SERVER_ERROR,
+      );
+    }
+
+    const bookingContractEntity = new BookingContractEntity();
+  
+    bookingContractEntity.eventName = dto.eventName;
+    bookingContractEntity.booking = booking;
+    bookingContractEntity.ticketPrice = dto.ticketPrice;
+    bookingContractEntity.ticketPrice2 = dto.ticketPrice2;
+    bookingContractEntity.ticketPrice3 = dto.ticketPrice3;
+    bookingContractEntity.releaseName = dto.releaseName;
+    bookingContractEntity.releaseName2 = dto.releaseName2;
+    bookingContractEntity.releaseName3 = dto.releaseName3;
+    bookingContractEntity.ticketQuantity = dto.ticketQuantity;
+    bookingContractEntity.ticketQuantity2 = dto.ticketQuantity2;
+    bookingContractEntity.ticketQuantity3 = dto.ticketQuantity3;
+    bookingContractEntity.endDate =new Date(dto.endDate);
+    bookingContractEntity.endDate2 =new Date(dto.endDate2);
+    bookingContractEntity.endDate3 =new Date(dto.endDate3);
+    bookingContractEntity.contractDiscription = dto.contractDiscription;
+    bookingContractEntity.startTime = new Date(dto.date + ' ' + dto.startTime);
+    bookingContractEntity.endTime = new Date(dto.date + ' ' + dto.endTime);
+    bookingContractEntity.musicGenre = dto.genreType;
+
+    try {
+      await this.bookingContractEntityRepository.save(bookingContractEntity);
+    } catch (e) {
+      this.logger.error(e);
+      throw new InternalServerErrorException(
+        ERROR_MESSAGES.INTERNAL_SERVER_ERROR,
+      );
+    }
     const eventUser = await this.userEntityRepository.findOne({
       where: {
         id: dto.userId,
@@ -279,10 +336,9 @@ else if(eventUser.userType.id == USER_TYPE.ARTIST){
 }
 */
 
-
- await this.eventEntityRepository.save(eventEntity);
-
-
+ await queryRunner.manager
+.getRepository(EventEntity)
+.save(eventEntity);
 // await this.bookingContractEntityRepository.update(
 //   { id: contract.id },
 //   { contractStatus: dto.status },

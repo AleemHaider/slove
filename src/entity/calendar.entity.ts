@@ -40,4 +40,5 @@ export class CalendarEntity extends BaseEntity {
   })
   @JoinColumn({ name: 'booking_contract_id' })
   booking_contract: BookingContractEntity;
+  
 }
