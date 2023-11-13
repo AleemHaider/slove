@@ -245,7 +245,7 @@ await queryRunner.release();
     try {
       const booking1=await this.bookingEntityRepository.save(booking);
       this.logger.log('checkContract',booking1);
-    const contract = await this.bookingContractEntityRepository.findOne({
+   /* const contract = await this.bookingContractEntityRepository.findOne({
       where: {
         id: booking1.id,
       },
@@ -254,8 +254,9 @@ await queryRunner.release();
     if (!contract) {
       throw new NotFoundException(ERROR_MESSAGES.BOOKING_CONTRACT_NOT_FOUND);
     }
+    */
     this.logger.log('checkContract',booking1);
-/*
+
     const bookingContractEntity = new BookingContractEntity();
   
     bookingContractEntity.eventName = dto.eventName;
