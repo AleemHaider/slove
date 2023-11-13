@@ -219,6 +219,9 @@ await queryRunner.release();
 
 
   async createOneSidedGig(user: UserEntity, dto: CreateEventDto) {
+    const queryRunner = this.dataSource.createQueryRunner();
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
     this.logger.log({ dto });
     const booking = new BookingEntity();
     const checkStartDate = dayjs(
@@ -298,9 +301,7 @@ await queryRunner.release();
     if (!eventUser) {
       throw new NotFoundException(ERROR_MESSAGES.USER_NOT_FOUND);
     }
-    const queryRunner = this.dataSource.createQueryRunner();
-    await queryRunner.connect();
-    await queryRunner.startTransaction();
+   
     try {
 const eventEntity = new EventEntity();
 eventEntity.endTime = new Date(dto.date+' '+dto.endTime);
