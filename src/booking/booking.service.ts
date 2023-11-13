@@ -247,11 +247,26 @@ await queryRunner.release();
         ERROR_MESSAGES.INTERNAL_SERVER_ERROR,
       );
     }
+    const contract = await this.bookingContractEntityRepository.findOne({
+      where: {
+        id: booking.id,
+      },
+      relations: ['booking'],
+    });
+    if (!contract) {
+      throw new NotFoundException(ERROR_MESSAGES.BOOKING_CONTRACT_NOT_FOUND);
+    }
 
     const bookingContractEntity = new BookingContractEntity();
   
     bookingContractEntity.eventName = dto.eventName;
     bookingContractEntity.booking = booking;
+
+    if(dto.isOneSidedTicketSale==true)
+    {
+    bookingContractEntity.endDate =new Date(dto.endDate);
+    bookingContractEntity.endDate2 =new Date(dto.endDate2);
+    bookingContractEntity.endDate3 =new Date(dto.endDate3);
     bookingContractEntity.ticketPrice = dto.ticketPrice;
     bookingContractEntity.ticketPrice2 = dto.ticketPrice2;
     bookingContractEntity.ticketPrice3 = dto.ticketPrice3;
@@ -261,9 +276,7 @@ await queryRunner.release();
     bookingContractEntity.ticketQuantity = dto.ticketQuantity;
     bookingContractEntity.ticketQuantity2 = dto.ticketQuantity2;
     bookingContractEntity.ticketQuantity3 = dto.ticketQuantity3;
-    bookingContractEntity.endDate =new Date(dto.endDate);
-    bookingContractEntity.endDate2 =new Date(dto.endDate2);
-    bookingContractEntity.endDate3 =new Date(dto.endDate3);
+    }
     bookingContractEntity.contractDiscription = dto.contractDiscription;
     bookingContractEntity.startTime = new Date(dto.date + ' ' + dto.startTime);
     bookingContractEntity.endTime = new Date(dto.date + ' ' + dto.endTime);
@@ -350,7 +363,9 @@ calenderVenue.startTime =new Date(dto.date+' '+dto.startTime);
 calenderVenue.endTime = new Date(dto.date+' '+dto.endTime);
 calenderVenue.title = dto.eventName;
 calenderVenue.user = eventEntity.venue;
+calenderVenue.booking_contract = contract;
 calenderVenue.type = CALENDAR_TYPE.EVENT;
+
 await queryRunner.manager
 .getRepository(CalendarEntity)
 .save(calenderVenue);
@@ -364,6 +379,7 @@ calenderArtist.startTime = new Date(dto.date+' '+dto.startTime);
 calenderArtist.endTime = new Date (dto.date+' '+dto.endTime);
 calenderArtist.title = dto.eventName;
 calenderArtist.type = CALENDAR_TYPE.EVENT;
+calenderArtist.booking_contract = contract;
 calenderArtist.user = eventEntity.artist;
 await queryRunner.manager
 .getRepository(CalendarEntity)
