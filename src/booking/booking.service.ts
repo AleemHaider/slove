@@ -259,6 +259,7 @@ await queryRunner.release();
     if (!contract) {
       throw new NotFoundException(ERROR_MESSAGES.BOOKING_CONTRACT_NOT_FOUND);
     }
+    this.logger.log('checkContract');
 /*
     const bookingContractEntity = new BookingContractEntity();
   
@@ -354,6 +355,8 @@ else if(eventUser.userType.id == USER_TYPE.ARTIST){
  await queryRunner.manager
 .getRepository(EventEntity)
 .save(eventEntity);
+
+this.logger.log('checkEvent');
 // await this.bookingContractEntityRepository.update(
 //   { id: contract.id },
 //   { contractStatus: dto.status },
