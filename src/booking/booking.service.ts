@@ -669,7 +669,7 @@ await queryRunner.release();
     bookingContractEntity.ticketQuantity = dto.ticketQuantity;
     bookingContractEntity.ticketQuantity2 = dto.ticketQuantity2;
     bookingContractEntity.ticketQuantity3 = dto.ticketQuantity3;
-    
+
     bookingContractEntity.endDate =new Date(dto.endDate);
     bookingContractEntity.endDate2 =new Date(dto.endDate2);
     bookingContractEntity.endDate3 =new Date(dto.endDate3);
