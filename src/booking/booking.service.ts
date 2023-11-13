@@ -397,7 +397,7 @@ throw new InternalServerErrorException(
 ERROR_MESSAGES.INTERNAL_SERVER_ERROR,
 );
 } finally {
-await queryRunner.release();
+//await queryRunner.release();
 }
 
     
