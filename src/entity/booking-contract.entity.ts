@@ -148,6 +148,12 @@ export class BookingContractEntity extends BaseEntity {
   })
   ticketSaleAgreement: boolean;
   @Column({
+    type: 'bool',
+    name: 'ticket_sale_agreement',
+   nullable:true
+  })
+  isMultipleRelease: boolean;
+  @Column({
     name: 'equipment',
     type: 'text',
     nullable: true,

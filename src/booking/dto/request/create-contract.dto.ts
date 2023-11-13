@@ -75,6 +75,8 @@ export class CreateContractDto {
   @ApiProperty()
   ticketSaleAgreement: boolean;
   @ApiProperty()
+  isMultipleRelease: boolean;
+  @ApiProperty()
   contractDetails: string;
   @ApiProperty()
   contractDiscription: string;

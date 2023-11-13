@@ -138,8 +138,8 @@ export class BookingService {
     await queryRunner.startTransaction();
     try {
 const eventEntity = new EventEntity();
-eventEntity.endTime = new Date(dto.endTime);
-eventEntity.startTime =new Date(dto.startTime);
+eventEntity.endTime = new Date(dto.date+' '+dto.endTime);
+eventEntity.startTime =new Date(dto.date+' '+dto.startTime);
 eventEntity.eventName = dto.eventName;
 eventEntity.ticketPrice = dto.ticketPrice;
 eventEntity.ticketPrice2 = dto.ticketPrice2;
@@ -157,13 +157,9 @@ eventEntity.endDate = new Date(dto.endDate);
 eventEntity.endDate2 =new Date(dto.endDate2);
 eventEntity.endDate3 =new Date (dto.endDate3);
 eventEntity.contractDiscription=dto.contractDiscription;
-if(eventUser.userType.id == USER_TYPE.VENUE)
-{
+
 eventEntity.venue =eventUser;
-}
-else if(eventUser.userType.id == USER_TYPE.ARTIST){
-  eventEntity.artist =eventUser;
-}
+
 
 await queryRunner.manager.getRepository(EventEntity).update(
   { id: eventEntity.id },
@@ -178,8 +174,8 @@ await queryRunner.manager.getRepository(EventEntity).update(
 if(eventEntity.venue!==null)
 {
 const calenderVenue = new CalendarEntity();
-calenderVenue.startTime =new Date(dto.startTime);
-calenderVenue.endTime = new Date(dto.endTime);
+calenderVenue.startTime =new Date(dto.date+' '+dto.startTime);
+calenderVenue.endTime = new Date(dto.date+' '+dto.endTime);
 calenderVenue.title = dto.eventName;
 calenderVenue.user = eventEntity.venue;
 calenderVenue.type = CALENDAR_TYPE.EVENT;
@@ -192,8 +188,8 @@ else if(eventEntity.artist!=null)
 
 // await this.calendarEntityRepository.save(calenderVenue);
 const calenderArtist = new CalendarEntity();
-calenderArtist.startTime = new Date(dto.startTime);
-calenderArtist.endTime = new Date (dto.endTime);
+calenderArtist.startTime = new Date(dto.date+' '+dto.startTime);
+calenderArtist.endTime = new Date (dto.date+' '+dto.endTime);
 calenderArtist.title = dto.eventName;
 calenderArtist.type = CALENDAR_TYPE.EVENT;
 calenderArtist.user = eventEntity.artist;
@@ -564,6 +560,7 @@ await queryRunner.release();
     bookingContractEntity.equipment = dto.equipment;
     bookingContractEntity.eventName = dto.eventName;
     bookingContractEntity.booking = booking;
+    bookingContractEntity.isMultipleRelease=dto.isMultipleRelease;
     bookingContractEntity.ticketPrice = dto.ticketPrice;
     bookingContractEntity.ticketPrice2 = dto.ticketPrice2;
     bookingContractEntity.ticketPrice3 = dto.ticketPrice3;
@@ -724,6 +721,7 @@ await queryRunner.release();
         eventEntity.endTime = contract.endTime;
         eventEntity.startTime = contract.startTime;
         eventEntity.eventName = contract.eventName;
+        
         eventEntity.ticketPrice = contract.ticketPrice;
         eventEntity.ticketPrice2 = contract.ticketPrice2;
         eventEntity.ticketPrice3 = contract.ticketPrice3;

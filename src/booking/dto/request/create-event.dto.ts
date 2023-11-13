@@ -27,6 +27,8 @@ export class CreateEventDto {
 
   @ApiProperty()
   bookingPrice: number;
+  @ApiProperty()
+  isOneSidedTicketSale: boolean;
 
   @ApiProperty()
   organisationNumber: string;
