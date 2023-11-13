@@ -660,7 +660,6 @@ await queryRunner.release();
     bookingContractEntity.bookingPrice = dto.bookingPrice;
     bookingContractEntity.equipment = dto.equipment;
     bookingContractEntity.eventName = dto.eventName;
-    bookingContractEntity.booking = booking;
     bookingContractEntity.ticketPrice = dto.ticketPrice;
     bookingContractEntity.ticketPrice2 = dto.ticketPrice2;
     bookingContractEntity.ticketPrice3 = dto.ticketPrice3;
@@ -670,6 +669,7 @@ await queryRunner.release();
     bookingContractEntity.ticketQuantity = dto.ticketQuantity;
     bookingContractEntity.ticketQuantity2 = dto.ticketQuantity2;
     bookingContractEntity.ticketQuantity3 = dto.ticketQuantity3;
+    
     bookingContractEntity.endDate =new Date(dto.endDate);
     bookingContractEntity.endDate2 =new Date(dto.endDate2);
     bookingContractEntity.endDate3 =new Date(dto.endDate3);
