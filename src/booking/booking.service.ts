@@ -259,7 +259,7 @@ await queryRunner.release();
     if (!contract) {
       throw new NotFoundException(ERROR_MESSAGES.BOOKING_CONTRACT_NOT_FOUND);
     }
-
+/*
     const bookingContractEntity = new BookingContractEntity();
   
     bookingContractEntity.eventName = dto.eventName;
@@ -293,6 +293,7 @@ await queryRunner.release();
         ERROR_MESSAGES.INTERNAL_SERVER_ERROR,
       );
     }
+    */
     const eventUser = await this.userEntityRepository.findOne({
       where: {
         id: dto.userId,
