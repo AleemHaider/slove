@@ -3,8 +3,6 @@ import { Matches } from 'class-validator';
 export class CreateEventDto {
     @ApiProperty()
     userId: number;
-  @ApiProperty()
-  genreType: number[];
 
   @Matches(/^\s*([01][0-9]|2[0-3]):[0-5][0-9]\s*$/, {
     message: 'Start time must be in HH:mm format',
@@ -25,13 +23,10 @@ export class CreateEventDto {
   })
   date: string;
 
-  @ApiProperty()
-  bookingPrice: number;
+
   @ApiProperty()
   isOneSidedTicketSale: boolean;
 
-  @ApiProperty()
-  organisationNumber: string;
 
   @ApiProperty()
   eventName: string;
@@ -79,13 +74,10 @@ export class CreateEventDto {
   location: string;
   @ApiProperty()
   linkToEvent: string;
-  @ApiProperty()
-  ticketSaleAgreement: boolean;
-  @ApiProperty()
-  contractDetails: string;
+  
+  
   @ApiProperty()
   contractDiscription: string;
-  @ApiProperty()
-  equipment: string[];
+
 
 }

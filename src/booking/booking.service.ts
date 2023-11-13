@@ -576,7 +576,7 @@ await queryRunner.release();
     bookingContractEntity.contractDetails = dto.contractDetails;
     bookingContractEntity.ticketSaleAgreement = dto.ticketSaleAgreement;
     bookingContractEntity.contractDiscription = dto.contractDiscription;
-    
+    bookingContractEntity.isMultipleRelease=dto.isMultipleRelease;
     bookingContractEntity.organisationNumber = dto.organisationNumber;
     bookingContractEntity.startTime = new Date(dto.date + ' ' + dto.startTime);
     bookingContractEntity.endTime = new Date(dto.date + ' ' + dto.endTime);
