@@ -252,6 +252,7 @@ eventEntity.endDate = new Date(dto.endDate);
 eventEntity.endDate2 =new Date(dto.endDate2);
 eventEntity.endDate3 =new Date (dto.endDate3);
 eventEntity.contractDiscription=dto.contractDiscription;
+eventEntity.musicGenre=dto.genreType;
 /*if(eventEntity!=null)
 {
 if(eventUser.userType.id == USER_TYPE.VENUE)

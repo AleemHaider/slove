@@ -137,6 +137,13 @@ export class EventEntity extends BaseEntity {
     nullable:true,
   })
   ticketSaleAgreement: boolean;
+  @Column('int', {
+    array: true,
+    default: {},
+    name: 'music_genre',
+    nullable: true,
+  })
+  musicGenre: number[];
   @Column({
     type: 'bool',
     name: 'is_multiple_release',

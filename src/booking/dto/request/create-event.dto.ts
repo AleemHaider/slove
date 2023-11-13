@@ -16,7 +16,8 @@ export class CreateEventDto {
     message: 'End time must be in HH:mm format',
   })
   endTime: string;
-
+  @ApiProperty()
+  genreType: number[];
   @ApiProperty({
     examples: ['2023-01-23'],
     description: 'Date',
