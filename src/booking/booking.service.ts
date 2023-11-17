@@ -184,6 +184,7 @@ await queryRunner.manager.getRepository(EventEntity).update(
 //   { id: contract.id },
 //   { contractStatus: dto.status },
 // );
+/*
 if(eventEntity.venue!==null)
 {
 const calenderVenue = new CalendarEntity();
@@ -211,6 +212,7 @@ const calender=await queryRunner.manager
 .save(calenderArtist);
 // await this.calendarEntityRepository.save(calenderArtist);
 }
+*/
 await queryRunner.commitTransaction();
 
 return;
