@@ -569,14 +569,14 @@ ERROR_MESSAGES.INTERNAL_SERVER_ERROR,
     b.maximum_price,b.minimum_price,b.message,b.booking_status,b.user_id,uq.venue_name,uq.band_name,u.chat_id,u.profile_image,u.user_type_id as user_type,
     c.name as country_name,c2.name as city_name from booking b inner join "user" u on u.id = ${user.id}  inner join user_question uq on u.id = uq.user_id
     left join booking_contract bc on b.id = bc.booking_id left join countries c on uq.country_id = c.id left join cities c2 on uq.city_id = c2.id left join "user"
-    ru on b.requested_user_id=ru.id where b.user_id=${user.id} and (b.booking_status='DECLINED' or b.booking_status='PENDING'
-    or (b.booking_status='ACCEPTED' and bc.contract_status='DECLINED')) order by b.created_at desc ${pagination}`);
+    ru on b.requested_user_id=ru.id where b.user_id=${user.id} and (b.booking_status='ACCEPTED' or b.booking_status='ACCEPTED'
+    or (b.booking_status='ACCEPTED' and bc.contract_status='ACCEPTED')) order by b.created_at desc ${pagination}`);
 
       count = await this.dataSource.manager
         .query(`select count(b.id) as count from booking b inner join "user" u on u.id = ${user.id}  inner join user_question uq on u.id = uq.user_id
     left join booking_contract bc on b.id = bc.booking_id left join countries c on uq.country_id = c.id left join cities c2 on uq.city_id = c2.id left join "user"
-    ru on b.requested_user_id=ru.id where b.user_id=${user.id} and (b.booking_status='DECLINED' or b.booking_status='PENDING'
-    or (b.booking_status='ACCEPTED' and bc.contract_status='DECLINED')) `);
+    ru on b.requested_user_id=ru.id where b.user_id=${user.id} and (b.booking_status='ACCEPTED' or b.booking_status='ACCEPTED'
+    or (b.booking_status='ACCEPTED' and bc.contract_status='ACCEPTED')) `);
     }
 
 
