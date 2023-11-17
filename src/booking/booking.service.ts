@@ -386,7 +386,7 @@ const calenderVenue = new CalendarEntity();
 calenderVenue.startTime =new Date(dto.date+' '+dto.startTime);
 calenderVenue.endTime = new Date(dto.date+' '+dto.endTime);
 calenderVenue.title = dto.eventName;
-calenderVenue.user = eventEntity.venue;
+calenderVenue.user = user;
 calenderVenue.booking_contract = contract;
 calenderVenue.type = CALENDAR_TYPE.EVENT;
 
@@ -405,7 +405,7 @@ calenderArtist.endTime = new Date (dto.date+' '+dto.endTime);
 calenderArtist.title = dto.eventName;
 calenderArtist.type = CALENDAR_TYPE.EVENT;
 calenderArtist.booking_contract = contract;
-calenderArtist.user = eventEntity.artist;
+calenderArtist.user = user;
 const calender=await queryRunner.manager
 .getRepository(CalendarEntity)
 .save(calenderArtist);
