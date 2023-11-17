@@ -385,7 +385,7 @@ calenderVenue.startTime =new Date(dto.date+' '+dto.startTime);
 calenderVenue.endTime = new Date(dto.date+' '+dto.endTime);
 calenderVenue.title = dto.eventName;
 calenderVenue.user = eventEntity.venue;
-//calenderVenue.booking_contract = contract;
+calenderVenue.booking_contract = contract;
 calenderVenue.type = CALENDAR_TYPE.EVENT;
 
 await queryRunner.manager
@@ -401,7 +401,7 @@ calenderArtist.startTime = new Date(dto.date+' '+dto.startTime);
 calenderArtist.endTime = new Date (dto.date+' '+dto.endTime);
 calenderArtist.title = dto.eventName;
 calenderArtist.type = CALENDAR_TYPE.EVENT;
-//calenderArtist.booking_contract = contract;
+calenderArtist.booking_contract = contract;
 calenderArtist.user = eventEntity.artist;
 await queryRunner.manager
 .getRepository(CalendarEntity)
@@ -544,6 +544,41 @@ ERROR_MESSAGES.INTERNAL_SERVER_ERROR,
     ru on b.requested_user_id=ru.id where b.user_id=${user.id} and (b.booking_status='DECLINED' or b.booking_status='PENDING'
     or (b.booking_status='ACCEPTED' and bc.contract_status='DECLINED')) `);
     }
+    if (type == 'onesided') {
+      data = await this.dataSource.manager.query(`
+        select bc.id as booking_contract_id,bc.music_genre as booking_contract_music_genre,bc.start_time as booking_contract_start_time,
+    bc.end_time as booking_contract_end_time,bc.booking_price as booking_contract_booking_price,bc.equipment as booking_contract_equipment,
+    bc.contract_status as contract_status,bc.event_name as booking_contract_event_name,bc.organisation_number as booking_contract_organisation_number,
+    bc.ticket_price as booking_contract_ticket_price,
+    bc.ticket_price2 as booking_contract_ticket_price2,bc.ticket_price3
+    as booking_contract_ticket_price3,bc.release_name
+    as booking_contract_ticket_release_name,bc.release_name2
+    as booking_contract_ticket_release_name2,bc.release_name3
+    as booking_contract_ticket_release_name3,bc.ticket_quantity
+    as booking_contract_ticket_quantity,bc.ticket_quantity2
+    as booking_contract_ticket_quantity2,bc.ticket_quantity3
+    as booking_contract_ticket_quantity3,bc.ticket_end_date
+    as booking_contract_ticket_end_date,bc.ticket_end_date2
+    as booking_contract_ticket_end_date2,bc.ticket_end_date3
+    as booking_contract_ticket_end_date3,
+    bc.contract_details as booking_contract_details,bc.contract_discription as booking_contract_discription,bc.ticket_sale_agreement as booking_contract_ticket_sale_agreement,
+  
+    bc.is_multiple_release as booking_contract_is_multiple_release,
+    cast(b.start_time as TEXT) as start_time,cast(b.end_time as TEXT) as end_time,
+    b.requested_user_id as requested_user_id,ru.user_type_id as request_user_type,b.id,b.music_genre,
+    b.maximum_price,b.minimum_price,b.message,b.booking_status,b.user_id,uq.venue_name,uq.band_name,u.chat_id,u.profile_image,u.user_type_id as user_type,
+    c.name as country_name,c2.name as city_name from booking b inner join "user" u on u.id = ${user.id}  inner join user_question uq on u.id = uq.user_id
+    left join booking_contract bc on b.id = bc.booking_id left join countries c on uq.country_id = c.id left join cities c2 on uq.city_id = c2.id left join "user"
+    ru on b.requested_user_id=ru.id where b.user_id=${user.id} and (b.booking_status='DECLINED' or b.booking_status='PENDING'
+    or (b.booking_status='ACCEPTED' and bc.contract_status='DECLINED')) order by b.created_at desc ${pagination}`);
+
+      count = await this.dataSource.manager
+        .query(`select count(b.id) as count from booking b inner join "user" u on u.id = ${user.id}  inner join user_question uq on u.id = uq.user_id
+    left join booking_contract bc on b.id = bc.booking_id left join countries c on uq.country_id = c.id left join cities c2 on uq.city_id = c2.id left join "user"
+    ru on b.requested_user_id=ru.id where b.user_id=${user.id} and (b.booking_status='DECLINED' or b.booking_status='PENDING'
+    or (b.booking_status='ACCEPTED' and bc.contract_status='DECLINED')) `);
+    }
+
 
     const musicGenre = await this.musicGenreEntityRepository.find({
       select: ['id', 'type'],
