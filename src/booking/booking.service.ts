@@ -181,7 +181,7 @@ calenderVenue.endTime = new Date(dto.date+' '+dto.endTime);
 calenderVenue.title = dto.eventName;
 calenderVenue.user = eventEntity.venue;
 calenderVenue.type = CALENDAR_TYPE.EVENT;
-await queryRunner.manager
+const calender=await queryRunner.manager
 .getRepository(CalendarEntity)
 .save(calenderVenue);
 }
@@ -195,7 +195,7 @@ calenderArtist.endTime = new Date (dto.date+' '+dto.endTime);
 calenderArtist.title = dto.eventName;
 calenderArtist.type = CALENDAR_TYPE.EVENT;
 calenderArtist.user = eventEntity.artist;
-await queryRunner.manager
+const calender=await queryRunner.manager
 .getRepository(CalendarEntity)
 .save(calenderArtist);
 // await this.calendarEntityRepository.save(calenderArtist);
@@ -390,9 +390,10 @@ calenderVenue.user = eventEntity.venue;
 calenderVenue.booking_contract = contract;
 calenderVenue.type = CALENDAR_TYPE.EVENT;
 
-await queryRunner.manager
+const calender=await queryRunner.manager
 .getRepository(CalendarEntity)
 .save(calenderVenue);
+this.logger.log('checkContract'+calender.id);
 }
 else if(eventEntity.artist!=null)
 {
@@ -405,10 +406,11 @@ calenderArtist.title = dto.eventName;
 calenderArtist.type = CALENDAR_TYPE.EVENT;
 calenderArtist.booking_contract = contract;
 calenderArtist.user = eventEntity.artist;
-await queryRunner.manager
+const calender=await queryRunner.manager
 .getRepository(CalendarEntity)
 .save(calenderArtist);
 // await this.calendarEntityRepository.save(calenderArtist);
+this.logger.log('checkContract'+calender.id);
 }
 await queryRunner.commitTransaction();
 
