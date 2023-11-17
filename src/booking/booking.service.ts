@@ -374,6 +374,8 @@ else if(eventUser.userType.id == USER_TYPE.ARTIST){
 .save(eventEntity);
 
 this.logger.log('checkEvent'+event.id);
+this.logger.log('checkEvent'+event.eventName);
+this.logger.log('checkEvent'+dto.eventName);
 // await this.bookingContractEntityRepository.update(
 //   { id: contract.id },
 //   { contractStatus: dto.status },
