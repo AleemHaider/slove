@@ -219,6 +219,15 @@ await queryRunner.release();
 
 
   async createOneSidedGig(user: UserEntity, dto: CreateEventDto) {
+    const artist = await this.userEntityRepository.findOne({
+      where: {
+        id: dto.userId,
+      },
+    });
+
+    if (!artist) {
+      throw new NotFoundException(ERROR_MESSAGES.USER_NOT_FOUND);
+    }
     const queryRunner = this.dataSource.createQueryRunner();
     await queryRunner.connect();
     await queryRunner.startTransaction();
@@ -240,6 +249,7 @@ await queryRunner.release();
     booking.startTime = new Date(dto.date + ' ' + dto.startTime);
     booking.endTime = new Date(dto.date + ' ' + dto.endTime);
     booking.musicGenre = dto.genreType;
+    booking.bookingStatus=BOOKING_STATUS.ACCEPTED;
   
 
     try {
@@ -257,10 +267,25 @@ await queryRunner.release();
     */
     this.logger.log('checkContract',booking1);
 
+    const isExistBookingContract =
+    await this.bookingContractEntityRepository.findOne({
+      where: {
+        booking: {
+          id: booking1.id,
+        },
+      },
+    });
+
+  if (isExistBookingContract) {
+    throw new BadRequestException(ERROR_MESSAGES.ALREADY_BOOKING_CONTRACT);
+  }
+
     const bookingContractEntity = new BookingContractEntity();
   
     bookingContractEntity.eventName = dto.eventName;
-    bookingContractEntity.booking = booking;
+    bookingContractEntity.booking = booking1;
+    bookingContractEntity.contractStatus=BOOKING_CONTRACT_STATUS.ACCEPTED;
+  
 
     if(dto.isOneSidedTicketSale==true)
     {
@@ -281,6 +306,7 @@ await queryRunner.release();
     bookingContractEntity.startTime = new Date(dto.date + ' ' + dto.startTime);
     bookingContractEntity.endTime = new Date(dto.date + ' ' + dto.endTime);
     bookingContractEntity.musicGenre = dto.genreType;
+    
 
     try {
       await this.bookingContractEntityRepository.save(bookingContractEntity);
