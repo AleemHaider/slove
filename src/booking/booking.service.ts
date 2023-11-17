@@ -241,8 +241,8 @@ await queryRunner.release();
       'YYYY-MM-DD HH:mm:ss',
     );
 
-    this.logger.log('checkStartDate', checkStartDate);
-    this.logger.log('checkEndDate', checkEndDate);
+    this.logger.log('checkStartDate'+ checkStartDate);
+    this.logger.log('checkEndDate'+ checkEndDate);
    
     booking.user = artist;
     booking.requestedUser = user;
@@ -254,7 +254,7 @@ await queryRunner.release();
 
     try {
       const booking1=await this.bookingEntityRepository.save(booking);
-      this.logger.log('checkContract',booking1);
+      this.logger.log('checkContract'+booking1.id);
    /* const contract = await this.bookingContractEntityRepository.findOne({
       where: {
         id: booking1.id,
