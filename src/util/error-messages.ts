@@ -1,5 +1,7 @@
 const ERROR_MESSAGES = {
   USER_ALREADY_EXIST: 'User already exist !',
+  ALL_TICKETS_SOLD: 'All tickets are sold !',
+  AVAILABLE_TICKETS_ARE: 'Available tickets are !',
   USER_NOT_FOUND: 'User not found !',
   INTERNAL_SERVER_ERROR: 'Internal server error !',
   TOKEN_VERIFICATION_FAILED: 'Token verification failed !',
