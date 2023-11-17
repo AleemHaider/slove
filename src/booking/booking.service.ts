@@ -308,15 +308,9 @@ await queryRunner.release();
     bookingContractEntity.musicGenre = dto.genreType;
     
 
-    try {
-      await this.bookingContractEntityRepository.save(bookingContractEntity);
-    } catch (e) {
-      this.logger.error(e);
-      throw new InternalServerErrorException(
-        ERROR_MESSAGES.INTERNAL_SERVER_ERROR,
-      );
-    }
-    
+
+      const contract=await this.bookingContractEntityRepository.save(bookingContractEntity);
+  
     const eventUser = await this.userEntityRepository.findOne({
       where: {
         id: dto.userId,
@@ -332,6 +326,7 @@ eventEntity.endTime = new Date(dto.date+' '+dto.endTime);
 eventEntity.startTime =new Date(dto.date+' '+dto.startTime);
 eventEntity.eventName = dto.eventName;
 eventEntity.ticketPrice = dto.ticketPrice;
+eventEntity.bookingContract=contract;
 eventEntity.ticketPrice2 = dto.ticketPrice2;
 eventEntity.linkToEvent=dto.linkToEvent;
 eventEntity.linkToTickets=dto.linkToTickets;
