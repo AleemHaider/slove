@@ -369,11 +369,11 @@ else if(eventUser.userType.id == USER_TYPE.ARTIST){
 }
 */
 
- await queryRunner.manager
+ const event=await queryRunner.manager
 .getRepository(EventEntity)
 .save(eventEntity);
 
-this.logger.log('checkEvent');
+this.logger.log('checkEvent'+event.id);
 // await this.bookingContractEntityRepository.update(
 //   { id: contract.id },
 //   { contractStatus: dto.status },
