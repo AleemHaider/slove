@@ -254,7 +254,7 @@ await queryRunner.release();
 
     try {
       const booking1=await this.bookingEntityRepository.save(booking);
-      this.logger.log('checkContract'+booking1.id);
+      this.logger.log('checkbooking'+booking1.id);
    /* const contract = await this.bookingContractEntityRepository.findOne({
       where: {
         id: booking1.id,
@@ -319,7 +319,7 @@ await queryRunner.release();
     if (!eventUser) {
       throw new NotFoundException(ERROR_MESSAGES.USER_NOT_FOUND);
     }
-   
+    this.logger.log('checkContract'+contract.id);
 
 const eventEntity = new EventEntity();
 eventEntity.endTime = new Date(dto.date+' '+dto.endTime);
