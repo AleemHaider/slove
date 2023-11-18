@@ -398,6 +398,7 @@ export class UserService {
     user: UserEntity,
     genre: string,
     search: string,
+    searchType: string,
     page = '1',
     limit = '10',
   ) {
@@ -411,7 +412,7 @@ export class UserService {
       select: ['musicGenre', 'id'],
     });
     this.logger.log({ preferences });
-    const whereQuery = getAllConsumerWhereList(search, genre, preferences);
+    const whereQuery = getAllConsumerWhereList(search, genre, preferences,searchType);
     // user.id
     try {
       let data = await this.dataSource.manager
@@ -657,12 +658,13 @@ export class UserService {
     page = '1',
     limit = '10',
     search: string,
+    searchType:string,
   ) {
     // this.logger.log({ type, typeId, page, limit });
 
     const queryLimit = paginationUtil(page, limit);
     // this.logger.log(queryLimit);
-    const whereQuery = getWhereDiscovery(type, typeId, search);
+    const whereQuery = getWhereDiscovery(type, typeId, search, searchType);
     // this.logger.log(whereQuery);
 
     let data = await this.dataSource.manager.query(
