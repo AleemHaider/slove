@@ -699,7 +699,7 @@ await queryRunner.release();
       throw new NotFoundException('Event not found');
     }
     
-
+  this.logger.log("event"+ event.eventName);
     return event;
   }
   async createContract(user: UserEntity, dto: CreateContractDto) {
