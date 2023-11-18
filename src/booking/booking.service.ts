@@ -373,11 +373,11 @@ if(eventEntity!=null)
 {
 if(dto.userType == USER_TYPE.VENUE)
 {
-eventEntity.venue =artist;
+eventEntity.venue =user;
 }
 else if(dto.userType == USER_TYPE.ARTIST){
 
-  eventEntity.artist =artist;
+  eventEntity.artist =user;
   
 }
 }
