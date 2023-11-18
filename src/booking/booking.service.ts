@@ -370,11 +370,11 @@ eventEntity.contractDiscription=dto.contractDiscription;
 eventEntity.musicGenre=dto.genreType;
 if(eventEntity!=null)
 {
-if(artist.userType.id == USER_TYPE.VENUE)
+if(booking1.user.userType.id == USER_TYPE.VENUE)
 {
 eventEntity.venue =artist;
 }
-else if(artist.userType.id == USER_TYPE.ARTIST){
+else if(booking1.user.userType.id == USER_TYPE.ARTIST){
 
   eventEntity.artist =artist;
   
