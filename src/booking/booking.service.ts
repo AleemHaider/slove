@@ -174,6 +174,7 @@ export class BookingService {
       }
       eventEntity.contractDiscription=dto.contractDiscription;
       
+      
 
 
 await queryRunner.manager.getRepository(EventEntity).update(
@@ -383,7 +384,7 @@ else if(dto.userType == USER_TYPE.ARTIST){
   
 }
 }
-
+eventEntity.musicGenre=dto.genreType;
 
  const event=await queryRunner.manager
 .getRepository(EventEntity)
