@@ -1,6 +1,10 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Matches } from 'class-validator';
-export class CreateEventDto {
+import { BaseEntity } from 'typeorm/repository/BaseEntity';
+
+export class CreateEventDto  {
+  @ApiProperty()
+    id: number;
     @ApiProperty()
     userId: number;
     @ApiProperty()

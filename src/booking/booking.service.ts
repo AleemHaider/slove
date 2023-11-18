@@ -231,7 +231,7 @@ export class BookingService {
 
 
 await queryRunner.manager.getRepository(EventEntity).update(
-  { id: eventEntity.id },
+  { id: dto.id },
   eventEntity);
 // await this.eventEntityRepository.save(eventEntity);
 
