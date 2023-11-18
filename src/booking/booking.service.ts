@@ -185,6 +185,9 @@ export class BookingService {
         const existingBooking = await queryRunner.manager.getRepository(BookingEntity).findOne({
           where: {  id: bookingContract.id  }, // Assuming id is the primary key of BookingContractEntity
         });
+        existingBooking.startTime=new Date(dto.date+' '+dto.endTime);
+        existingBooking.endTime=new Date(dto.date+' '+dto.startTime);
+        
         if(existingBooking)
         {
           await queryRunner.manager.getRepository(BookingEntity).save(existingBooking);
