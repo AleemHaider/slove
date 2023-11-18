@@ -370,13 +370,13 @@ eventEntity.contractDiscription=dto.contractDiscription;
 eventEntity.musicGenre=dto.genreType;
 if(eventEntity!=null)
 {
-if(user.userType.id == USER_TYPE.VENUE)
+if(artist.userType.id == USER_TYPE.VENUE)
 {
-eventEntity.venue =user;
+eventEntity.venue =artist;
 }
-else if(user.userType.id == USER_TYPE.ARTIST){
+else if(artist.userType.id == USER_TYPE.ARTIST){
 
-  eventEntity.artist =user;
+  eventEntity.artist =artist;
   
 }
 }
