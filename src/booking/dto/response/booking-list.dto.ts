@@ -37,49 +37,7 @@ export class BookingListDto {
     if (isArray(data)) {
       for (let i = 0; i < data.length; i++) {
         const element = data[i] as any;
-        if(element.gig_type==GIG_TYPE.ONESIDED)
-        {
-        const obj = {
-          userId: element.user_id,
-          id: element.id,
-          startTime: element.start_time,
-          endTime: element.end_time,
-          bookingStatus: element.booking_status,
-          isFeedbackGiven: !!element.feedback_id,
-          eventId: element.event_id,
-          profileImage:
-            type == 'approved' && user.id == element.requested_user_id
-              ? element.profile_image
-              : element.requested_profile_image,
-          creatorUserType: element.request_user_type,
-          userType: element.user_type,
-          contractStatus: element.contract_status,
-          country:
-            type == 'approved' && user.id == element.requested_user_id
-              ? element.country_name
-              : element.requested_country_name,
-          isBookingCreator: user.id == element.requested_user_id,
-          city:
-            type == 'approved' && user.id == element.requested_user_id
-              ? element.city_name
-              : element.requested_city_name,
-          name:
-            type == 'approved' && user.id == element.requested_user_id
-              ? element.band_name
-                ? element.band_name
-                : element.venue_name
-              : element.requested_band_name
-              ? element.requested_band_name
-              : element.requested_venue_name,
-          requestedUserId: element.requested_user_id,
-          musicGenre: element.music_genre,
-          contract: element.booking_contract_id
-            ? this.getContract(element)
-            : null,
-        };
-        list.push(obj);
-      }
-      else if(element.gig_type==GIG_TYPE.TWOSIDED) {
+      
           const obj = {
             userId: element.user_id ?? null,
             id: element.id ?? null,
@@ -128,7 +86,7 @@ export class BookingListDto {
           
           list.push(obj);
           
-      }
+      
         
       
     }
