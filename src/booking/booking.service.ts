@@ -269,9 +269,10 @@ await queryRunner.release();
     booking.gigType=GIG_TYPE.ONESIDED;
     booking.message = dto.message;
 
+    this.logger.log(dto.genreType);
+
     try {
       const booking1=await this.bookingEntityRepository.save(booking);
-      this.logger.log('checkbooking'+booking1.id);
    /* const contract = await this.bookingContractEntityRepository.findOne({
       where: {
         id: booking1.id,
@@ -336,7 +337,7 @@ await queryRunner.release();
     if (!eventUser) {
       throw new NotFoundException(ERROR_MESSAGES.USER_NOT_FOUND);
     }
-    this.logger.log('checkContract'+contract.id);
+
 
 const eventEntity = new EventEntity();
 eventEntity.endTime = new Date(dto.date+' '+dto.endTime);
@@ -390,9 +391,7 @@ eventEntity.musicGenre=dto.genreType;
 .getRepository(EventEntity)
 .save(eventEntity);
 
-this.logger.log('checkEvent'+event.id);
-this.logger.log('checkEvent'+event.eventName);
-this.logger.log('checkEvent'+dto.eventName);
+
 // await this.bookingContractEntityRepository.update(
 //   { id: contract.id },
 //   { contractStatus: dto.status },
@@ -410,7 +409,7 @@ calenderVenue.type = CALENDAR_TYPE.EVENT;
 const calender=await queryRunner.manager
 .getRepository(CalendarEntity)
 .save(calenderVenue);
-this.logger.log('checkContract'+calender.id);
+
 }
 else if(eventEntity.artist!=null)
 {
