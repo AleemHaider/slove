@@ -553,6 +553,8 @@ await queryRunner.release();
     bc.contract_details as booking_contract_details,bc.contract_discription as booking_contract_discription,bc.ticket_sale_agreement as booking_contract_ticket_sale_agreement,
     bc.is_multiple_release as booking_contract_is_multiple_release,
     bc.is_one_sided_ticket_sale as booking_contract_is_one_sided_ticket_sale,
+    bc.link_to_tickets as booking_contract_link_to_tickets,
+    bc.link_to_event as booking_contract_link_to_event,
     cast(b.start_time as TEXT) as start_time,cast(b.end_time as TEXT) as end_time,
     b.requested_user_id as requested_user_id,b.gig_type as gig_type,ru.user_type_id as request_user_type,b.id,b.music_genre,b.maximum_price,b.minimum_price,b.message,b.booking_status,b.user_id,
     u.user_type_id as user_type, uq.venue_name,uq.band_name,u.chat_id,u.profile_image,c.name as country_name,c2.name as city_name,ru.chat_id as requested_chat_id,
