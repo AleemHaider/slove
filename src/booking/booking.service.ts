@@ -225,6 +225,10 @@ export class BookingService {
       eventEntity.endDate2 =new Date(dto.endDate2);
       eventEntity.endDate3 =new Date (dto.endDate3);
       }
+      else{
+        bookingContractEntity.linkToEvent=dto.linkToEvent;
+        bookingContractEntity.linkToTickets=dto.linkToTickets;
+      }
       eventEntity.contractDiscription=dto.contractDiscription;
       
       
@@ -360,6 +364,10 @@ await queryRunner.release();
     bookingContractEntity.ticketQuantity = dto.ticketQuantity;
     bookingContractEntity.ticketQuantity2 = dto.ticketQuantity2;
     bookingContractEntity.ticketQuantity3 = dto.ticketQuantity3;
+    }
+    else{
+      bookingContractEntity.linkToEvent=dto.linkToEvent;
+      bookingContractEntity.linkToTickets=dto.linkToTickets;
     }
     bookingContractEntity.contractDiscription = dto.contractDiscription;
     bookingContractEntity.startTime = new Date(dto.date + ' ' + dto.startTime);

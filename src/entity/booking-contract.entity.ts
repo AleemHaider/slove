@@ -145,6 +145,18 @@ export class BookingContractEntity extends BaseEntity {
    nullable: true,
   })
   contractDiscription: string;
+  @Column({
+    type: 'text',
+    name: 'link_to_tickets',
+   nullable: true,
+  })
+  linkToTickets: string;
+  @Column({
+    type: 'text',
+    name: 'link_to_event',
+   nullable: true,
+  })
+  linkToEvent: string;
 
   @Column({
     type: 'bool',
