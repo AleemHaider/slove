@@ -19,7 +19,7 @@ export class CreateEventDto {
   })
   endTime: string;
   @ApiProperty()
-  genreType: number[];
+  musicGenre: number[];
   @ApiProperty({
     examples: ['2023-01-23'],
     description: 'Date',
