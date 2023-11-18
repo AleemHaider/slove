@@ -275,20 +275,21 @@ export class UserDetailsDto {
           ticketPrice: element.ticket_price,
           musicGenre: element.music_genre,
           createdAt: element.event_created_at,
+         
           artist: {
-            id: element.artist_id,
-            name: element.artist_name,
-            country: element.artist_country,
-            city: element.artist_city,
-            bio: element.artist_bio,
-            profileImage: element.artist_profile_image,
+            id: element.artist_id ?? null,
+            name: element.artist_name ?? null,
+            country: element.artist_country ?? null,
+            city: element.artist_city ?? null,
+            bio: element.artist_bio ?? null,
+            profileImage: element.artist_profile_image ?? null,
           },
           venue: {
-            id: element.venue_id,
-            name: element.venue_name,
-            profileImage: element.venue_profile_image,
-            country: element.venue_country,
-            city: element.venue_city,
+            id: element.venue_id ?? null,
+            name: element.venue_name ?? null,
+            profileImage: element.venue_profile_image ?? null,
+            country: element.venue_country ?? null,
+            city: element.venue_city ?? null,
           },
         };
 

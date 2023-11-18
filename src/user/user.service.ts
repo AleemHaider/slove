@@ -500,14 +500,20 @@ export class UserService {
           musicGenre,
           element.music_genre,
         );
+        if(element.artist_profile_image!=null)
+        {
         element.artist_profile_image =
           await this.fileUploadService.getSignedFile(
             element.artist_profile_image,
           );
+        }
+        if(element.venue_profile_image!=null)
+        {
         element.venue_profile_image =
           await this.fileUploadService.getSignedFile(
             element.venue_profile_image,
           );
+        }
       }
     }
     return data;
