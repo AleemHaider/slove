@@ -39,7 +39,12 @@ export class BookingContractEntity extends BaseEntity {
     nullable: true,
   })
   organisationNumber: string;
-
+  @Column({
+    type: 'bool',
+    name: 'is_one_sided_ticket_sale',
+    nullable:true,
+  })
+  isOneSidedTicketSale: boolean;
   @Column({
     name: 'event_name',
     type: 'text',

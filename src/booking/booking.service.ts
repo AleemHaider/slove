@@ -157,6 +157,7 @@ export class BookingService {
       eventEntity.ticketQuantity = dto.ticketQuantity;
       eventEntity.ticketQuantity2 = dto.ticketQuantity2;
       eventEntity.ticketQuantity3 = dto.ticketQuantity3;
+      eventEntity.isOneSidedTicketSale=dto.isOneSidedTicketSale;
       if(dto.isOneSidedTicketSale==true)
       {
       eventEntity.ticketPrice = dto.ticketPrice;
@@ -293,8 +294,6 @@ await queryRunner.release();
     bookingContractEntity.eventName = dto.eventName;
     bookingContractEntity.booking = booking1;
     bookingContractEntity.contractStatus=BOOKING_CONTRACT_STATUS.ACCEPTED;
-  
-
     if(dto.isOneSidedTicketSale==true)
     {
     bookingContractEntity.endDate =new Date(dto.endDate);
@@ -314,6 +313,7 @@ await queryRunner.release();
     bookingContractEntity.startTime = new Date(dto.date + ' ' + dto.startTime);
     bookingContractEntity.endTime = new Date(dto.date + ' ' + dto.endTime);
     bookingContractEntity.musicGenre = dto.genreType;
+    bookingContractEntity.isOneSidedTicketSale=dto.isOneSidedTicketSale;
     
 
 
@@ -346,6 +346,7 @@ eventEntity.releaseName3 = dto.releaseName3;
 eventEntity.ticketQuantity = dto.ticketQuantity;
 eventEntity.ticketQuantity2 = dto.ticketQuantity2;
 eventEntity.ticketQuantity3 = dto.ticketQuantity3;
+eventEntity.isOneSidedTicketSale=dto.isOneSidedTicketSale;
 if(dto.isOneSidedTicketSale==true)
 {
 eventEntity.ticketPrice = dto.ticketPrice;
