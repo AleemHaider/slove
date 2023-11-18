@@ -257,7 +257,7 @@ await queryRunner.release();
     this.logger.log('checkStartDate'+ checkStartDate);
     this.logger.log('checkEndDate'+ checkEndDate);
    
-    booking.user = artist;
+    booking.user = user;
     booking.requestedUser = user;
     booking.startTime = new Date(dto.date + ' ' + dto.startTime);
     booking.endTime = new Date(dto.date + ' ' + dto.endTime);
