@@ -688,13 +688,17 @@ await queryRunner.release();
     }
   }
   async getEventById(id: number){
-       const event= await this.eventEntityRepository.findOne({
-        where: {
-            id: id,
-        },
-        relations: ['artist', 'venue'],
-      });
+      
 
+      const event = await this.eventEntityRepository
+        .createQueryBuilder('event')
+        .leftJoinAndSelect('event.bookingContract', 'bookingContract')
+        .leftJoinAndSelect('event.artist', 'artist')
+        .leftJoinAndSelect('event.venue', 'venue')
+        .leftJoinAndSelect('event.order', 'order')
+        .leftJoinAndSelect('event.feedback', 'feedback')
+        .where('event.id = :id', { id: id })
+        .getOne();
     if (!event) {
       throw new NotFoundException('Event not found');
     }
