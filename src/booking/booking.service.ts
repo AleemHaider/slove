@@ -264,12 +264,12 @@ await queryRunner.release();
     booking.requestedUser = user;
     booking.startTime = new Date(dto.date + ' ' + dto.startTime);
     booking.endTime = new Date(dto.date + ' ' + dto.endTime);
-    booking.musicGenre = dto.musicGenre;
+    booking.musicGenre = dto.genreType;
     booking.bookingStatus=BOOKING_STATUS.ACCEPTED;
     booking.gigType=GIG_TYPE.ONESIDED;
     booking.message = dto.message;
 
-    this.logger.log(dto.musicGenre);
+    this.logger.log(dto.genreType);
 
     try {
       const booking1=await this.bookingEntityRepository.save(booking);
@@ -323,7 +323,7 @@ await queryRunner.release();
     bookingContractEntity.contractDiscription = dto.contractDiscription;
     bookingContractEntity.startTime = new Date(dto.date + ' ' + dto.startTime);
     bookingContractEntity.endTime = new Date(dto.date + ' ' + dto.endTime);
-    bookingContractEntity.musicGenre = dto.musicGenre;
+    bookingContractEntity.musicGenre = dto.genreType;
     
 
 
@@ -372,7 +372,7 @@ eventEntity.endDate2 =new Date(dto.endDate2);
 eventEntity.endDate3 =new Date (dto.endDate3);
 }
 eventEntity.contractDiscription=dto.contractDiscription;
-eventEntity.musicGenre=dto.musicGenre;
+eventEntity.musicGenre=dto.genreType;
 if(eventEntity!=null)
 {
 if(dto.userType == USER_TYPE.VENUE)
@@ -385,7 +385,7 @@ else if(dto.userType == USER_TYPE.ARTIST){
   
 }
 }
-eventEntity.musicGenre=dto.musicGenre;
+eventEntity.musicGenre=dto.genreType;
 
  const event=await queryRunner.manager
 .getRepository(EventEntity)
