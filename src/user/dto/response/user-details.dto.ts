@@ -267,7 +267,7 @@ export class UserDetailsDto {
       data = data as any;
       for (let i = 0; i < data.length; i++) {
         const element = data[i];
-        if(element.artist!=null && element.venue!=null)
+        if(element.artist_id!=null && element.venue_id!=null)
         {
         const obj = {
           id: element.event_id,
@@ -297,7 +297,7 @@ export class UserDetailsDto {
 
         list.push(obj);
       }
-      else if(element.artist!=null)
+      else if(element.artist_id!=null)
       {
         const obj = {
           id: element.event_id,
@@ -321,7 +321,7 @@ export class UserDetailsDto {
 
         list.push(obj);
       }
-      else if(element.venue!=null)
+      else if(element.venue_id!=null)
       {
         const obj = {
           id: element.event_id,
