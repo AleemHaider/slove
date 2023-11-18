@@ -174,6 +174,7 @@ export class BookingService {
         bookingContractEntity.endDate3 =new Date (dto.endDate3);
       }
       bookingContractEntity.contractDiscription=dto.contractDiscription;
+      bookingContractEntity.musicGenre=dto.genreType;
 
       await queryRunner.manager.getRepository(BookingContractEntity).update(
         { id: dto.contractId },
