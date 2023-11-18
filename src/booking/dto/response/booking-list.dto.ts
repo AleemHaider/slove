@@ -36,8 +36,7 @@ export class BookingListDto {
     if (isArray(data)) {
       for (let i = 0; i < data.length; i++) {
         const element = data[i] as any;
-        if(element.requestedUserId!=null)
-        {
+        
         const obj = {
           userId: element.user_id,
           id: element.id,
@@ -84,7 +83,7 @@ export class BookingListDto {
             : null,
         };
         list.push(obj);
-      }
+      
         
       
     }
