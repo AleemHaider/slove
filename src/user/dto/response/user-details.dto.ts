@@ -267,6 +267,8 @@ export class UserDetailsDto {
       data = data as any;
       for (let i = 0; i < data.length; i++) {
         const element = data[i];
+        if(element.artist!=null && element.venue!=null)
+        {
         const obj = {
           id: element.event_id,
           eventName: element.event_name,
@@ -294,6 +296,53 @@ export class UserDetailsDto {
         };
 
         list.push(obj);
+      }
+      else if(element.artist!=null)
+      {
+        const obj = {
+          id: element.event_id,
+          eventName: element.event_name,
+          startTime: element.start_time,
+          endTime: element.end_time,
+          ticketPrice: element.ticket_price,
+          musicGenre: element.music_genre,
+          createdAt: element.event_created_at,
+         
+          artist: {
+            id: element.artist_id ?? null,
+            name: element.artist_name ?? null,
+            country: element.artist_country ?? null,
+            city: element.artist_city ?? null,
+            bio: element.artist_bio ?? null,
+            profileImage: element.artist_profile_image ?? null,
+          },
+        
+        };
+
+        list.push(obj);
+      }
+      else if(element.venue!=null)
+      {
+        const obj = {
+          id: element.event_id,
+          eventName: element.event_name,
+          startTime: element.start_time,
+          endTime: element.end_time,
+          ticketPrice: element.ticket_price,
+          musicGenre: element.music_genre,
+          createdAt: element.event_created_at,
+         
+          venue: {
+            id: element.venue_id ?? null,
+            name: element.venue_name ?? null,
+            profileImage: element.venue_profile_image ?? null,
+            country: element.venue_country ?? null,
+            city: element.venue_city ?? null,
+          },
+        };
+
+        list.push(obj);
+      }
       }
     }
     const totalPages = Math.ceil(Number(count) / Number(limit));
