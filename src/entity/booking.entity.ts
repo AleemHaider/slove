@@ -1,7 +1,7 @@
 import { BaseEntity } from './base.entity';
 import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
 import { UserEntity } from './user.entity';
-import { BOOKING_STATUS } from '../util/constant';
+import { BOOKING_STATUS, GIG_TYPE } from '../util/constant';
 
 @Entity({ name: 'booking' })
 export class BookingEntity extends BaseEntity {
@@ -12,6 +12,13 @@ export class BookingEntity extends BaseEntity {
     default: BOOKING_STATUS.PENDING,
   })
   bookingStatus: BOOKING_STATUS;
+  @Column({
+    name: 'gig_type',
+    type: 'enum',
+    enum: GIG_TYPE,
+    default: GIG_TYPE.TWOSIDED,
+  })
+  gigType: GIG_TYPE;
   @Column({
     name: 'message',
     type: 'text',

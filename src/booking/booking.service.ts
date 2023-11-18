@@ -27,6 +27,7 @@ import {
   BOOKING_CONTRACT_STATUS,
   BOOKING_STATUS,
   CALENDAR_TYPE,
+  GIG_TYPE,
   USER_TYPE,
 } from '../util/constant';
 import setMusicGenre from '../common/helper/set-music-genre-util';
@@ -263,7 +264,7 @@ await queryRunner.release();
     booking.endTime = new Date(dto.date + ' ' + dto.endTime);
     booking.musicGenre = dto.genreType;
     booking.bookingStatus=BOOKING_STATUS.ACCEPTED;
-  
+    booking.gigType=GIG_TYPE.ONESIDED;
 
     try {
       const booking1=await this.bookingEntityRepository.save(booking);

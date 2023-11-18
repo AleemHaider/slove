@@ -34,4 +34,7 @@ export class CreateBookingDto {
   minimumPrice: number;
   @ApiProperty()
   maximumPrice: number;
+
+  @ApiProperty()
+  gigType: number;
 }
