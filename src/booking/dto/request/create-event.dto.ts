@@ -3,6 +3,8 @@ import { Matches } from 'class-validator';
 export class CreateEventDto {
     @ApiProperty()
     userId: number;
+    @ApiProperty()
+    userType: number;
 
   @Matches(/^\s*([01][0-9]|2[0-3]):[0-5][0-9]\s*$/, {
     message: 'Start time must be in HH:mm format',
