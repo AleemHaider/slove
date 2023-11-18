@@ -141,7 +141,55 @@ export class BookingService {
     await queryRunner.connect();
     await queryRunner.startTransaction();
     try {
+     
       const eventEntity = new EventEntity();
+      const bookingContractEntity=new BookingContractEntity();
+      
+      bookingContractEntity.endTime = new Date(dto.date+' '+dto.endTime);
+      bookingContractEntity.startTime =new Date(dto.date+' '+dto.startTime);
+      bookingContractEntity.eventName = dto.eventName;
+      bookingContractEntity.ticketPrice = dto.ticketPrice;
+      bookingContractEntity.ticketPrice2 = dto.ticketPrice2;
+      bookingContractEntity.ticketPrice3 = dto.ticketPrice3;
+      bookingContractEntity.releaseName = dto.releaseName;
+      bookingContractEntity.releaseName2 = dto.releaseName2;
+      bookingContractEntity.releaseName3 = dto.releaseName3;
+      bookingContractEntity.ticketQuantity = dto.ticketQuantity;
+      bookingContractEntity.ticketQuantity2 = dto.ticketQuantity2;
+      bookingContractEntity.ticketQuantity3 = dto.ticketQuantity3;
+      bookingContractEntity.isOneSidedTicketSale=dto.isOneSidedTicketSale;
+      if(dto.isOneSidedTicketSale==true)
+      {
+        bookingContractEntity.ticketPrice = dto.ticketPrice;
+        bookingContractEntity.ticketPrice2 = dto.ticketPrice2;
+        bookingContractEntity.ticketPrice3 = dto.ticketPrice3;
+        bookingContractEntity.releaseName = dto.releaseName;
+        bookingContractEntity.releaseName2 = dto.releaseName2;
+        bookingContractEntity.releaseName3 = dto.releaseName3;
+        bookingContractEntity.ticketQuantity = dto.ticketQuantity;
+        bookingContractEntity.ticketQuantity2 = dto.ticketQuantity2;
+        bookingContractEntity.ticketQuantity3 = dto.ticketQuantity3;
+        bookingContractEntity.endDate = new Date(dto.endDate);
+        bookingContractEntity.endDate2 =new Date(dto.endDate2);
+        bookingContractEntity.endDate3 =new Date (dto.endDate3);
+      }
+      bookingContractEntity.contractDiscription=dto.contractDiscription;
+
+      await queryRunner.manager.getRepository(BookingContractEntity).update(
+        { id: dto.contractId },
+        bookingContractEntity);
+        const bookingContract= await queryRunner.manager.getRepository(BookingContractEntity).findOne({
+          where: { id: dto.contractId } }, // Assuming id is the primary key of BookingContractEntity
+        );
+
+        const existingBooking = await queryRunner.manager.getRepository(BookingEntity).findOne({
+          where: {  id: bookingContract.id  }, // Assuming id is the primary key of BookingContractEntity
+        });
+        if(existingBooking)
+        {
+          await queryRunner.manager.getRepository(BookingEntity).save(existingBooking);
+        }
+      
       eventEntity.endTime = new Date(dto.date+' '+dto.endTime);
       eventEntity.startTime =new Date(dto.date+' '+dto.startTime);
       eventEntity.eventName = dto.eventName;
