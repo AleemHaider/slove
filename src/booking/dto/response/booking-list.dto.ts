@@ -39,45 +39,46 @@ export class BookingListDto {
         const element = data[i] as any;
       
           const obj = {
-            userId: element.user_id ?? null,
-            id: element.id ?? null,
+            userId: element.user_id ,
+            id: element.id ,
             chatId:
               type == 'approved' && user.id == element.requested_user_id
                 ? element.chat_id
-                : element.requested_chat_id ?? null,
-            message: element.message ?? null,
-            startTime: element.start_time ?? null,
-            endTime: element.end_time ?? null,
-            maximumPrice: element.maximum_price ?? null,
-            minimumPrice: element.minimum_price ?? null,
-            bookingStatus: element.booking_status ?? null,
+                : element.requested_chat_id,
+            message: element.message,
+            startTime: element.start_time,
+            endTime: element.end_time,
+            maximumPrice: element.maximum_price,
+            minimumPrice: element.minimum_price,
+            bookingStatus: element.booking_status,
             isFeedbackGiven: !!element.feedback_id,
-            eventId: element.event_id ?? null,
+            gigType:element.gig_type,
+            eventId: element.event_id,
             profileImage:
               type == 'approved' && user.id == element.requested_user_id
                 ? element.profile_image
-                : element.requested_profile_image ?? null,
-            creatorUserType: element.request_user_type ?? null,
-            userType: element.user_type ?? null,
-            contractStatus: element.contract_status ?? null,
+                : element.requested_profile_image,
+            creatorUserType: element.request_user_type,
+            userType: element.user_type,
+            contractStatus: element.contract_status ,
             country:
               type == 'approved' && user.id == element.requested_user_id
                 ? element.country_name
-                : element.requested_country_name ?? null,
+                : element.requested_country_name,
             isBookingCreator: user.id == element.requested_user_id,
             city:
               type == 'approved' && user.id == element.requested_user_id
                 ? element.city_name
-                : element.requested_city_name ?? null,
+                : element.requested_city_name,
             name:
               type == 'approved' && user.id == element.requested_user_id
                 ? element.band_name
                   ? element.band_name
-                  : element.venue_name ?? null
+                  : element.venue_name
                 : element.requested_band_name
                   ? element.requested_band_name
-                  : element.requested_venue_name ?? null,
-            requestedUserId: element.requested_user_id ?? null,
+                  : element.requested_venue_name,
+            requestedUserId: element.requested_user_id,
             musicGenre: element.music_genre
         ? element.music_genre
         : null,
