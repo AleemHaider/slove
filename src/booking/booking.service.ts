@@ -120,6 +120,7 @@ export class BookingService {
     booking.maximumPrice = dto.maximumPrice;
     booking.bookingStatus=BOOKING_STATUS.ACCEPTED;
 
+
     try {
       await this.bookingEntityRepository.save(booking);
       return;
@@ -265,6 +266,7 @@ await queryRunner.release();
     booking.musicGenre = dto.genreType;
     booking.bookingStatus=BOOKING_STATUS.ACCEPTED;
     booking.gigType=GIG_TYPE.ONESIDED;
+    booking.message = dto.message;
 
     try {
       const booking1=await this.bookingEntityRepository.save(booking);
