@@ -175,6 +175,7 @@ export class BookingService {
       eventEntity.contractDiscription=dto.contractDiscription;
       
       
+      
 
 
 await queryRunner.manager.getRepository(EventEntity).update(
@@ -187,38 +188,27 @@ await queryRunner.manager.getRepository(EventEntity).update(
 //   { id: contract.id },
 //   { contractStatus: dto.status },
 // );
-/*
-if(eventEntity.venue!==null)
-{
-const calenderVenue = new CalendarEntity();
-calenderVenue.startTime =new Date(dto.date+' '+dto.startTime);
-calenderVenue.endTime = new Date(dto.date+' '+dto.endTime);
-calenderVenue.title = dto.eventName;
-calenderVenue.user = eventEntity.venue;
-calenderVenue.type = CALENDAR_TYPE.EVENT;
-const calender=await queryRunner.manager
-.getRepository(CalendarEntity)
-.save(calenderVenue);
-}
-else if(eventEntity.artist!=null)
-{
 
-// await this.calendarEntityRepository.save(calenderVenue);
-const calenderArtist = new CalendarEntity();
-calenderArtist.startTime = new Date(dto.date+' '+dto.startTime);
-calenderArtist.endTime = new Date (dto.date+' '+dto.endTime);
-calenderArtist.title = dto.eventName;
-calenderArtist.type = CALENDAR_TYPE.EVENT;
-calenderArtist.user = eventEntity.artist;
-const calender=await queryRunner.manager
-.getRepository(CalendarEntity)
-.save(calenderArtist);
-// await this.calendarEntityRepository.save(calenderArtist);
-}
-*/
-await queryRunner.commitTransaction();
+
+// Find the calendar entity you want to update based on booking_contract_id
+const existingCalendar = await queryRunner.manager.getRepository(CalendarEntity).findOne({
+  where: { booking_contract: { id: dto.contractId } }, // Assuming id is the primary key of BookingContractEntity
+});
+
+if (existingCalendar) {
+ 
+  existingCalendar.startTime =new Date(dto.date+' '+dto.startTime);
+  existingCalendar.endTime = new Date(dto.date+' '+dto.endTime);
+  existingCalendar.title = dto.eventName;
+
+  // Save the updated calendar entity
+  await await queryRunner.manager.getRepository(CalendarEntity).save(existingCalendar);
+
+  // Commit the transaction if everything is successful
+  await queryRunner.commitTransaction();
 
 return;
+}
 } catch (e) {
 this.logger.error(e);
 await queryRunner.rollbackTransaction();
@@ -439,7 +429,7 @@ throw new InternalServerErrorException(
 ERROR_MESSAGES.INTERNAL_SERVER_ERROR,
 );
 } finally {
-//await queryRunner.release();
+await queryRunner.release();
 }
 
     

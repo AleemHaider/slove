@@ -5,6 +5,8 @@ export class CreateEventDto {
     userId: number;
     @ApiProperty()
     userType: number;
+    @ApiProperty()
+    contractId: number;
 
   @Matches(/^\s*([01][0-9]|2[0-3]):[0-5][0-9]\s*$/, {
     message: 'Start time must be in HH:mm format',
