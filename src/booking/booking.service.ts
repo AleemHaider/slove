@@ -688,8 +688,7 @@ await queryRunner.release();
     }
   }
   async getEventById(id: number){
-       const eventDetails=new EventEntity()
-       const event=  this.eventEntityRepository.findOne({
+       const event= await this.eventEntityRepository.findOne({
         where: {
             id: id,
         },
