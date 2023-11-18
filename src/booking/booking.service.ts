@@ -690,12 +690,12 @@ await queryRunner.release();
   async getEventById(id: number){
       
 
-      const event = await this.eventEntityRepository
-        .createQueryBuilder('event')
-        .leftJoinAndSelect('event.artist', 'artist')
-        .leftJoinAndSelect('event.venue', 'venue')
-        .where('event.id = :id', { id: id })
-        .getOne();
+      const event =  await this.eventEntityRepository.findOne({
+        where: {
+          id: id,
+        },
+        relations: ['artist', 'venue'],
+      });
     if (!event) {
       throw new NotFoundException('Event not found');
     }
