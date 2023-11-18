@@ -79,7 +79,7 @@ export class BookingListDto {
         };
         list.push(obj);
       }
-      else {
+      else if(element.gig_type==GIG_TYPE.TWOSIDED) {
           const obj = {
             userId: element.user_id ?? null,
             id: element.id ?? null,
