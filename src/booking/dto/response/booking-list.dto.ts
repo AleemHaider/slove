@@ -78,7 +78,9 @@ export class BookingListDto {
                   ? element.requested_band_name
                   : element.requested_venue_name ?? null,
             requestedUserId: element.requested_user_id ?? null,
-            musicGenre: element.music_genre ?? null,
+            musicGenre: element.music_genre
+        ? element.music_genre
+        : null,
             contract: element.booking_contract_id
               ? this.getContract(element)
               : null,
