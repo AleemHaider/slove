@@ -586,6 +586,7 @@ await queryRunner.release();
     as booking_contract_ticket_end_date,bc.ticket_end_date2
     as booking_contract_ticket_end_date2,bc.ticket_end_date3
     as booking_contract_ticket_end_date3,
+    bc.is_one_sided_ticket_sale as booking_contract_is_one_sided_ticket_sale,
     bc.contract_details as booking_contract_details,bc.contract_discription as booking_contract_discription,bc.ticket_sale_agreement as booking_contract_ticket_sale_agreement,
   
     bc.is_multiple_release as booking_contract_is_multiple_release,

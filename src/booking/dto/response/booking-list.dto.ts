@@ -155,6 +155,7 @@ export class BookingListDto {
       endDate:element.booking_contract_ticket_end_date,
       endDate2:element.booking_contract_ticket_end_date2,
       endDate3:element.booking_contract_ticket_end_date3,
+      isOneSidedTicketSale:element.booking_contract_is_one_sided_ticket_sale,
       isMultipleRelease:element.booking_contract_is_multiple_release,
       contractDetails: element.booking_contract_details,
       contractDiscription:element.booking_contract_discription,
