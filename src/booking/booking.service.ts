@@ -692,7 +692,7 @@ await queryRunner.release();
 
       const event =  await this.eventEntityRepository.findOne({
         where: {
-          id: id,
+          id: 10,
         },
         relations: ['artist', 'venue'],
       });
