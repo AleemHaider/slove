@@ -692,7 +692,7 @@ await queryRunner.release();
 
       const event =  await this.eventEntityRepository.findOne({
         where: {
-          id: 10,
+          id: id,
         },
         relations: ['artist', 'venue'],
       });
@@ -700,7 +700,7 @@ await queryRunner.release();
       throw new NotFoundException('Event not found');
     }
     
-  this.logger.log("event"+ event.eventName);
+  this.logger.log("event"+ event.eventName + id);
     return event;
   }
   async createContract(user: UserEntity, dto: CreateContractDto) {
