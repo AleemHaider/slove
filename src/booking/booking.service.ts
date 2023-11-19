@@ -118,7 +118,7 @@ export class BookingService {
     booking.musicGenre = dto.genreType;
     booking.minimumPrice = dto.minimumPrice;
     booking.maximumPrice = dto.maximumPrice;
-    booking.bookingStatus=BOOKING_STATUS.ACCEPTED;
+
 
 
     try {
