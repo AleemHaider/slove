@@ -135,7 +135,7 @@ export class BookingController {
     description: 'Return list',
   })
   @HttpCode(HttpStatus.OK)
-  @Get()
+  @Get("findAllUpComming")
   async findAllUpcomming(
     @Usr() user: AuthUser,
     @Query('type') type: string,
