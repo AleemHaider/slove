@@ -125,6 +125,36 @@ export class BookingController {
     }
   }
 
+
+
+  @ApiOperation({
+    summary: 'Get all booking',
+  })
+  @ApiBearerAuth()
+  @ApiOkResponse({
+    description: 'Return list',
+  })
+  @HttpCode(HttpStatus.OK)
+  @Get()
+  async findAllUpcomming(
+    @Usr() user: AuthUser,
+    @Query('type') type: string,
+    @Query('page') page = '1',
+    @Query('limit') limit = '10',
+  ) {
+    try {
+      return new StandardResponse(
+        HttpStatus.OK,
+        SUCCESS_MESSAGES.SUCCESS,
+        await this.bookingService.findAllUpComming(user, page, limit),
+      );
+    } catch (e) {
+      throw e;
+    }
+  }
+
+
+
   @ApiOperation({
     summary: 'Accept of decline booking request',
   })

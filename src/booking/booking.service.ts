@@ -495,7 +495,97 @@ await queryRunner.release();
 
     
 }
+async findAllUpComming(user: UserEntity, page: string, limit: string) {
+  let data: string | any[];
+  let count: [{ count: number }] = [{ count: 0 }];
+  
+  const pagination = paginationUtil(page, limit);
+  
+  
+    data = await this.dataSource.manager.query(`
+ select e.id as event_id ,f.id as feedback_id, bc.id as booking_contract_id,bc.music_genre as booking_contract_music_genre,bc.start_time as booking_contract_start_time,
+  bc.end_time as booking_contract_end_time,bc.booking_price as booking_contract_booking_price,bc.equipment as booking_contract_equipment,
+  bc.contract_status as contract_status, bc.event_name as booking_contract_event_name,bc.organisation_number as booking_contract_organisation_number,
+  bc.ticket_price as booking_contract_ticket_price,
+  bc.ticket_price2 as booking_contract_ticket_price2,bc.ticket_price3
+  as booking_contract_ticket_price3,bc.release_name
+  as booking_contract_ticket_release_name,bc.release_name2
+  as booking_contract_ticket_release_name2,bc.release_name3
+  as booking_contract_ticket_release_name3,bc.ticket_quantity
+  as booking_contract_ticket_quantity,bc.ticket_quantity2
+  as booking_contract_ticket_quantity2,bc.ticket_quantity3
+  as booking_contract_ticket_quantity3,bc.ticket_end_date
+  as booking_contract_ticket_end_date,bc.ticket_end_date2
+  as booking_contract_ticket_end_date2,bc.ticket_end_date3
+  as booking_contract_ticket_end_date3,
+  bc.contract_details as booking_contract_details,bc.contract_discription as booking_contract_discription,bc.ticket_sale_agreement as booking_contract_ticket_sale_agreement,
+  bc.is_multiple_release as booking_contract_is_multiple_release,
+  bc.is_one_sided_ticket_sale as booking_contract_is_one_sided_ticket_sale,
+  bc.link_to_tickets as booking_contract_link_to_tickets,
+  bc.link_to_event as booking_contract_link_to_event,
+  cast(b.start_time as TEXT) as start_time,cast(b.end_time as TEXT) as end_time,
+  b.requested_user_id as requested_user_id,b.gig_type as gig_type,ru.user_type_id as request_user_type,b.id,b.music_genre,b.maximum_price,b.minimum_price,b.message,b.booking_status,b.user_id,
+  u.user_type_id as user_type, uq.venue_name,uq.band_name,u.chat_id,u.profile_image,c.name as country_name,c2.name as city_name,ru.chat_id as requested_chat_id,
+  ru.profile_image as requested_profile_image,ruq.venue_name as requested_venue_name,ruq.band_name as requested_band_name,ruc.name as
+  requested_country_name,ruc2.name as requested_city_name from booking b left join booking_contract bc on b.id = bc.booking_id inner join
+  "user" u on u.id = b.user_id inner join user_question uq on u.id = uq.user_id  left join countries c on uq.country_id = c.id left join cities
+  c2 on uq.city_id = c2.id left join "user" ru on b.requested_user_id=ru.id inner join user_question ruq on ru.id=ruq.user_id left join countries
+  ruc on ruq.country_id=ruc.id left join cities ruc2 on ruq.city_id=ruc2.id left join event e on bc.id = e.booking_contract_id left join feedback f on e.id = f.event_id where ((u.id=${user.id} and b.booking_status='ACCEPTED' and bc.contract_status is null)
+  or (u.id=${user.id} and b.booking_status='ACCEPTED' and bc.contract_status='ACCEPTED') or (u.id=${user.id} and b.booking_status='ACCEPTED' and bc.contract_status='PENDING'))
+  or ((ru.id=${user.id} and b.booking_status='ACCEPTED' and bc.contract_status is null) or (ru.id=${user.id} and b.booking_status='ACCEPTED' and bc.contract_status='ACCEPTED')
+  or (ru.id=${user.id} and b.booking_status='ACCEPTED' and bc.contract_status='PENDING')) order by b.updated_at desc  ${pagination}
+`);
+    count = await this.dataSource.manager.query(
+      `select count(b.id) as count from booking b left join booking_contract bc
+  on b.id = bc.booking_id inner join "user" u on u.id = b.user_id inner join user_question uq on u.id = uq.user_id  left join countries c
+  on uq.country_id = c.id left join cities c2 on uq.city_id = c2.id left join "user" ru on b.requested_user_id=ru.id where
+  ((u.id=${user.id} and b.booking_status='ACCEPTED' and bc.contract_status is null) or (u.id=${user.id} and b.booking_status='ACCEPTED' and bc.contract_status='ACCEPTED'))
+ or ((ru.id=${user.id} and b.booking_status='ACCEPTED' and bc.contract_status is null) or (ru.id=${user.id} and b.booking_status='ACCEPTED' and bc.contract_status='ACCEPTED' AND bc.start_time > NOW() AND bc.start_time > NOW() ))`,
+    );
+  
+ 
 
+  const musicGenre = await this.musicGenreEntityRepository.find({
+    select: ['id', 'type'],
+  });
+
+  if (isArray(data)) {
+    data = data as any;
+    for (let i = 0; i < data.length; i++) {
+      const element = data[i];
+      // console.log(element.music_genre.toString().split(','));
+      element.music_genre = await setMusicGenre(
+        musicGenre,
+        element.music_genre,
+      );
+      if (element.booking_contract_id) {
+        element.booking_contract_music_genre = await setMusicGenre(
+          musicGenre,
+          element.booking_contract_music_genre,
+        );
+      }
+      element.profile_image = await this.fileUploadService.getSignedFile(
+        element.profile_image,
+      );
+      if (element.requested_profile_image) {
+        element.requested_profile_image =
+          await this.fileUploadService.getSignedFile(
+            element.requested_profile_image,
+          );
+      }
+    }
+  }
+  this.logger.log('count', count);
+
+  return new BookingListDto().getSentList(
+    data,
+    count && count[0] ? count[0].count : 0,
+    Number(page),
+    Number(limit),
+    user,
+    "approved"
+  );
+}
 
   async findAll(user: UserEntity, type: string, page: string, limit: string) {
     let data: string | any[];
@@ -700,7 +790,7 @@ await queryRunner.release();
       throw new NotFoundException('Event not found');
     }
     
-  this.logger.log("event"+ event.eventName + id);
+
     return event;
   }
   async createContract(user: UserEntity, dto: CreateContractDto) {
