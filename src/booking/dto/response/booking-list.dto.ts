@@ -162,7 +162,7 @@ export class BookingListDto {
       contractDetails: element.booking_contract_details,
       contractDiscription:element.booking_contract_discription,
       ticketSaleAgreement: element.booking_contract_ticket_sale_agreement,
-      isTicketClose:element.element.booking_contract_is_ticket_close,
+     // isTicketClose:element.element.booking_contract_is_ticket_close,
     };
   }
 }
