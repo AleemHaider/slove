@@ -35,6 +35,8 @@ export class CreateEventDto  {
 
   @ApiProperty()
   isOneSidedTicketSale: boolean;
+  @ApiProperty()
+  isTicketClose: boolean;
 
   @ApiProperty()
   message: string;
