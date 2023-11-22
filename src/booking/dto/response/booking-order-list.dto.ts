@@ -28,6 +28,7 @@ export class BookingOrderListDto {
           endDate3:element.ticket_end_date3,
           contractDetails: element.contract_details,
           ticketSaleAgreement:element.ticket_sale_agreement,
+          isTicketSale:element.is_ticket_close,
           isMultipleRelease:element.is_multiple_release,
           contractDiscription:element.contract_discription,
           musicGenre: element.music_genre,

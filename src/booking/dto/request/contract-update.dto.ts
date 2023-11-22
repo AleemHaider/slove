@@ -77,6 +77,8 @@ export class ContractUpdateDto {
   @ApiProperty()
   ticketSaleAgreement: boolean;
   @ApiProperty()
+  isTicketClose: boolean;
+  @ApiProperty()
   isMultipleRelease: boolean;
   @ApiProperty()
   contractDetails: string;

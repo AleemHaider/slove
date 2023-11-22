@@ -140,6 +140,13 @@ export class EventEntity extends BaseEntity {
 
   @Column({
     type: 'bool',
+    name: 'is_ticket_close',
+    default: false,
+  })
+  isTicketClose: boolean;
+
+  @Column({
+    type: 'bool',
     name: 'is_one_sided_ticket_sale',
     nullable:true,
   })

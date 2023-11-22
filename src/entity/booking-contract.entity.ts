@@ -166,6 +166,14 @@ export class BookingContractEntity extends BaseEntity {
   ticketSaleAgreement: boolean;
   @Column({
     type: 'bool',
+    name: 'is_ticket_close',
+    default: false,
+  })
+  isTicketClose: boolean;
+
+
+  @Column({
+    type: 'bool',
     name: 'is_multiple_release',
    nullable:true
   })
