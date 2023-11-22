@@ -235,7 +235,7 @@ export class BookingService {
       }
       eventEntity.contractDiscription=dto.contractDiscription;
       
-      this.logger.error(dto.isTicketClose);
+      
       
       
 
