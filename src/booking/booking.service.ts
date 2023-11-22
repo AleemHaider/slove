@@ -177,7 +177,7 @@ export class BookingService {
       bookingContractEntity.isTicketClose=dto.isTicketClose;
       bookingContractEntity.contractDiscription=dto.contractDiscription;
       bookingContractEntity.musicGenre=dto.genreType;
-
+      this.logger.error(dto.isTicketClose);
       await queryRunner.manager.getRepository(BookingContractEntity).update(
         { id: dto.contractId },
         bookingContractEntity);
@@ -235,9 +235,9 @@ export class BookingService {
       }
       eventEntity.contractDiscription=dto.contractDiscription;
       
+      this.logger.error(dto.isTicketClose);
       
       
-
 
 await queryRunner.manager.getRepository(EventEntity).update(
   { id: dto.id },
