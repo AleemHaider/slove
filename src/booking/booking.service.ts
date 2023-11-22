@@ -172,8 +172,9 @@ export class BookingService {
         bookingContractEntity.endDate = new Date(dto.endDate);
         bookingContractEntity.endDate2 =new Date(dto.endDate2);
         bookingContractEntity.endDate3 =new Date (dto.endDate3);
-        bookingContractEntity.isTicketClose=dto.isTicketClose;
+        
       }
+      bookingContractEntity.isTicketClose=dto.isTicketClose;
       bookingContractEntity.contractDiscription=dto.contractDiscription;
       bookingContractEntity.musicGenre=dto.genreType;
 
@@ -211,6 +212,7 @@ export class BookingService {
       eventEntity.ticketQuantity2 = dto.ticketQuantity2;
       eventEntity.ticketQuantity3 = dto.ticketQuantity3;
       eventEntity.isOneSidedTicketSale=dto.isOneSidedTicketSale;
+      eventEntity.isTicketClose=dto.isTicketClose;
       if(dto.isOneSidedTicketSale==true)
       {
       eventEntity.ticketPrice = dto.ticketPrice;
@@ -225,7 +227,7 @@ export class BookingService {
       eventEntity.endDate = new Date(dto.endDate);
       eventEntity.endDate2 =new Date(dto.endDate2);
       eventEntity.endDate3 =new Date (dto.endDate3);
-      eventEntity.isTicketClose=dto.isTicketClose;
+      
       }
       else{
         bookingContractEntity.linkToEvent=dto.linkToEvent;
