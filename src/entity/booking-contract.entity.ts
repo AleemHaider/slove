@@ -175,7 +175,7 @@ export class BookingContractEntity extends BaseEntity {
   @Column({
     type: 'bool',
     name: 'is_multiple_release',
-   nullable:true
+   default:false,
   })
   isMultipleRelease: boolean;
   @Column({

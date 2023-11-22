@@ -1008,7 +1008,7 @@ async findAllUpComming(user: UserEntity, page: string, limit: string) {
         eventEntity.endTime = contract.endTime;
         eventEntity.startTime = contract.startTime;
         eventEntity.eventName = contract.eventName;
-        
+        eventEntity.isMultipleRelease=contract.isMultipleRelease;
         eventEntity.ticketPrice = contract.ticketPrice;
         eventEntity.ticketPrice2 = contract.ticketPrice2;
         eventEntity.ticketPrice3 = contract.ticketPrice3;
