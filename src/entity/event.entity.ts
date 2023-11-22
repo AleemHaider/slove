@@ -168,7 +168,7 @@ export class EventEntity extends BaseEntity {
   @Column({
     name: 'contract_details',
     type: 'text',
-    default:false,
+    nullable: true,
   })
   contractDetails: string;
   @Column({
