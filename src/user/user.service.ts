@@ -419,7 +419,7 @@ export class UserService {
         .query(`select e.event_name,cast(e.start_time as TEXT) as start_time,cast(e.end_time as TEXT) as end_time,e.ticket_price,artist.profile_image as artist_profile_image,
     artist_uq.band_name as artist_name,artist_country.name as artist_country,artist_city.name as artist_city,artist.bio as artist_bio,
     venue_uq.venue_name as venue_name,venue.profile_image as venue_profile_image,venue_country.name as venue_country,venue_city.name as venue_city,bc.music_genre,
-    artist.id as artist_id,bc.is_ticket_close as is_ticket_close,venue.id as venue_id,cast(e.created_at as TEXT) as event_created_at,e.id as event_id
+    artist.id as artist_id,bc.is_ticket_close as is_event_ticket_close,venue.id as venue_id,cast(e.created_at as TEXT) as event_created_at,e.id as event_id
     from event e left join booking_contract bc on bc.id = e.booking_contract_id left join "user" artist on artist.id = e.artist_id
     left join "user" venue on venue.id=e.venue_id left join user_question artist_uq on artist.id = artist_uq.user_id left join user_question venue_uq
     on venue.id=venue_uq.user_id left join countries artist_country on artist_uq.country_id = artist_country.id left join countries venue_country
@@ -436,7 +436,7 @@ export class UserService {
 
       if (isArray(data) && data.length == 0) {
         data = await this.dataSource.manager.query(`
-        select e.event_name,cast(e.start_time as TEXT) as start_time,cast(e.end_time as TEXT) as end_time,e.ticket_price,e.is_ticket_close as is_ticket_close,artist.profile_image as artist_profile_image,
+        select e.event_name,cast(e.start_time as TEXT) as start_time,cast(e.end_time as TEXT) as end_time,e.ticket_price,e.is_event_ticket_close as is_ticket_close,artist.profile_image as artist_profile_image,
     artist_uq.band_name as artist_name,artist_country.name as artist_country,artist_city.name as artist_city,artist.bio as artist_bio,
     venue_uq.venue_name as venue_name,venue.profile_image as venue_profile_image,venue_country.name as venue_country,venue_city.name as venue_city,bc.music_genre,
     artist.id as artist_id,venue.id as venue_id,cast(e.created_at as TEXT) as event_created_at,e.id as event_id

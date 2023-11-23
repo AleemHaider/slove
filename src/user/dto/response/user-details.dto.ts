@@ -275,7 +275,7 @@ export class UserDetailsDto {
           startTime: element.start_time,
           endTime: element.end_time,
           ticketPrice: element.ticket_price,
-          isTicketClose:element.is_ticket_close,
+          isTicketClose:element.is_event_ticket_close,
           musicGenre: element.music_genre,
           createdAt: element.event_created_at,
          
@@ -308,6 +308,7 @@ export class UserDetailsDto {
           ticketPrice: element.ticket_price,
           musicGenre: element.music_genre,
           createdAt: element.event_created_at,
+          isTicketClose:element.is_event_ticket_close,
          
           artist: {
             id: element.artist_id ?? null,
@@ -332,6 +333,7 @@ export class UserDetailsDto {
           ticketPrice: element.ticket_price,
           musicGenre: element.music_genre,
           createdAt: element.event_created_at,
+          isTicketClose:element.is_event_ticket_close,
          
           venue: {
             id: element.venue_id ?? null,
