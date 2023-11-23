@@ -275,6 +275,7 @@ export class UserDetailsDto {
           startTime: element.start_time,
           endTime: element.end_time,
           ticketPrice: element.ticket_price,
+          isTicketClose:element.is_ticket_close,
           musicGenre: element.music_genre,
           createdAt: element.event_created_at,
          

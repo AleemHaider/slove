@@ -139,7 +139,7 @@ export class EventListDto {
       endDate:element.booking_contract_ticket_end_date,
       endDate2:element.booking_contract_ticket_end_date2,
       endDate3:element.booking_contract_ticket_end_date3,
-
+      isTicketClose: element.booking_contract_is_ticket_close,
       contractDetails: element.booking_contract_details,
       contractDiscription:element.booking_contract_discription,
       ticketSaleAgreement: element.booking_contract_ticket_sale_agreement,
