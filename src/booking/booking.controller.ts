@@ -229,7 +229,7 @@ export class BookingController {
     }
   }
   @Get('getEventById')
-  async getEventById(@Usr() user: AuthUser,@Query('id') id: number) {
+  async getEventById(@Usr() user: AuthUser,@Body() id: number) {
     // Call the service to get the event by ID
     try {
       return new StandardResponse(
