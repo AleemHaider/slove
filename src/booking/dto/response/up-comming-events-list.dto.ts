@@ -48,6 +48,31 @@ export class EventListDto {
           endTime:element.end_time?element.end_time:null,
           bookingPrice:element.booking_price?element.booking_price:null,
           organisationNumber:element.organisation_number?element.organisation_number:null,
+          profileImage:
+              type == 'approved' && userId == element.requested_user_id
+                ? element.profile_image
+                : element.requested_profile_image,
+            creatorUserType: element.request_user_type,
+            userType: element.user_type,
+            contractStatus: element.contract_status ,
+            country:
+             userId == element.requested_user_id
+                ? element.country_name
+                : element.requested_country_name,
+            isBookingCreator: userId == element.requested_user_id,
+            city:
+              userId == element.requested_user_id
+                ? element.city_name
+                : element.requested_city_name,
+            name:
+               userId == element.requested_user_id
+                ? element.band_name
+                  ? element.band_name
+                  : element.venue_name
+                : element.requested_band_name
+                  ? element.requested_band_name
+                  : element.requested_venue_name,
+            requestedUserId: element.requested_user_id,
           eventName:element.event_name?element.event_name:null,
           ticketPrice:element.ticket_price?element.ticket_price:null,
           ticketPrice2:element.ticket_price2?element.ticket_price2:null,
