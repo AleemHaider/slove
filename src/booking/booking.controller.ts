@@ -139,6 +139,7 @@ export class BookingController {
   async findAllUpcomming(
     @Usr() user: AuthUser,
     @Query('type') type: string,
+    @Query('id') id: number,
     @Query('page') page = '1',
     @Query('limit') limit = '10',
   ) {
@@ -146,7 +147,7 @@ export class BookingController {
       return new StandardResponse(
         HttpStatus.OK,
         SUCCESS_MESSAGES.SUCCESS,
-        await this.bookingService.findAllUpComming(user, page, limit),
+        await this.bookingService.findAllUpComming(user, id ,page, limit),
       );
     } catch (e) {
       throw e;
