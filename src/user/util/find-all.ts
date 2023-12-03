@@ -77,9 +77,6 @@ export const getAllConsumerWhereList = (
     
 if(searchType===null)
 {
-  if (search && search.length > 0) {
-    query = query + ` and e.event_name ilike '%${search}%'`;
-  }
   if (genre && genre.length > 0) {
     query = query + ` and bc.music_genre && '{${genre}}'`;
   } else {
@@ -116,9 +113,7 @@ else if(searchType==="1")
 }
 else if(searchType===undefined)
 {
-  if (search && search.length > 0) {
-    query = query + ` and e.event_name ilike '%${search}%'`;
-  }
+ 
   if (genre && genre.length > 0) {
     query = query + ` and bc.music_genre && '{${genre}}'`;
   } else {
@@ -128,9 +123,7 @@ else if(searchType===undefined)
   return query;
 }
 else{
-if (search && search.length > 0) {
-  query = query + ` and e.event_name ilike '%${search}%'`;
-}
+
 if (genre && genre.length > 0) {
   query = query + ` and bc.music_genre && '{${genre}}'`;
 } else {
