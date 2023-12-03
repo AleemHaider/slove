@@ -281,6 +281,7 @@ export class UserDetailsDto {
           isTicketClose:element.is_event_ticket_close,
           musicGenre: element.music_genre,
           createdAt: element.event_created_at,
+          
          
           artist: {
             id: element.artist_id ?? null,
@@ -312,6 +313,7 @@ export class UserDetailsDto {
           musicGenre: element.music_genre,
           createdAt: element.event_created_at,
           isTicketClose:element.is_event_ticket_close,
+          isOneSidedTickeSale: element.is_one_sided_ticket_sale,
          
           artist: {
             id: element.artist_id ?? null,
@@ -337,7 +339,7 @@ export class UserDetailsDto {
           musicGenre: element.music_genre,
           createdAt: element.event_created_at,
           isTicketClose:element.is_event_ticket_close,
-         
+          isOneSidedTickeSale: element.is_one_sided_ticket_sale,
           venue: {
             id: element.venue_id ?? null,
             name: element.venue_name ?? null,
