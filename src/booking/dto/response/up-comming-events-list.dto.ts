@@ -8,13 +8,13 @@ export class EventListDto {
     count: number,
     page: number,
     limit: number,
-    user: UserEntity,
+    userId: number,
     type: string,
   ) {
     let list = [];
 
 
-      list = this.getUpcommingEvents(data, type, user);
+      list = this.getUpcommingEvents(data, type, userId);
    
     const totalPages = Math.ceil(count / limit);
     return {
@@ -29,7 +29,7 @@ export class EventListDto {
       },
     };
   }
-  private getUpcommingEvents(data: any, type: string, user: UserEntity) {
+  private getUpcommingEvents(data: any, type: string, userId: number) {
     const list = [];
     if (isArray(data)) {
       for (let i = 0; i < data.length; i++) {
@@ -80,7 +80,7 @@ export class EventListDto {
     }
     return list;
   }
-  private getOtherTypeData(data: any, user: UserEntity) {
+  private getOtherTypeData(data: any, userId: number) {
     const list = [];
     if (isArray(data)) {
       for (let i = 0; i < data.length; i++) {
@@ -100,7 +100,7 @@ export class EventListDto {
           userType: element.user_type,
           contractStatus: element.contract_status,
           country: element.country_name,
-          isBookingCreator: user.id == element.requested_user_id,
+          isBookingCreator: userId == element.requested_user_id,
           city: element.city_name,
           name: element.band_name ? element.band_name : element.venue_name,
           requestedUserId: element.requested_user_id,

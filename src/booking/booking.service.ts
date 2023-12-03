@@ -38,6 +38,8 @@ import { UserService } from '../user/user.service';
 import { TicketEntity } from '../entity/ticket.entity';
 import { ContractUpdateDto } from './dto/request/contract-update.dto';
 import { CreateEventDto } from './dto/request/create-event.dto';
+import { EventListDto } from './dto/response/up-comming-events-list.dto';
+
 
 @Injectable()
 export class BookingService {
@@ -583,12 +585,12 @@ async findAllUpComming(user: UserEntity, id: number , page: string, limit: strin
   }
   this.logger.log('count', count);
 
-  return new BookingListDto().getSentList(
+  return new EventListDto().getSentList(
     data,
     count && count[0] ? count[0].count : 0,
     Number(page),
     Number(limit),
-    user,
+    id,
     "approved"
   );
 }
