@@ -80,41 +80,6 @@ export class EventListDto {
     }
     return list;
   }
-  private getOtherTypeData(data: any, userId: number) {
-    const list = [];
-    if (isArray(data)) {
-      for (let i = 0; i < data.length; i++) {
-        const element = data[i] as any;
-        const obj = {
-          userId: element.user_id,
-          id: element.id,
-          chatId: element.chat_id,
-          message: element.message,
-          startTime: element.start_time,
-          endTime: element.end_time,
-          maximumPrice: element.maximum_price,
-          minimumPrice: element.minimum_price,
-          bookingStatus: element.booking_status,
-          profileImage: element.profile_image,
-          creatorUserType: element.request_user_type,
-          userType: element.user_type,
-          contractStatus: element.contract_status,
-          country: element.country_name,
-          isBookingCreator: userId == element.requested_user_id,
-          city: element.city_name,
-          name: element.band_name ? element.band_name : element.venue_name,
-          requestedUserId: element.requested_user_id,
-          musicGenre: element.music_genre,
-          contract: element.booking_contract_id
-            ? this.getContract(element)
-            : null,
-        };
-        list.push(obj);
-      }
-    }
-    return list;
-  }
-
   private getContract(element: any) {
     return {
       id: element.booking_contract_id,
