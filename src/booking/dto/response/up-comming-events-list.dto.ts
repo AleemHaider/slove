@@ -37,7 +37,7 @@ export class EventListDto {
         const obj = {
           userId: element.user_id,
           id: element.id,
-          message: element.message?element.message:nu;;,
+          message: element.message?element.message:null,
           maximumPrice: element.maximum_price?element.maximum_price:null,
           minimumPrice: element.minimum_price?element.minimum_price:null,
           bookingStatus: element.booking_status?element.booking_status:null,
