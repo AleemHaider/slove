@@ -318,6 +318,8 @@ export class UserDetailsDto {
           startTime: element.start_time,
           endTime: element.end_time,
           ticketPrice: element.ticket_price,
+          ticketQuantity: element.ticket_Quantity,
+          releaseName: element.release_name,
           isTicketClose:element.is_event_ticket_close,
           musicGenre: element.music_genre,
           createdAt: element.event_created_at,
@@ -345,15 +347,49 @@ export class UserDetailsDto {
       }
       else if(element.artist_id!=null)
       {
+        if(element.is_one_sided_ticket_sale)
+        {
         const obj = {
           id: element.event_id,
           eventName: element.event_name,
           startTime: element.start_time,
           endTime: element.end_time,
-          ticketPrice: element.ticket_price,
+
           musicGenre: element.music_genre,
           createdAt: element.event_created_at,
           isTicketClose:element.is_event_ticket_close,
+          isOneSidedTickeSale: element.is_one_sided_ticket_sale,
+          ticketPrice: element.ticket_price,
+          ticketPrice2: element.ticket_price2,
+          ticketPrice3: element.ticket_price3,
+          releaseName: element.release_name,
+          releaseName2: element.release_name2,
+          releaseName3: element.release_name3,
+          releaseQuantity :element.release_quantity,
+          releaseQuantity2 :element.release_quantity2,
+          releaseQuantity3 :element.release_quantity3,
+         
+          artist: {
+            id: element.artist_id ?? null,
+            name: element.artist_name ?? null,
+            country: element.artist_country ?? null,
+            city: element.artist_city ?? null,
+            bio: element.artist_bio ?? null,
+            profileImage: element.artist_profile_image ?? null,
+          },
+        
+        };
+
+        list.push(obj);
+      }
+      else{
+        const obj = {
+          id: element.event_id,
+          eventName: element.event_name,
+          startTime: element.start_time,
+          endTime: element.end_time,
+          musicGenre: element.music_genre,
+          createdAt: element.event_created_at,
           isOneSidedTickeSale: element.is_one_sided_ticket_sale,
          
           artist: {
@@ -369,18 +405,29 @@ export class UserDetailsDto {
 
         list.push(obj);
       }
+      }
       else if(element.venue_id!=null)
       {
+        if(element.is_one_sided_ticket_sale)
+        {
         const obj = {
           id: element.event_id,
           eventName: element.event_name,
           startTime: element.start_time,
           endTime: element.end_time,
-          ticketPrice: element.ticket_price,
           musicGenre: element.music_genre,
           createdAt: element.event_created_at,
           isTicketClose:element.is_event_ticket_close,
           isOneSidedTickeSale: element.is_one_sided_ticket_sale,
+          ticketPrice: element.ticket_price,
+          ticketPrice2: element.ticket_price2,
+          ticketPrice3: element.ticket_price3,
+          releaseName: element.release_name,
+          releaseName2: element.release_name2,
+          releaseName3: element.release_name3,
+          releaseQuantity :element.release_quantity,
+          releaseQuantity2 :element.release_quantity2,
+          releaseQuantity3 :element.release_quantity3,
           venue: {
             id: element.venue_id ?? null,
             name: element.venue_name ?? null,
@@ -392,6 +439,27 @@ export class UserDetailsDto {
 
         list.push(obj);
       }
+    }
+    else{
+      const obj = {
+        id: element.event_id,
+        eventName: element.event_name,
+        startTime: element.start_time,
+        endTime: element.end_time,
+        musicGenre: element.music_genre,
+        createdAt: element.event_created_at,
+        isOneSidedTickeSale: element.is_one_sided_ticket_sale,
+        venue: {
+          id: element.venue_id ?? null,
+          name: element.venue_name ?? null,
+          profileImage: element.venue_profile_image ?? null,
+          country: element.venue_country ?? null,
+          city: element.venue_city ?? null,
+        },
+      };
+
+      list.push(obj);
+    }
       }
     }
     const totalPages = Math.ceil(Number(count) / Number(limit));
