@@ -282,6 +282,7 @@ export class UserDetailsDto {
           startTime: element.start_time,
           endTime: element.end_time,
           ticketPrice: element.ticket_price,
+          gigType:'TWOSIDED',
           ticketPrice2: element.ticket_price2,
           ticketPrice3: element.ticket_price3,
           releaseName: element.release_name,
@@ -319,6 +320,7 @@ export class UserDetailsDto {
           eventName: element.event_name,
           startTime: element.start_time,
           endTime: element.end_time,
+          gigType:'TWOSIDED',
           ticketPrice: element.ticket_price,
           ticketQuantity: element.ticket_Quantity,
           releaseName: element.release_name,
@@ -359,7 +361,7 @@ export class UserDetailsDto {
           eventName: element.event_name,
           startTime: element.start_time,
           endTime: element.end_time,
-
+          gigType:'ONESIDED',
           musicGenre: element.music_genre,
           createdAt: element.event_created_at,
           isTicketClose:element.is_event_ticket_close,
@@ -397,6 +399,7 @@ export class UserDetailsDto {
           musicGenre: element.music_genre,
           createdAt: element.event_created_at,
           isOneSidedTickeSale: element.is_one_sided_ticket_sale,
+          gigType:'ONESIDED',
          
           artist: {
             id: element.artist_id ?? null,
@@ -428,6 +431,7 @@ export class UserDetailsDto {
           createdAt: element.event_created_at,
           isTicketClose:element.is_event_ticket_close,
           isOneSidedTickeSale: element.is_one_sided_ticket_sale,
+          gigType:'ONESIDED',
           ticketPrice: element.ticket_price,
           ticketPrice2: element.ticket_price2,
           ticketPrice3: element.ticket_price3,
@@ -458,6 +462,7 @@ export class UserDetailsDto {
         musicGenre: element.music_genre,
         createdAt: element.event_created_at,
         isOneSidedTickeSale: element.is_one_sided_ticket_sale,
+        gigType:'ONESIDED',
         venue: {
           id: element.venue_id ?? null,
           name: element.venue_name ?? null,
