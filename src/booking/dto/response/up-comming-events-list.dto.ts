@@ -43,6 +43,8 @@ export class EventListDto {
           bookingStatus: element.booking_status?element.booking_status:null,
           isFeedbackGiven: !!element.feedback_id,
           eventId: element.event_id?element.event_id:null,
+          artistId: element.artist_id?element.artist_id:null,
+          venueId: element.venue_id?element.venue_id:null,
           genreType:element.genre_type?element.genre_type:null,
           startTime:element.start_time?element.start_time:null,
           endTime:element.end_time?element.end_time:null,
