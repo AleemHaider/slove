@@ -3,7 +3,6 @@ import {
   Injectable,
   InternalServerErrorException,
   Logger,
-  NotAcceptableException,
   NotFoundException,
 } from '@nestjs/common';
 import { CreateOrderDto } from './dto/request/create-order.dto';
@@ -21,7 +20,6 @@ import { ORDER_STATUS } from '../util/constant';
 import { TicketEntity } from '../entity/ticket.entity';
 import generateTicketNumber from '../util/random-ticket-number';
 import { UserQuestionEntity } from '../entity/user-question.entity';
-import { Order } from './entities/order.entity';
 @Injectable()
 export class OrderService {
   private logger: Logger = new Logger(OrderService.name);
@@ -63,53 +61,14 @@ export class OrderService {
     await queryRunner.connect();
     await queryRunner.startTransaction();
     const invoiceNumber = await this.generateInvoiceNumber();
-   
-  
-     try {
-      const ticketCount = await queryRunner.manager.getRepository(OrderEntity).createQueryBuilder('order')
-      .select('SUM(order.quantity)', 'totalQuantity')
-      .where('order.event.id = :eventId', { eventId: event.id })
-      .getRawOne();
-       let ticketPrice;
-       let availableQuantity;
-      if(event.isMultipleRelease==true)
-      {
-if(ticketCount<=event.ticketQuantity)
-{
-   ticketPrice=event.ticketPrice;
-   availableQuantity=event.ticketQuantity;
-}
-else if(ticketCount<=event.ticketQuantity2)
-{
-  ticketPrice=event.ticketPrice2;
-  availableQuantity=event.ticketQuantity2;
-}
-else if(ticketCount<=event.ticketQuantity3)
-{
-  ticketPrice=event.ticketPrice3;
-  availableQuantity=event.ticketQuantity3;
 
-}
-else
-{
-  throw new NotAcceptableException(ERROR_MESSAGES.ALL_TICKETS_SOLD)
-  
-}
-      }
-      else {
-        ticketPrice=event.ticketPrice;
-      }
-
-
-
-    if(ticketCount+dto.quantity<=availableQuantity)
-    {
+    try {
       let order = new OrderEntity();
       order.user = currentUser;
       order.event = event;
       order.quantity = dto.quantity;
       order.invoiceNumber = invoiceNumber;
-      order.totalPrice = dto.quantity * ticketPrice;
+      order.totalPrice = dto.quantity * event.ticketPrice;
 
       order = await queryRunner.manager.getRepository(OrderEntity).save(order);
       // order = await this.orderEntityRepository.save(order);
@@ -134,12 +93,6 @@ else
         event.id,
         invoiceNumber,
       );
-    }
-    else {
-      throw new NotAcceptableException(
-        ERROR_MESSAGES.AVAILABLE_TICKETS_ARE+" "+(availableQuantity-ticketCount),
-      );
-    }
     } catch (e) {
       this.logger.error(e);
       await queryRunner.rollbackTransaction();
@@ -150,7 +103,6 @@ else
     } finally {
       await queryRunner.release();
     }
-
   }
   async generateInvoiceNumber() {
     const yearSuffix: string = new Date().getFullYear().toString().slice(-2);
