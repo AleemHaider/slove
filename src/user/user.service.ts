@@ -435,7 +435,7 @@ export class UserService {
     on venue_uq.country_id=venue_country.id left join cities artist_city on artist_uq.city_id = artist_city.id left join cities venue_city on
     venue_uq.city_id=venue_city.id where e.status='ACTIVE' ${whereQuery} `);
 
-      if (isArray(data) && data.length == 0) {
+ /*     if (isArray(data) && data.length == 0) {
         data = await this.dataSource.manager.query(`
         select e.event_name,e.is_one_sided_ticket_sale,e.ticket_price2,e.ticket_price3,e.ticket_quantity,e.ticket_quantity2,e.ticket_quantity3,
         e.release_name,e.release_name2,e.release_name3,cast(e.start_time as TEXT) as start_time,cast(e.end_time as TEXT) as end_time,e.ticket_price,e.is_event_ticket_close as is_ticket_close,artist.profile_image as artist_profile_image,
@@ -451,7 +451,7 @@ export class UserService {
     ).format('YYYY-MM-DD')}' ORDER BY random()  ${queryLimit} `);
         count[0].count = Number(limit);
       }
-
+*/
       data = await this.setUserCommonDetails(data);
       // const musicGenre = await this.musicGenreEntityRepository.find({
       //   select: ['id', 'type'],
