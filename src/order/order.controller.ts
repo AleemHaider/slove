@@ -9,6 +9,7 @@ import {
   Headers,
   BadRequestException,
   RawBodyRequest,
+  Get,
 } from '@nestjs/common';
 import { OrderService } from './order.service';
 import { CreateOrderDto } from './dto/request/create-order.dto';
@@ -52,6 +53,7 @@ export class OrderController {
       throw e;
     }
   }
+  
   @ApiOperation({
     summary: 'Stripe Webhook event',
   })
@@ -78,6 +80,18 @@ export class OrderController {
         HttpStatus.CREATED,
         SUCCESS_MESSAGES.SUCCESS,
         await this.orderService.stripeWebhook(signature, request.rawBody),
+      );
+    } catch (e) {
+      throw e;
+    }
+  }
+  @Get("ticketCountByEvent")
+  async ticketCount(@Usr() user: AuthUser, @Body('id') id: Number) {
+    try {
+      return new StandardResponse(
+        HttpStatus.CREATED,
+        SUCCESS_MESSAGES.SUCCESS,
+        await this.orderService.getTicketCountByEvent(id),
       );
     } catch (e) {
       throw e;

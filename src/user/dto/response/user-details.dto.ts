@@ -272,6 +272,8 @@ export class UserDetailsDto {
         
         if(element.artist_id!=null && element.venue_id!=null)
         {
+        if(element.is_multiple_release!=null)
+        {
         if(element.is_multiple_release==true)
         {
         const obj = {
@@ -345,8 +347,11 @@ export class UserDetailsDto {
       }
         
       }
+    }
       else if(element.artist_id!=null)
       {
+        if(element.is_one_sided_ticket_sale!=null)
+        {
         if(element.is_one_sided_ticket_sale)
         {
         const obj = {
@@ -381,6 +386,7 @@ export class UserDetailsDto {
         };
 
         list.push(obj);
+      
       }
       else{
         const obj = {
@@ -405,9 +411,12 @@ export class UserDetailsDto {
 
         list.push(obj);
       }
+    }
       }
       else if(element.venue_id!=null)
       {
+        if(element.is_one_sided_ticket_sale!=null)
+        {
         if(element.is_one_sided_ticket_sale)
         {
         const obj = {
@@ -461,6 +470,7 @@ export class UserDetailsDto {
       list.push(obj);
     }
       }
+    }
     }
     const totalPages = Math.ceil(Number(count) / Number(limit));
 

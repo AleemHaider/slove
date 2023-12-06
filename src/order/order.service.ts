@@ -148,7 +148,21 @@ export class OrderService {
     return ticketNumber;
     // random(0, 100)
   }
-
+async getTicketCountByEvent(id:Number){
+  let sum: [{ sum: number }] = [{ sum: 0 }];
+  try{
+   const sum = await this.dataSource.manager.query(
+      `select sum(quantity) as sum from order where event_id=${id}`,
+    );
+  }
+ catch (e) {
+  this.logger.error(e);
+  throw new InternalServerErrorException(
+    ERROR_MESSAGES.STRIPE_INTERNAL_ERROR,
+  );
+}
+return sum;
+}
   async stripeWebhook(signature: string, body: Buffer) {
     try {
       const event = (await this.stripeService.stripe.webhooks.constructEvent(
