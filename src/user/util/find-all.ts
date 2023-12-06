@@ -73,19 +73,8 @@ export const getAllConsumerWhereList = (
   query =
     query + `and e.start_time >= '${dayjs(new Date()).format('YYYY-MM-DD')}' `;
    
-    
-    
-if(searchType===null)
-{
-  if (genre && genre.length > 0) {
-    query = query + ` and bc.music_genre && '{${genre}}'`;
-  } else {
-    query = query + ` and bc.music_genre && '{${preferences.musicGenre}}'`;
-  }
 
-  return query;
-}
-else if(searchType==="0")
+if(searchType==="0")
 {
   if (search && search.length > 0) {
     query = query + ` and e.event_name ilike '%${search}%'`;
@@ -111,25 +100,7 @@ else if(searchType==="1")
 
   return query;
 }
-else if(searchType===undefined)
-{
- 
-  if (genre && genre.length > 0) {
-    query = query + ` and bc.music_genre && '{${genre}}'`;
-  } else {
-    query = query + ` and bc.music_genre && '{${preferences.musicGenre}}'`;
-  }
 
-  return query;
-}
-else{
-
-if (genre && genre.length > 0) {
-  query = query + ` and bc.music_genre && '{${genre}}'`;
-} else {
-  query = query + ` and bc.music_genre && '{${preferences.musicGenre}}'`;
-}
-}
 
 return query;
 };
