@@ -510,7 +510,7 @@ async findAllUpComming(user: UserEntity, id: number , page: string, limit: strin
   
   
     data = await this.dataSource.manager.query(`
- select e.id as event_id ,e.artist_id ,e.venue_id.,f.id as feedback_id, bc.id as booking_contract_id,bc.music_genre as booking_contract_music_genre,bc.start_time as booking_contract_start_time,
+ select e.id as event_id ,e.artist_id ,e.venue_id,f.id as feedback_id, bc.id as booking_contract_id,bc.music_genre as booking_contract_music_genre,bc.start_time as booking_contract_start_time,
   bc.end_time as booking_contract_end_time,bc.booking_price as booking_contract_booking_price,bc.equipment as booking_contract_equipment,
   bc.contract_status as contract_status, bc.event_name as booking_contract_event_name,bc.organisation_number as booking_contract_organisation_number,
   bc.ticket_price as booking_contract_ticket_price,

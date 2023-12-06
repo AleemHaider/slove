@@ -272,6 +272,46 @@ export class UserDetailsDto {
         
         if(element.artist_id!=null && element.venue_id!=null)
         {
+        if(element.is_multiple_release==true)
+        {
+        const obj = {
+          id: element.event_id,
+          eventName: element.event_name,
+          startTime: element.start_time,
+          endTime: element.end_time,
+          ticketPrice: element.ticket_price,
+          ticketPrice2: element.ticket_price2,
+          ticketPrice3: element.ticket_price3,
+          releaseName: element.release_name,
+          releaseName2: element.release_name2,
+          releaseName3: element.release_name3,
+          releaseQuantity :element.release_quantity,
+          releaseQuantity2 :element.release_quantity2,
+          releaseQuantity3 :element.release_quantity3,
+          isTicketClose:element.is_event_ticket_close,
+          musicGenre: element.music_genre,
+          createdAt: element.event_created_at,
+          
+         
+          artist: {
+            id: element.artist_id ?? null,
+            name: element.artist_name ?? null,
+            country: element.artist_country ?? null,
+            city: element.artist_city ?? null,
+            bio: element.artist_bio ?? null,
+            profileImage: element.artist_profile_image ?? null,
+          },
+          venue: {
+            id: element.venue_id ?? null,
+            name: element.venue_name ?? null,
+            profileImage: element.venue_profile_image ?? null,
+            country: element.venue_country ?? null,
+            city: element.venue_city ?? null,
+          },
+        };
+        list.push(obj);
+      }
+      else {
         const obj = {
           id: element.event_id,
           eventName: element.event_name,
@@ -299,8 +339,9 @@ export class UserDetailsDto {
             city: element.venue_city ?? null,
           },
         };
-
         list.push(obj);
+      }
+        
       }
       else if(element.artist_id!=null)
       {
