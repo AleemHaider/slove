@@ -425,7 +425,7 @@ export class UserService {
     left join "user" venue on venue.id=e.venue_id left join user_question artist_uq on artist.id = artist_uq.user_id left join user_question venue_uq
     on venue.id=venue_uq.user_id left join countries artist_country on artist_uq.country_id = artist_country.id left join countries venue_country
     on venue_uq.country_id=venue_country.id left join cities artist_city on artist_uq.city_id = artist_city.id left join cities venue_city on
-    venue_uq.city_id=venue_city.id where e.status='ACTIVE' ${whereQuery}  order by e.start_time asc  ${queryLimit}`);
+    venue_uq.city_id=venue_city.id where e.status='ACTIVE'   order by e.start_time asc  ${queryLimit}`);
 
       const count: [{ count: number }] = await this.dataSource.manager
         .query(`select count(e.id) as count
@@ -433,7 +433,7 @@ export class UserService {
     left join "user" venue on venue.id=e.venue_id left join user_question artist_uq on artist.id = artist_uq.user_id left join user_question venue_uq
     on venue.id=venue_uq.user_id left join countries artist_country on artist_uq.country_id = artist_country.id left join countries venue_country
     on venue_uq.country_id=venue_country.id left join cities artist_city on artist_uq.city_id = artist_city.id left join cities venue_city on
-    venue_uq.city_id=venue_city.id where e.status='ACTIVE' ${whereQuery} `);
+    venue_uq.city_id=venue_city.id where e.status='ACTIVE' `);
 
       if (isArray(data) && data.length == 0) {
         data = await this.dataSource.manager.query(`
