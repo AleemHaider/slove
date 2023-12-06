@@ -437,7 +437,8 @@ export class UserService {
 
       if (isArray(data) && data.length == 0) {
         data = await this.dataSource.manager.query(`
-        select e.event_name,e.is_one_sided_ticket_sale,cast(e.start_time as TEXT) as start_time,cast(e.end_time as TEXT) as end_time,e.ticket_price,e.is_event_ticket_close as is_ticket_close,artist.profile_image as artist_profile_image,
+        select e.event_name,e.is_one_sided_ticket_sale,e.ticket_price2,e.ticket_price3,e.ticket_quantity,e.ticket_quantity2,e.ticket_quantity3,
+        e.release_name,e.release_name2,e.release_name3,cast(e.start_time as TEXT) as start_time,cast(e.end_time as TEXT) as end_time,e.ticket_price,e.is_event_ticket_close as is_ticket_close,artist.profile_image as artist_profile_image,
     artist_uq.band_name as artist_name,artist_country.name as artist_country,artist_city.name as artist_city,artist.bio as artist_bio,
     venue_uq.venue_name as venue_name,venue.profile_image as venue_profile_image,venue_country.name as venue_country,venue_city.name as venue_city,bc.music_genre,
     artist.id as artist_id,venue.id as venue_id,cast(e.created_at as TEXT) as event_created_at,e.id as event_id
