@@ -69,7 +69,7 @@ export const getAllConsumerWhereList = (
 ) => {
   let query = '';
 
-  query = query + `and e.start_time >= '${dayjs(new Date()).format('YYYY-MM-DD')}' `;
+  query = query + `and bc.start_time >= NOW() `;
    
     
     
