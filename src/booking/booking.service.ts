@@ -65,7 +65,7 @@ export class BookingService {
     private readonly userService: UserService,
   ) {}
   async create(user: UserEntity, dto: CreateBookingDto) {
-    this.logger.log({ dto });
+    this.logger.log("Booking Dto",{ dto });
     const booking = new BookingEntity();
 
     const artist = await this.userEntityRepository.findOne({
@@ -136,7 +136,7 @@ export class BookingService {
   }
   async updateOneSidedGig(user: UserEntity, dto: CreateEventDto) {
    
-    this.logger.log({ dto });
+    this.logger.log("updateOne Sided GIG ",{ dto });
 
     const eventUser = user;
 
@@ -180,7 +180,7 @@ export class BookingService {
       bookingContractEntity.isTicketClose=dto.isTicketClose;
       bookingContractEntity.contractDiscription=dto.contractDiscription;
       bookingContractEntity.musicGenre=dto.genreType;
-      this.logger.error(dto.isTicketClose);
+      
       await queryRunner.manager.getRepository(BookingContractEntity).update(
         { id: dto.contractId },
         bookingContractEntity);
@@ -301,7 +301,7 @@ await queryRunner.release();
     const queryRunner = this.dataSource.createQueryRunner();
     await queryRunner.connect();
     await queryRunner.startTransaction();
-    this.logger.log({ dto });
+    this.logger.log("Booking DTO",{ dto });
     const booking = new BookingEntity();
     const checkStartDate = dayjs(
       new Date(dto.date + ' ' + dto.startTime),
@@ -323,7 +323,7 @@ await queryRunner.release();
     booking.gigType=GIG_TYPE.ONESIDED;
     booking.message = dto.message;
 
-    this.logger.log(dto.genreType);
+   
 
     try {
       const booking1=await this.bookingEntityRepository.save(booking);
@@ -800,7 +800,7 @@ async findAllUpComming(user: UserEntity, id: number , page: string, limit: strin
     return event;
   }
   async createContract(user: UserEntity, dto: CreateContractDto) {
-    this.logger.log({ dto });
+    this.logger.log("create contract",{ dto });
     const booking = await this.bookingEntityRepository.findOne({
       where: {
         id: dto.id,
@@ -879,7 +879,7 @@ async findAllUpComming(user: UserEntity, id: number , page: string, limit: strin
   }
 
   async updateContract(user: UserEntity, dto: ContractUpdateDto) {
-    this.logger.log({ dto });
+    this.logger.log("update contract",{ dto });
     const booking = await this.bookingEntityRepository.findOne({
       where: {
         id: dto.bookingId,

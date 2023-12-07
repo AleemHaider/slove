@@ -61,8 +61,8 @@ export class UserQuestionService {
       relations: ['userType'],
       select: ['id', 'userType', 'onboardingComplete', 'profileImage'],
     });
-    this.logger.log({ user });
-    this.logger.log({ dto });
+    this.logger.log("user",{ user });
+    this.logger.log("dto",{ dto });
 
     if (user == null || user.userType == null) {
       throw new NotFoundException(ERROR_MESSAGES.USER_TYPE_NOT_DEFINED);
@@ -311,7 +311,7 @@ export class UserQuestionService {
     currentUser: UserEntity,
     dto: UpdateAnswersDto,
   ) {
-    this.logger.log({ dto });
+    this.logger.log("dto",{ dto });
     const user = await this.userRepository.findOne({
       where: {
         id: currentUser.id,

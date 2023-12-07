@@ -190,7 +190,7 @@ return sum;
     metadata: Stripe.Metadata,
     event: Stripe.DiscriminatedEvent,
   ) {
-    this.logger.log({ metadata });
+    this.logger.log("meta data: ",{ metadata });
 
     // const dataObject = await event.data.object;
 
@@ -207,7 +207,7 @@ return sum;
       },
       relations: ['user', 'event'],
     });
-    this.logger.log({ order });
+    this.logger.log("order : ",{ order });
 
     if (!order) {
       throw new NotFoundException(ERROR_MESSAGES.ORDER_NOT_FOUND);

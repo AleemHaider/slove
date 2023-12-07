@@ -11,7 +11,7 @@ export class MetadataService {
       const res = await this.s3BucketService.readBucketFile(
         'config/config.json',
       );
-      this.logger.log(res);
+      this.logger.log("res : ",res);
       return JSON.parse(res);
     } catch (e) {
       this.logger.error(e);

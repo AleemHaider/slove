@@ -27,7 +27,7 @@ export class CalendarService {
     private readonly dataSource: DataSource,
   ) {}
   async create(currentUser: UserEntity, dto: CreateCalendarDto) {
-    this.logger.log({ dto });
+    this.logger.log("calender : ",{ dto });
 
     try {
       // this.logger.log(dayjs().format('YYYY-MM-DD'));
@@ -41,7 +41,7 @@ export class CalendarService {
       calendarEntity.user = currentUser;
       calendarEntity.title = dto.title;
       calendarEntity.description = dto.description;
-      this.logger.log({ calendarEntity });
+      this.logger.log("calender entity ",{ calendarEntity });
       await this.calendarEntityRepository.save(calendarEntity);
       return;
     } catch (e) {

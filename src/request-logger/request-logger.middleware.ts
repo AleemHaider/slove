@@ -10,7 +10,7 @@ export class RequestLoggerMiddleware implements NestMiddleware {
 
     res.on('finish', () => {
       const msg = `${ip} ${method} ${originalUrl}  ${userAgent}`;
-      this.logger.log(msg);
+      this.logger.log("message :",msg);
 
       const statusCode = res.statusCode;
       if (statusCode === 401 || statusCode === 404 || statusCode === 405) {

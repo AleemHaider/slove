@@ -36,7 +36,7 @@ export class StripeService {
           name: name ? name : '',
         },
       });
-      this.logger.log({ payment });
+      this.logger.log("payment : ",{ payment });
       return payment;
     } catch (e) {
       this.logger.error(e);

@@ -163,7 +163,7 @@ export class UserService {
     limit,
   ) {
     const queryLimit = paginationUtil(page, limit);
-    this.logger.log(queryLimit);
+    this.logger.log("query limit : ",queryLimit);
     let data = await this.dataSource.manager.query(
       `select (likelihood_gen( $1,up.music_genre)) as likelihood, u.email,u.user_type_id as userType,u.chat_id as chat_id,u.profile_image as profileImage,u.bio,up.music_genre,up.preferred_venue,
        up.artist_type, uq.* from user_preferences up left join "user"
@@ -188,7 +188,7 @@ export class UserService {
         data[i].likelihood = 0;
       }
     }
-    this.logger.log({ count });
+    this.logger.log("count : ",{ count });
 
     const [musicGenre, preferredVenue, artistType] =
       await this.getPreferencesListNew();
@@ -411,7 +411,7 @@ export class UserService {
       },
       select: ['musicGenre', 'id'],
     });
-    this.logger.log({ preferences });
+    this.logger.log("prefrences :",{ preferences });
     const whereQuery = getAllConsumerWhereList(search, genre, preferences,searchType);
     // user.id
     try {
@@ -618,12 +618,12 @@ export class UserService {
   }
 
   async getCurrentUserGallery(currentUser: UserEntity) {
-    this.logger.log({ currentUser });
+    this.logger.log("current user",{ currentUser });
     return await this.getGalleryById(currentUser.id);
   }
 
   async getUserGalleryById(id: number) {
-    this.logger.log({ id });
+    this.logger.log("id",{ id });
     return await this.getGalleryById(id);
   }
 
