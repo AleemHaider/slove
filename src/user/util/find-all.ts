@@ -77,8 +77,7 @@ export const getAllConsumerWhereList = (
     
 if(searchType===null)
 {
- 
-    query = query + ` and bc.music_genre && '{${preferences.musicGenre}}' `
+  query = query + ` and bc.music_genre && '{${preferences.musicGenre}}' `
   return query;
 }
 else if( searchType==="0")
