@@ -412,7 +412,7 @@ export class UserService {
       select: ['musicGenre', 'id'],
     });
     this.logger.log("prefrences :"+user.id);
-    this.logger.log("USER :"+{ preferences });
+    this.logger.log("USER :"+preferences.musicGenre);
     const whereQuery = getAllConsumerWhereList(search, genre, preferences,searchType);
     this.logger.log("where checked" + whereQuery);
     // user.id
