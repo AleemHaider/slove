@@ -413,6 +413,7 @@ export class UserService {
     });
     this.logger.log("prefrences :",{ preferences });
     const whereQuery = getAllConsumerWhereList(search, genre, preferences,searchType);
+    this.logger.log("where checked");
     // user.id
     try {
       let data = await this.dataSource.manager
