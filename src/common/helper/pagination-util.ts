@@ -15,7 +15,7 @@ export const paginationUtil = (
   query =
     query +
     ` LIMIT ${Number(limit)} OFFSET ${(Number(page) - 1) * Number(limit)}`;
-  console.log("query : "+query);
+  console.log(query);
   return query;
 };
 

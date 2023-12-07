@@ -270,7 +270,7 @@ export class UserDetailsDto {
       for (let i = 0; i < data.length; i++) {
         const element = data[i];
         
-        if(element.artist_id!=null && element.venue_id!=null)
+        if(element.is_one_sided_ticket_sale!=null)
         {
         if(element.is_multiple_release!=null)
         {
