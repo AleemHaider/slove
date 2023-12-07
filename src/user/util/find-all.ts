@@ -67,7 +67,7 @@ export const getAllConsumerWhereList = (
   preferences: UserPreferencesEntity,
   searchType: string | undefined
 ) => {
-  console.log(` and bc.music_genre && ('${genre}'::int[])`);
+  //console.log(` and bc.music_genre && ('${genre}'::int[])`);
   let query = '';
 
   query =
