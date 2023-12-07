@@ -80,7 +80,7 @@ if(searchType===null)
  if (genre && genre.length > 0) {
     query = query + ` and bc.music_genre && '{${genre}}'`;
   } else {
-    query = query + ` and bc.music_genre && '{${preferences.musicGenre}}'`;
+   // query = query + ` and bc.music_genre && '{${preferences.musicGenre}}'`;
   }
   return query;
 }
