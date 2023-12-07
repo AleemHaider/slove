@@ -302,7 +302,7 @@ export class AuthService {
       //send email
       return;
     } catch (e) {
-      console.log(e);
+      console.log("email",e);
       this.logger.error(e);
       throw new InternalServerErrorException(
         ERROR_MESSAGES.INTERNAL_SERVER_ERROR,

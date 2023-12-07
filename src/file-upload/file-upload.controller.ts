@@ -103,7 +103,7 @@ export class FileUploadController {
     files: Array<Express.Multer.File>,
     @Body() body: MultipleFileUploadDto,
   ) {
-    console.log(body);
+    console.log("body ",body);
     try {
       return new StandardResponse(
         HttpStatus.CREATED,

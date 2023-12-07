@@ -28,7 +28,7 @@ export class GetCurrentUserContactListDto {
     const totalPages = Math.ceil(Number(this.count) / Number(this.limit));
 
     this.data.map((item) => {
-      console.log(item);
+      console.log("item: ",item);
       const obj = {
         userId: item.user_id,
         email: item.email,
