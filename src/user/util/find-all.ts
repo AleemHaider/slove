@@ -81,9 +81,7 @@ if( searchType==="0")
   }
   if (genre && genre.length > 0) {
     query = query + ` and bc.music_genre && '{${genre}}' `;
-  } else {
-    query = query + ` and bc.music_genre && '{${preferences.musicGenre}}' `;
-  }
+  } 
 }
 else if( searchType==="1")
 {
@@ -92,9 +90,7 @@ else if( searchType==="1")
   }
    if (genre && genre.length > 0) {
     query = query + ` and bc.music_genre && '{${genre}}' `;
-  } else {
-    query = query + ` and bc.music_genre && '{${preferences.musicGenre}}' `;
-  }
+  } 
 }
 else
 {
