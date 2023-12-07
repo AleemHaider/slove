@@ -272,9 +272,7 @@ export class UserDetailsDto {
         
         if(element.is_one_sided_ticket_sale==null)
         {
-        if(element.is_multiple_release!=null)
-        {
-        if(element.is_multiple_release==true)
+        if(element.is_multiple_release && element.is_multiple_release==true)
         {
         const obj = {
           id: element.event_id,
@@ -349,12 +347,11 @@ export class UserDetailsDto {
       }
         
       }
-    }
       else if(element.artist_id!=null)
       {
         if(element.is_one_sided_ticket_sale!=null)
         {
-        if(element.is_one_sided_ticket_sale)
+        if(element.is_one_sided_ticket_sale==true)
         {
         const obj = {
           id: element.event_id,
@@ -420,7 +417,7 @@ export class UserDetailsDto {
       {
         if(element.is_one_sided_ticket_sale!=null)
         {
-        if(element.is_one_sided_ticket_sale)
+        if(element.is_one_sided_ticket_sale==true)
         {
         const obj = {
           id: element.event_id,
