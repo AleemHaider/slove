@@ -85,7 +85,7 @@ if(searchType===null)
 */
   return query;
 }
-else if(searchType==="0")
+else if(searchType && searchType==="0")
 {
   if (search && search.length > 0) {
     query = query + ` and e.event_name ilike '%${search}%'`;
@@ -98,7 +98,7 @@ else if(searchType==="0")
 
   return query;
 }
-else if(searchType==="1")
+else if(searchType && searchType==="1")
 {
   if (search && search.length > 0) {
     query = query + ` and  (venue_country.name ilike '%${search}%' or venue_city.name ilike '%${search}%') `;
