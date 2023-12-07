@@ -269,7 +269,12 @@ export class UserDetailsDto {
       data = data as any;
       for (let i = 0; i < data.length; i++) {
         const element = data[i];
-        if(element.is_one_sided_ticket_sale==null)
+        
+        if(element.artist_id!=null && element.venue_id!=null)
+        {
+        if(element.is_multiple_release!=null)
+        {
+        if(element.is_multiple_release==true)
         {
         const obj = {
           id: element.event_id,
@@ -309,8 +314,48 @@ export class UserDetailsDto {
         };
         list.push(obj);
       }
+      else {
+        const obj = {
+          id: element.event_id,
+          eventName: element.event_name,
+          startTime: element.start_time,
+          endTime: element.end_time,
+          gigType:'TWOSIDED',
+          ticketPrice: element.ticket_price,
+          ticketQuantity: element.ticket_Quantity,
+          releaseName: element.release_name,
+          isTicketClose:element.is_ticket_close,
+          musicGenre: element.music_genre,
+          createdAt: element.event_created_at,
+          
+         
+          artist: {
+            id: element.artist_id ?? null,
+            name: element.artist_name ?? null,
+            country: element.artist_country ?? null,
+            city: element.artist_city ?? null,
+            bio: element.artist_bio ?? null,
+            profileImage: element.artist_profile_image ?? null,
+          },
+          venue: {
+            id: element.venue_id ?? null,
+            name: element.venue_name ?? null,
+            profileImage: element.venue_profile_image ?? null,
+            country: element.venue_country ?? null,
+            city: element.venue_city ?? null,
+          },
+        };
+        list.push(obj);
+      }
+        
+      }
+    }
       else if(element.artist_id!=null)
       {
+        if(element.is_one_sided_ticket_sale!=null)
+        {
+        if(element.is_one_sided_ticket_sale)
+        {
         const obj = {
           id: element.event_id,
           eventName: element.event_name,
@@ -345,7 +390,37 @@ export class UserDetailsDto {
         list.push(obj);
       
       }
-      else 
+      else{
+        const obj = {
+          id: element.event_id,
+          eventName: element.event_name,
+          startTime: element.start_time,
+          endTime: element.end_time,
+          musicGenre: element.music_genre,
+          createdAt: element.event_created_at,
+          isOneSidedTickeSale: element.is_one_sided_ticket_sale,
+          gigType:'ONESIDED',
+         
+          artist: {
+            id: element.artist_id ?? null,
+            name: element.artist_name ?? null,
+            country: element.artist_country ?? null,
+            city: element.artist_city ?? null,
+            bio: element.artist_bio ?? null,
+            profileImage: element.artist_profile_image ?? null,
+          },
+        
+        };
+
+        list.push(obj);
+      }
+    }
+      }
+      else if(element.venue_id!=null)
+      {
+        if(element.is_one_sided_ticket_sale!=null)
+        {
+        if(element.is_one_sided_ticket_sale)
         {
         const obj = {
           id: element.event_id,
@@ -376,6 +451,29 @@ export class UserDetailsDto {
         };
 
         list.push(obj);
+      }
+    }
+    else{
+      const obj = {
+        id: element.event_id,
+        eventName: element.event_name,
+        startTime: element.start_time,
+        endTime: element.end_time,
+        musicGenre: element.music_genre,
+        createdAt: element.event_created_at,
+        isOneSidedTickeSale: element.is_one_sided_ticket_sale,
+        gigType:'ONESIDED',
+        venue: {
+          id: element.venue_id ?? null,
+          name: element.venue_name ?? null,
+          profileImage: element.venue_profile_image ?? null,
+          country: element.venue_country ?? null,
+          city: element.venue_city ?? null,
+        },
+      };
+
+      list.push(obj);
+    }
       }
     }
     }
