@@ -70,15 +70,13 @@ export const getAllConsumerWhereList = (
   console.log(` and bc.music_genre && ('${genre}'::int[])`);
   let query = '';
 
-  query =
-    query + `and e.start_time >= '${dayjs(new Date()).format('YYYY-MM-DD')}' `;
+  query = query + `and e.start_time >= '${dayjs(new Date()).format('YYYY-MM-DD')}' `;
    
     
     
 if(searchType===null)
 {
-  query = query + ` and bc.music_genre && '{${preferences.musicGenre}}' `
-  return query;
+  query = query + ` and bc.music_genre && '{${preferences.musicGenre}}' `;
 }
 else if( searchType==="0")
 {
@@ -90,8 +88,6 @@ else if( searchType==="0")
   } else {
     query = query + ` and bc.music_genre && '{${preferences.musicGenre}}' `;
   }
-
-  return query;
 }
 else if( searchType==="1")
 {
@@ -103,8 +99,6 @@ else if( searchType==="1")
   } else {
     query = query + ` and bc.music_genre && '{${preferences.musicGenre}}' `;
   }
-
-  return query;
 }
-
+return query;
 };
