@@ -73,7 +73,7 @@ export const getAllConsumerWhereList = (
   query =
     query + `and e.start_time >= '${dayjs(new Date()).format('YYYY-MM-DD')}' `;
    
-   /* 
+    
     
 if(searchType===null)
 {
@@ -111,5 +111,5 @@ else if(searchType==="1")
 
   return query;
 }
-*/
+
 };
