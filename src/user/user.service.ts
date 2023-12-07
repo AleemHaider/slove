@@ -435,6 +435,7 @@ export class UserService {
     on venue.id=venue_uq.user_id left join countries artist_country on artist_uq.country_id = artist_country.id left join countries venue_country
     on venue_uq.country_id=venue_country.id left join cities artist_city on artist_uq.city_id = artist_city.id left join cities venue_city on
     venue_uq.city_id=venue_city.id where e.status='ACTIVE' ${whereQuery} `);
+    this.logger.log("first qurey check");
 
       if (isArray(data) && data.length == 0) {
         data = await this.dataSource.manager.query(`
@@ -452,7 +453,7 @@ export class UserService {
     ).format('YYYY-MM-DD')}' ORDER BY random()  ${queryLimit} `);
         count[0].count = Number(limit);
       }
-
+      this.logger.log("second qurey check");
       data = await this.setUserCommonDetails(data);
       // const musicGenre = await this.musicGenreEntityRepository.find({
       //   select: ['id', 'type'],
