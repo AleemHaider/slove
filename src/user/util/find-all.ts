@@ -67,18 +67,14 @@ export const getAllConsumerWhereList = (
   preferences: UserPreferencesEntity,
   searchType: string | undefined
 ) => {
-  console.log(` and bc.music_genre && ('${genre}'::int[])`);
   let query = '';
 
   query = query + `and e.start_time >= '${dayjs(new Date()).format('YYYY-MM-DD')}' `;
    
     
     
-if(searchType===null)
-{
-  query = query + ` and bc.music_genre && '{${preferences.musicGenre}}' `;
-}
-else if( searchType==="0")
+
+if( searchType==="0")
 {
   if (search && search.length > 0) {
     query = query + ` and e.event_name ilike '%${search}%' `;
@@ -100,5 +96,10 @@ else if( searchType==="1")
     query = query + ` and bc.music_genre && '{${preferences.musicGenre}}' `;
   }
 }
+else
+{
+  query = query + ` and bc.music_genre && '{${preferences.musicGenre}}' `;
+}
+
 return query;
 };
