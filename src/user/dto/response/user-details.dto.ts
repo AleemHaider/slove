@@ -399,6 +399,8 @@ export class UserDetailsDto {
           musicGenre: element.music_genre,
           createdAt: element.event_created_at,
           isOneSidedTickeSale: element.is_one_sided_ticket_sale,
+          linkToTickets:element.link_to_tickets,
+          linkToEvent:element.link_to_event,
           gigType:'ONESIDED',
          
           artist: {
@@ -462,6 +464,8 @@ export class UserDetailsDto {
         musicGenre: element.music_genre,
         createdAt: element.event_created_at,
         isOneSidedTickeSale: element.is_one_sided_ticket_sale,
+        linkToTickets:element.link_to_tickets,
+        linkToEvent:element.link_to_event,
         gigType:'ONESIDED',
         venue: {
           id: element.venue_id ?? null,
