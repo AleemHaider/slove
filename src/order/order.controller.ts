@@ -87,7 +87,7 @@ export class OrderController {
     }
   }
   @Get("ticketCountByEvent")
-  async ticketCount(@Usr() user: AuthUser, @Param('id') id: string) {
+  async ticketCountByEvent(@Usr() user: AuthUser, @Param('id') id: string) {
     try {
       return new StandardResponse(
         HttpStatus.CREATED,
