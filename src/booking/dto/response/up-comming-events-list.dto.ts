@@ -44,7 +44,6 @@ export class EventListDto {
           isFeedbackGiven: !!element.feedback_id,
           eventId: element.event_id?element.event_id:null,
           artistId: element.artist_id?element.artist_id:null,
-          isMultipleRelease: element.booking_contract_is_multiple_release?element.booking_contract_is_multiple_release:null,
           venueId: element.venue_id?element.venue_id:null,
           genreType:element.genre_type?element.genre_type:null,
           startTime:element.start_time?element.start_time:null,
@@ -137,6 +136,7 @@ export class EventListDto {
       contractDetails: element.booking_contract_details,
       contractDiscription:element.booking_contract_discription,
       ticketSaleAgreement: element.booking_contract_ticket_sale_agreement,
+      isMultipleRelease: element.booking_contract_is_multiple_release?element.booking_contract_is_multiple_release:null,
     };
   }
 }
