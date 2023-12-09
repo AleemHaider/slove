@@ -135,6 +135,7 @@ export class EventListDto {
       isTicketClose: element.booking_contract_is_ticket_close,
       contractDetails: element.booking_contract_details,
       contractDiscription:element.booking_contract_discription,
+      location:element.location?element.location:null,
       ticketSaleAgreement: element.booking_contract_ticket_sale_agreement,
       linkToEvent:element.booking_contract_link_to_event?element.booking_contract_link_to_event:null,
       linkToTickets:element.booking_contract_link_to_tickets?element.booking_contract_link_to_tickets:null,
