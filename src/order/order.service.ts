@@ -158,7 +158,7 @@ async getTicketCountByEvent(id:string){
  catch (e) {
   this.logger.error(e);
   throw new InternalServerErrorException(
-    ERROR_MESSAGES.STRIPE_INTERNAL_ERROR,
+    ERROR_MESSAGES.INTERNAL_SERVER_ERROR,
   );
 }
 return sum;
