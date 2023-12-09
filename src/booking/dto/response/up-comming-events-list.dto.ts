@@ -136,8 +136,8 @@ export class EventListDto {
       contractDetails: element.booking_contract_details,
       contractDiscription:element.booking_contract_discription,
       ticketSaleAgreement: element.booking_contract_ticket_sale_agreement,
-      linkToEvent:element.link_to_event?element.link_to_event:null,
-      linkToTickets:element.link_to_tickets?element.link_to_tickets:null,
+      linkToEvent:element.booking_contract_link_to_event?element.booking_contract_link_to_event:null,
+      linkToTickets:element.booking_contract_link_to_tickets?element.booking_contract_link_to_tickets:null,
       isOneSidedTicketSale:element.booking_contract_is_one_sided_ticket_sale?element.booking_contract_is_one_sided_ticket_sale:null,
       isMultipleRelease: element.booking_contract_is_multiple_release?element.booking_contract_is_multiple_release:null,
     };
