@@ -148,7 +148,7 @@ export class OrderService {
     return ticketNumber;
     // random(0, 100)
   }
-async getTicketCountByEvent(id:string){
+async getTicketCountByEvent(id:number){
   let sum: [{ sum: number }] = [{ sum: 0 }];
   try{
    const sum = await this.dataSource.manager.query(

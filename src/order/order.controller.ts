@@ -11,6 +11,7 @@ import {
   RawBodyRequest,
   Get,
   Param,
+  Query,
 } from '@nestjs/common';
 import { OrderService } from './order.service';
 import { CreateOrderDto } from './dto/request/create-order.dto';
@@ -87,7 +88,7 @@ export class OrderController {
     }
   }
   @Get("ticketCountByEvent")
-  async ticketCountByEvent(@Usr() user: AuthUser, @Param('id') id: string) {
+  async ticketCountByEvent(@Usr() user: AuthUser, @Query('id') id: number,) {
     try {
       return new StandardResponse(
         HttpStatus.CREATED,
