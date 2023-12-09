@@ -92,6 +92,7 @@ export class EventListDto {
           location:element.location?element.location:null,
           linkToEvent:element.link_to_event?element.link_to_event:null,
           ticketSaleAgreement:element.ticket_sale_agreement,
+          isOneSidedTicketSale:element.booking_contract_is_one_sided_ticket_sale?element.booking_contract_is_one_sided_ticket_sale:null,
           gigType:element.gig_type,
           contractDetails:element.contract_details,
           contractDiscription:element.contract_discription,
