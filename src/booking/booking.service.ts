@@ -539,7 +539,7 @@ async findAllUpComming(user: UserEntity, id: number , page: string, limit: strin
   "user" u on u.id = b.user_id inner join user_question uq on u.id = uq.user_id  left join countries c on uq.country_id = c.id left join cities
   c2 on uq.city_id = c2.id left join "user" ru on b.requested_user_id=ru.id inner join user_question ruq on ru.id=ruq.user_id left join countries
   ruc on ruq.country_id=ruc.id left join cities ruc2 on ruq.city_id=ruc2.id left join event e on bc.id = e.booking_contract_id left join feedback f on e.id = f.event_id where bc.start_time > NOW() and 
-   (u.id=${id} and b.booking_status='ACCEPTED' and bc.contract_status='ACCEPTED')  order by b.updated_at desc  ${pagination}
+   (u.id=${id} and b.booking_status='ACCEPTED' and bc.contract_status='ACCEPTED') OR (ru.id=${id} and b.booking_status='ACCEPTED' and bc.contract_status='ACCEPTED') order by b.updated_at desc  ${pagination}
 `);
     count = await this.dataSource.manager.query(
       `select count(b.id) as count from booking b left join booking_contract bc
