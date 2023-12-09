@@ -154,6 +154,7 @@ async getTicketCountByEvent(id:string){
    const sum = await this.dataSource.manager.query(
       `select sum(quantity) as sum from "order" where event_id=${id}`,
     );
+    return sum;
   }
  catch (e) {
   this.logger.error(e);
@@ -161,7 +162,7 @@ async getTicketCountByEvent(id:string){
     ERROR_MESSAGES.INTERNAL_SERVER_ERROR,
   );
 }
-return sum;
+
 }
   async stripeWebhook(signature: string, body: Buffer) {
     try {
