@@ -92,7 +92,6 @@ export class EventListDto {
           location:element.location?element.location:null,
           linkToEvent:element.link_to_event?element.link_to_event:null,
           ticketSaleAgreement:element.ticket_sale_agreement,
-          isOneSidedTicketSale:element.booking_contract_is_one_sided_ticket_sale?element.booking_contract_is_one_sided_ticket_sale:null,
           gigType:element.gig_type,
           contractDetails:element.contract_details,
           contractDiscription:element.contract_discription,
@@ -137,6 +136,7 @@ export class EventListDto {
       contractDetails: element.booking_contract_details,
       contractDiscription:element.booking_contract_discription,
       ticketSaleAgreement: element.booking_contract_ticket_sale_agreement,
+      isOneSidedTicketSale:element.booking_contract_is_one_sided_ticket_sale?element.booking_contract_is_one_sided_ticket_sale:null,
       isMultipleRelease: element.booking_contract_is_multiple_release?element.booking_contract_is_multiple_release:null,
     };
   }
