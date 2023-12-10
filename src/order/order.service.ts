@@ -151,15 +151,11 @@ export class OrderService {
 async getTicketCountByEvent(id:number){
   let sum: [{ sum: number }] = [{ sum: 0 }];
   try{
-   const sum = await this.dataSource.manager.query(
+    sum = await this.dataSource.manager.query(
       `select sum(quantity) as soldTickets from "order" where event_id=${id}`,
     );
-    if (sum.length > 0 && sum[0].soldTickets !== null) {
-      return { soldTickets : sum[0].soldTickets };
-    } else {
-      // Handle the case where no quantity is found or it's null
-      return { soldTickets : 0 };
-    }
+    
+    return sum;
   }
  catch (e) {
   this.logger.error(e);
