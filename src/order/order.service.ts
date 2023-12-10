@@ -61,6 +61,8 @@ export class OrderService {
     await queryRunner.connect();
     await queryRunner.startTransaction();
     const invoiceNumber = await this.generateInvoiceNumber();
+    const soldQuantity=this.getTicketCountByEvent(event.id);
+
 
     try {
       let order = new OrderEntity();
@@ -68,7 +70,20 @@ export class OrderService {
       order.event = event;
       order.quantity = dto.quantity;
       order.invoiceNumber = invoiceNumber;
-      order.totalPrice = dto.quantity * event.ticketPrice;
+      if(soldQuantity[0] && soldQuantity[0].soldTickets<event.ticketQuantity)
+      {
+        order.totalPrice = dto.quantity * event.ticketPrice;
+      }
+      else if(soldQuantity[0] && soldQuantity[0].soldTickets<= event.ticketQuantity2)
+      {
+        order.totalPrice=dto.quantity * event.ticketPrice2;
+      }
+      else 
+      {
+        order.totalPrice=dto.quantity * event.ticketPrice3;
+      }
+      
+      
 
       order = await queryRunner.manager.getRepository(OrderEntity).save(order);
       // order = await this.orderEntityRepository.save(order);
