@@ -155,10 +155,10 @@ async getTicketCountByEvent(id:number){
       `select sum(quantity) as soldTickets from "order" where event_id=${id}`,
     );
     if (sum.length > 0 && sum[0].soldTickets !== null) {
-      return sum[0].soldTickets;
+      return { soldTickets : sum[0].soldTickets };
     } else {
       // Handle the case where no quantity is found or it's null
-      return 0;
+      return { soldTickets : 0 };
     }
   }
  catch (e) {
