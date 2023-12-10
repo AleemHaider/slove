@@ -269,12 +269,9 @@ export class UserDetailsDto {
       data = data as any;
       for (let i = 0; i < data.length; i++) {
         const element = data[i];
-        
         if(element.artist_id!=null && element.venue_id!=null)
         {
-        if(element.is_multiple_release!=null)
-        {
-        if(element.is_multiple_release==true)
+        if(element.is_multiple_release===true)
         {
         const obj = {
           id: element.event_id,
@@ -313,7 +310,7 @@ export class UserDetailsDto {
           },
         };
         list.push(obj);
-      }
+        }
       else {
         const obj = {
           id: element.event_id,
@@ -327,8 +324,6 @@ export class UserDetailsDto {
           isTicketClose:element.is_ticket_close,
           musicGenre: element.music_genre,
           createdAt: element.event_created_at,
-          
-         
           artist: {
             id: element.artist_id ?? null,
             name: element.artist_name ?? null,
@@ -347,14 +342,10 @@ export class UserDetailsDto {
         };
         list.push(obj);
       }
-        
-      }
     }
       else if(element.artist_id!=null)
       {
-        if(element.is_one_sided_ticket_sale!=null)
-        {
-        if(element.is_one_sided_ticket_sale)
+        if(element.is_one_sided_ticket_sale===true)
         {
         const obj = {
           id: element.event_id,
@@ -416,13 +407,10 @@ export class UserDetailsDto {
 
         list.push(obj);
       }
-    }
       }
-      else if(element.venue_id!=null)
+      else 
       {
-        if(element.is_one_sided_ticket_sale!=null)
-        {
-        if(element.is_one_sided_ticket_sale)
+        if(element.is_one_sided_ticket_sale===true)
         {
         const obj = {
           id: element.event_id,
@@ -454,7 +442,6 @@ export class UserDetailsDto {
 
         list.push(obj);
       }
-    }
     else{
       const obj = {
         id: element.event_id,
@@ -478,8 +465,8 @@ export class UserDetailsDto {
 
       list.push(obj);
     }
-      }
-    }
+  }
+}
     }
     const totalPages = Math.ceil(Number(count) / Number(limit));
 
