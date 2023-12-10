@@ -74,7 +74,7 @@ export class OrderService {
       {
         order.totalPrice = dto.quantity * event.ticketPrice;
       }
-      else if(soldQuantity[0] && soldQuantity[0].soldTickets<= event.ticketQuantity2)
+      else if(soldQuantity[0] && soldQuantity[0].soldTickets< event.ticketQuantity2)
       {
         order.totalPrice=dto.quantity * event.ticketPrice2;
       }
