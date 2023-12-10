@@ -151,10 +151,10 @@ export class OrderService {
 async getTicketCountByEvent(id:number){
   let sum: [{ sum: number }] = [{ sum: 0 }];
   try{
-   const sum = await this.dataSource.manager.query(
+   const res = await this.dataSource.manager.query(
       `select sum(quantity) as sum from "order" where event_id=${id}`,
     );
-    return sum;
+    return res.sum;
   }
  catch (e) {
   this.logger.error(e);
