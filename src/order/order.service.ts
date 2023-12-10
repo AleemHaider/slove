@@ -154,7 +154,12 @@ async getTicketCountByEvent(id:number){
    const sum = await this.dataSource.manager.query(
       `select sum(quantity) as soldTickets from "order" where event_id=${id}`,
     );
-    return sum;
+    if (sum.length > 0 && sum[0].soldTickets !== null) {
+      return sum[0].soldTickets;
+    } else {
+      // Handle the case where no quantity is found or it's null
+      return 0;
+    }
   }
  catch (e) {
   this.logger.error(e);
