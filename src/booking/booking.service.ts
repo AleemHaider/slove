@@ -148,8 +148,8 @@ export class BookingService {
       const eventEntity = new EventEntity();
       const bookingContractEntity=new BookingContractEntity();
       
-      bookingContractEntity.endTime = new Date(dto.date+' '+dto.endTime);
-      bookingContractEntity.startTime =new Date(dto.date+' '+dto.startTime);
+      bookingContractEntity.endTime = new Date(dto.endTime);
+      bookingContractEntity.startTime =new Date(dto.startTime);
       bookingContractEntity.eventName = dto.eventName;
       bookingContractEntity.ticketPrice = dto.ticketPrice;
       bookingContractEntity.ticketPrice2 = dto.ticketPrice2;
