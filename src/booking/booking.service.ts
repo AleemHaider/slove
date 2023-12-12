@@ -863,6 +863,7 @@ async findAllUpComming(user: UserEntity, id: number , page: string, limit: strin
     bookingContractEntity.contractDetails = dto.contractDetails;
     bookingContractEntity.ticketSaleAgreement = dto.ticketSaleAgreement;
     bookingContractEntity.contractDiscription = dto.contractDiscription;
+    bookingContractEntity.isTicketClose=dto.isTicketClose;
     bookingContractEntity.organisationNumber = dto.organisationNumber;
     bookingContractEntity.startTime = new Date(dto.date + ' ' + dto.startTime);
     bookingContractEntity.endTime = new Date(dto.date + ' ' + dto.endTime);

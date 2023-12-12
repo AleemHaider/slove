@@ -82,5 +82,8 @@ export class CreateContractDto {
   contractDiscription: string;
   @ApiProperty()
   equipment: string[];
+  @ApiProperty()
+  isTicketClose: boolean;
+  
 
 }
