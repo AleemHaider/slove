@@ -289,6 +289,7 @@ export class UserDetailsDto {
           ticketQuantity2 :element.ticket_quantity2,
           ticketQuantity3 :element.ticket_quantity3,
           isTicketClose:element.is_ticket_close,
+          contractDescription:element.contract_discription?element.contract_discription:null,
           musicGenre: element.music_genre,
           createdAt: element.event_created_at,
           
@@ -324,6 +325,7 @@ export class UserDetailsDto {
           isTicketClose:element.is_ticket_close,
           musicGenre: element.music_genre,
           createdAt: element.event_created_at,
+          contractDescription:element.contract_discription?element.contract_discription:null,
           artist: {
             id: element.artist_id ?? null,
             name: element.artist_name ?? null,
@@ -366,6 +368,7 @@ export class UserDetailsDto {
           ticketQuantity :element.ticket_quantity,
           ticketQuantity2 :element.ticket_quantity2,
           ticketQuantity3 :element.ticket_quantity3,
+          contractDescription:element.contract_discription?element.contract_discription:null,
          
           artist: {
             id: element.artist_id ?? null,
@@ -431,6 +434,7 @@ export class UserDetailsDto {
           ticketQuantity :element.ticket_quantity,
           ticketQuantity2 :element.ticket_quantity2,
           ticketQuantity3 :element.ticket_quantity3,
+          contractDescription:element.contract_discription?element.contract_discription:null,
           venue: {
             id: element.venue_id ?? null,
             name: element.venue_name ?? null,
@@ -453,6 +457,7 @@ export class UserDetailsDto {
         isOneSidedTickeSale: element.is_one_sided_ticket_sale,
         linkToTickets:element.link_to_tickets,
         linkToEvent:element.link_to_event,
+        contractDescription:element.contract_discription?element.contract_discription:null,
         gigType:'ONESIDED',
         venue: {
           id: element.venue_id ?? null,
