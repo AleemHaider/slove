@@ -422,7 +422,7 @@ export class UserService {
       let data = await this.dataSource.manager
         .query(`select e.event_name,e.is_ticket_close as is_ticket_close,e.location,e.contract_discription,e.is_one_sided_ticket_sale,e.ticket_price2,e.ticket_price3,e.ticket_quantity,e.ticket_quantity2,e.ticket_quantity3,
         e.release_name,e.release_name2,e.release_name3,cast(e.start_time as TEXT) as start_time,cast(e.end_time as TEXT) as end_time,e.ticket_price,artist.profile_image as artist_profile_image,
-    artist_uq.band_name as artist_name,artist_country.name as artist_country,artist_city.name as artist_city,artist.bio as artist_bio,
+    artist_uq.band_name as artist_name,bc.is_ticketc_close,artist_country.name as artist_country,artist_city.name as artist_city,artist.bio as artist_bio,
     venue_uq.venue_name as venue_name,venue_uq.country as v_country , venue_uq.city as v_city,artist_uq.country as a_country,artist_uq.city as a_city,venue.profile_image as venue_profile_image,venue_country.name as venue_country,venue_city.name as venue_city,bc.music_genre,bc.start_time,bc.link_to_tickets,bc.link_to_event,
     artist.id as artist_id,venue.id as venue_id,cast(e.created_at as TEXT) as event_created_at,e.id as event_id
     from event e left join booking_contract bc on bc.id = e.booking_contract_id left join "user" artist on artist.id = e.artist_id
@@ -444,7 +444,7 @@ export class UserService {
         data = await this.dataSource.manager.query(`
         select e.event_name,e.is_one_sided_ticket_sale,e.location,e.contract_discription,e.ticket_price2,e.ticket_price3,e.ticket_quantity,e.ticket_quantity2,e.ticket_quantity3,
         e.release_name,e.release_name2,e.release_name3,cast(e.start_time as TEXT) as start_time,cast(e.end_time as TEXT) as end_time,e.ticket_price,e.is_ticket_close as is_ticket_close,artist.profile_image as artist_profile_image,
-    artist_uq.band_name as artist_name,artist_country.name as artist_country,artist_city.name as artist_city,artist.bio as artist_bio,
+    artist_uq.band_name as artist_name,bc.is_ticketc_close,artist_country.name as artist_country,artist_city.name as artist_city,artist.bio as artist_bio,
     venue_uq.venue_name as venue_name,venue.profile_image as venue_profile_image,venue_country.name as venue_country,venue_city.name as venue_city,venue_uq.country as v_country , venue_uq.city as v_city,artist_uq.country as a_country,artist_uq.city as a_city,bc.music_genre,bc.start_time,bc.link_to_tickets,bc.link_to_event,
     artist.id as artist_id,venue.id as venue_id,cast(e.created_at as TEXT) as event_created_at,e.id as event_id
     from event e left join booking_contract bc on bc.id = e.booking_contract_id left join "user" artist on artist.id = e.artist_id
