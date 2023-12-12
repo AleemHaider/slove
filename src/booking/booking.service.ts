@@ -199,8 +199,8 @@ export class BookingService {
           await queryRunner.manager.getRepository(BookingEntity).save(existingBooking);
         }
       
-      eventEntity.endTime = new Date(dto.date+' '+dto.endTime);
-      eventEntity.startTime =new Date(dto.date+' '+dto.startTime);
+      eventEntity.endTime = new Date(dto.endTime);
+      eventEntity.startTime =new Date(dto.startTime);
       eventEntity.eventName = dto.eventName;
       eventEntity.ticketPrice = dto.ticketPrice;
       eventEntity.ticketPrice2 = dto.ticketPrice2;
