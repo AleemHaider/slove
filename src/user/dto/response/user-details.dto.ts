@@ -269,7 +269,7 @@ export class UserDetailsDto {
       data = data as any;
       for (let i = 0; i < data.length; i++) {
         const element = data[i];
-        if(element.artist_id!=null && element.venue_id!=null)
+        if(element.artist_id!==null && element.venue_id!==null)
         {
         if(element.is_multiple_release===true)
         {
