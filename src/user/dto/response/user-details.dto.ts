@@ -354,6 +354,7 @@ export class UserDetailsDto {
           eventName: element.event_name,
           startTime: element.start_time,
           endTime: element.end_time,
+          location:element.location,
           gigType:'ONESIDED',
           musicGenre: element.music_genre,
           createdAt: element.event_created_at,
@@ -395,6 +396,7 @@ export class UserDetailsDto {
           isOneSidedTickeSale: element.is_one_sided_ticket_sale,
           linkToTickets:element.link_to_tickets,
           linkToEvent:element.link_to_event,
+          location:element.location,
           gigType:'ONESIDED',
          
           artist: {
@@ -426,6 +428,7 @@ export class UserDetailsDto {
           isOneSidedTickeSale: element.is_one_sided_ticket_sale,
           gigType:'ONESIDED',
           ticketPrice: element.ticket_price,
+          location:element.location,
           ticketPrice2: element.ticket_price2,
           ticketPrice3: element.ticket_price3,
           releaseName: element.release_name,
@@ -457,6 +460,7 @@ export class UserDetailsDto {
         isOneSidedTickeSale: element.is_one_sided_ticket_sale,
         linkToTickets:element.link_to_tickets,
         linkToEvent:element.link_to_event,
+        location:element.location,
         contractDescription:element.contract_discription?element.contract_discription:null,
         gigType:'ONESIDED',
         venue: {
