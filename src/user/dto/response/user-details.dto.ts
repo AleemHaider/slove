@@ -363,6 +363,7 @@ export class UserDetailsDto {
           isOneSidedTickeSale: element.is_one_sided_ticket_sale,
           linkToTickets:element.link_to_tickets,
           linkToEvent:element.link_to_event,
+          isTicketClose:element.is_ticket_close,
           location:element.location,
           gigType:'ONESIDED',
          
@@ -428,6 +429,7 @@ export class UserDetailsDto {
         linkToTickets:element.link_to_tickets,
         linkToEvent:element.link_to_event,
         location:element.location,
+        isTicketClose:element.is_ticket_close,
         contractDescription:element.contract_discription?element.contract_discription:null,
         gigType:'ONESIDED',
         venue: {
