@@ -148,8 +148,8 @@ export class BookingService {
       const eventEntity = new EventEntity();
       const bookingContractEntity=new BookingContractEntity();
       
-      bookingContractEntity.endTime = new Date(dto.endTime);
-      bookingContractEntity.startTime =new Date(dto.startTime);
+      bookingContractEntity.endTime = new Date(dto.date+' '+dto.endTime);
+      bookingContractEntity.startTime =new Date(dto.date+' '+dto.startTime);
       bookingContractEntity.eventName = dto.eventName;
       bookingContractEntity.ticketPrice = dto.ticketPrice;
       bookingContractEntity.ticketPrice2 = dto.ticketPrice2;
@@ -199,8 +199,8 @@ export class BookingService {
           await queryRunner.manager.getRepository(BookingEntity).save(existingBooking);
         }
       
-      eventEntity.endTime = new Date(dto.endTime);
-      eventEntity.startTime =new Date(dto.startTime);
+      eventEntity.endTime = new Date(dto.date+' '+dto.endTime);
+      eventEntity.startTime =new Date(dto.date+' '+dto.startTime);
       eventEntity.eventName = dto.eventName;
       eventEntity.ticketPrice = dto.ticketPrice;
       eventEntity.ticketPrice2 = dto.ticketPrice2;
